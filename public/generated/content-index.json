@@ -1,0 +1,131 @@
+[
+  {
+    "title": "Designing Systems That Heal",
+    "description": "How to build feedback-rich systems that adapt, recover, and get better over time.",
+    "slug": "designing-systems-that-heal",
+    "category": "essay",
+    "status": "testing",
+    "confidence": "medium",
+    "version": "0.8.0",
+    "tags": [
+      "resilience",
+      "cybernetics",
+      "architecture"
+    ],
+    "dateCreated": "2025-05-18",
+    "dateUpdated": "2025-05-19",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/essays/designing-systems-that-heal.md"
+  },
+  {
+    "title": "Automated Feedback Loops in Agentic Workflows",
+    "description": "Hands-on explorations in continuous validation, subagent verification, and auto-tuning.",
+    "slug": "automated-feedback-loops",
+    "category": "experiment",
+    "status": "hypothesis",
+    "confidence": "medium",
+    "version": "0.1.0",
+    "tags": [
+      "experiments",
+      "ai",
+      "agents"
+    ],
+    "dateCreated": "2025-05-20",
+    "dateUpdated": "2025-05-21",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/experiments/automated-feedback-loops.md"
+  },
+  {
+    "title": "Work Once Principle Example",
+    "description": "Turn solved work into reusable assets.",
+    "slug": "example-work-once",
+    "category": "framework",
+    "status": "thought",
+    "confidence": "low",
+    "version": "0.1.0",
+    "tags": [
+      "example",
+      "framework"
+    ],
+    "dateCreated": "2025-05-15",
+    "dateUpdated": "2025-05-15",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": true,
+    "sourcePath": "src/content/docs/frameworks/example-work-once.md"
+  },
+  {
+    "title": "Framework Template",
+    "description": "Standard framework template structure.",
+    "slug": "framework-template",
+    "category": "framework",
+    "status": "thought",
+    "confidence": "low",
+    "version": "0.1.0",
+    "tags": [
+      "template"
+    ],
+    "dateCreated": "2025-05-15",
+    "dateUpdated": "2025-05-15",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": true,
+    "sourcePath": "src/content/docs/frameworks/framework-template.md"
+  },
+  {
+    "title": "The Work Once Principle",
+    "description": "Turn solved work into reusable assets, automated processes, and durable knowledge.",
+    "slug": "the-work-once-principle",
+    "category": "framework",
+    "status": "validated",
+    "confidence": "high",
+    "version": "1.2.0",
+    "tags": [
+      "systems",
+      "automation",
+      "productivity"
+    ],
+    "dateCreated": "2025-05-18",
+    "dateUpdated": "2025-06-01",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/frameworks/the-work-once-principle.md"
+  },
+  {
+    "title": "Getting Started with Cybernetic Gardening",
+    "description": "Initial observations on combining automated workflows with personal knowledge gardens.",
+    "slug": "getting-started-with-gardening",
+    "category": "note",
+    "status": "thought",
+    "confidence": "medium",
+    "version": "0.1.0",
+    "tags": [
+      "notes",
+      "systems",
+      "gardening"
+    ],
+    "dateCreated": "2025-05-22",
+    "dateUpdated": "2025-05-22",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/notes/getting-started-with-gardening.md"
+  }
+]

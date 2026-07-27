@@ -2,13 +2,17 @@
 title: Designing Systems That Heal
 description: How to build feedback-rich systems that adapt, recover, and get better over time.
 dateCreated: 2025-05-18
+dateUpdated: 2025-05-19
+version: 0.8.0
 status: testing
-confidence: 80%
+confidence: medium
+category: essay
 tags: ["resilience", "cybernetics", "architecture"]
 featured: true
 draft: false
-category: Essays
-readingTime: 8 min read
+authors: ["Med"]
+language: fr
+readingTime: 8
 ---
 
 # Designing Systems That Heal

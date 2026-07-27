@@ -9,9 +9,10 @@ const { currentPath = '/' } = Astro.props;
 
 const navItems = [
   { name: 'Home', href: '/', icon: 'home' as const, active: currentPath === '/' },
-  { name: 'Frameworks', href: '/docs/frameworks/the-work-once-principle', icon: 'cube' as const, active: currentPath.includes('/frameworks') },
-  { name: 'Essays', href: '/docs/essays/designing-systems-that-heal', icon: 'book' as const, active: currentPath.includes('/essays') },
-  { name: 'Experiments', href: '/docs/experiments/automated-feedback-loops', icon: 'flask' as const, active: currentPath.includes('/experiments') },
+  { name: 'Frameworks', href: '/frameworks', icon: 'cube' as const, active: currentPath.startsWith('/frameworks') },
+  { name: 'Essays', href: '/essays', icon: 'sprout' as const, active: currentPath.startsWith('/essays') },
+  { name: 'Experiments', href: '/experiments', icon: 'potion' as const, active: currentPath.startsWith('/experiments') },
+  { name: 'Notes', href: '/notes', icon: 'book' as const, active: currentPath.startsWith('/notes') },
   { name: 'About', href: '#about', icon: 'user' as const, active: currentPath === '#about' },
 ];
 ---

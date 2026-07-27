@@ -5,12 +5,14 @@ dateCreated: 2025-05-18
 dateUpdated: 2025-06-01
 version: 1.2.0
 status: validated
-confidence: 95%
+confidence: high
+category: framework
 tags: ["systems", "automation", "productivity"]
 featured: true
 draft: false
-category: Frameworks
-readingTime: 6 min read
+authors: ["Med"]
+language: fr
+readingTime: 6
 ---
 
 # The Work Once Principle

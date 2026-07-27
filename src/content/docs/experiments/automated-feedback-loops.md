@@ -2,13 +2,17 @@
 title: Automated Feedback Loops in Agentic Workflows
 description: Hands-on explorations in continuous validation, subagent verification, and auto-tuning.
 dateCreated: 2025-05-20
+dateUpdated: 2025-05-21
+version: 0.1.0
 status: hypothesis
-confidence: 70%
+confidence: medium
+category: experiment
 tags: ["experiments", "ai", "agents"]
 featured: false
 draft: false
-category: Experiments
-readingTime: 5 min read
+authors: ["Med"]
+language: fr
+readingTime: 5
 ---
 
 # Automated Feedback Loops in Agentic Workflows
