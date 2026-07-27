@@ -1,0 +1,36 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import CategoryLinks from '../components/home/CategoryLinks.astro';
+import FeaturedPost from '../components/home/FeaturedPost.astro';
+---
+
+<HomeLayout title="Med's Cybernetic Garden — A Cybernetic Garden of Ideas">
+  <Hero />
+  <CategoryLinks />
+  <FeaturedPost />
+
+  <footer class="home-footer">
+    <p>Thanks for being here. <span class="heart-accent">💜</span></p>
+  </footer>
+</HomeLayout>
+
+<style>
+  .home-footer {
+    padding: 3rem 0 2rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-subtle);
+    margin-top: 3rem;
+  }
+
+  .heart-accent {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .home-footer:hover .heart-accent {
+    transform: scale(1.2);
+  }
+</style>

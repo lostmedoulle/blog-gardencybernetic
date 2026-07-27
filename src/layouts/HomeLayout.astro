@@ -1,0 +1,82 @@
+---
+import Sidebar from '../components/home/Sidebar.astro';
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Med's Cybernetic Garden",
+  description = "A personal intellectual system exploring systems, automation, knowledge and human judgment.",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Google Fonts for Inter and JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="layout-container">
+      <Sidebar currentPath={currentPath} />
+
+      <div class="content-wrapper">
+        <main class="main-content" id="main-content">
+          <slot />
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  .layout-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--text);
+  }
+
+  .content-wrapper {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    padding: 2.5rem 3rem;
+    max-width: calc(100vw - var(--sidebar-width));
+    overflow-x: hidden;
+  }
+
+  .main-content {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .layout-container {
+      flex-direction: column;
+    }
+
+    .content-wrapper {
+      margin-left: 0;
+      padding: 1.5rem 1.25rem;
+      max-width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,172 @@
+---
+import PixelIcon from '../ui/PixelIcon.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Props {
+  title?: string;
+  excerpt?: string;
+  date?: string;
+  readingTime?: string;
+  category?: string;
+  href?: string;
+}
+
+const {
+  title = "Designing Systems That Heal",
+  excerpt = "How to build feedback-rich systems that adapt, recover, and get better over time.",
+  date = "May 18, 2025",
+  readingTime = "8 min read",
+  category = "Essays",
+  href = "/docs/essays/designing-systems-that-heal",
+} = Astro.props;
+---
+
+<section class="featured-section">
+  <SectionHeading title="Featured Post" icon="star" />
+
+  <a href={href} class="featured-card">
+    <div class="featured-media">
+      <PixelIcon name="tree" size={140} class="tree-illustration" />
+    </div>
+
+    <div class="featured-details">
+      <div class="title-row">
+        <h3 class="post-title">{title}</h3>
+        <span class="featured-badge">Featured</span>
+      </div>
+
+      <p class="post-excerpt">{excerpt}</p>
+
+      <div class="post-meta">
+        <span class="meta-item">{date}</span>
+        <span class="meta-dot">•</span>
+        <span class="meta-item">{readingTime}</span>
+        <span class="meta-dot">•</span>
+        <span class="meta-category">{category}</span>
+      </div>
+    </div>
+
+    <div class="card-arrow">
+      <PixelIcon name="arrow" size={20} />
+    </div>
+  </a>
+</section>
+
+<style>
+  .featured-section {
+    padding: 1.5rem 0 3rem 0;
+  }
+
+  .featured-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-card:hover {
+    border-color: var(--violet);
+    box-shadow: 0 10px 30px -10px var(--violet-glow);
+    transform: translateY(-2px);
+  }
+
+  .featured-card:hover .card-arrow {
+    color: var(--violet-bright);
+    transform: translateX(6px);
+  }
+
+  .featured-media {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: #0f172a;
+    padding: 0.5rem;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .featured-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .post-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+  }
+
+  .featured-badge {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    background-color: rgba(139, 92, 246, 0.2);
+    color: var(--violet-bright);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .post-excerpt {
+    font-size: 0.975rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .meta-dot {
+    color: var(--border);
+  }
+
+  .meta-category {
+    color: var(--cyan-bright);
+  }
+
+  .card-arrow {
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  @media (max-width: 768px) {
+    .featured-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.25rem;
+    }
+
+    .card-arrow {
+      align-self: flex-end;
+    }
+  }
+</style>

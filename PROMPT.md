@@ -1,0 +1,1 @@
+Transform notes into markdown with: problem, hypothesis, implementation, KPI, failures, limits.

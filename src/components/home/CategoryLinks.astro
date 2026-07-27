@@ -1,0 +1,129 @@
+---
+import PixelIcon from '../ui/PixelIcon.astro';
+
+const categories = [
+  {
+    title: 'Frameworks',
+    description: 'Mental models and practical frameworks for designing better systems.',
+    icon: 'cube' as const,
+    href: '/docs/frameworks/the-work-once-principle',
+  },
+  {
+    title: 'Essays',
+    description: 'Long-form thoughts on technology, society, and being human.',
+    icon: 'sprout' as const,
+    href: '/docs/essays/designing-systems-that-heal',
+  },
+  {
+    title: 'Experiments',
+    description: 'Hands-on explorations in automation, AI, and code. What works, what breaks.',
+    icon: 'potion' as const,
+    href: '/docs/experiments/automated-feedback-loops',
+  },
+];
+---
+
+<section class="categories-section">
+  <div class="categories-grid">
+    {categories.map((cat, idx) => (
+      <a href={cat.href} class="category-item">
+        <div class="category-icon-wrapper">
+          <PixelIcon name={cat.icon} size={36} />
+        </div>
+        <div class="category-content">
+          <h3 class="category-title">{cat.title}</h3>
+          <p class="category-description">{cat.description}</p>
+          <div class="category-arrow">
+            <PixelIcon name="arrow" size={16} />
+          </div>
+        </div>
+        {idx < categories.length - 1 && <div class="vertical-divider" />}
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .categories-section {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    margin: 2.5rem 0;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    position: relative;
+  }
+
+  .category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: var(--radius);
+    transition: all 0.25s ease;
+    position: relative;
+  }
+
+  .category-item:hover {
+    background-color: var(--surface);
+    transform: translateY(-3px);
+  }
+
+  .category-item:hover .category-arrow {
+    color: var(--violet-bright);
+    transform: translateX(4px);
+  }
+
+  .category-icon-wrapper {
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .category-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .category-description {
+    font-size: 0.925rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .category-arrow {
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease, color 0.2s ease;
+    margin-top: auto;
+  }
+
+  .vertical-divider {
+    position: absolute;
+    right: -1.25rem;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background-color: var(--border-subtle);
+  }
+
+  @media (max-width: 900px) {
+    .categories-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .vertical-divider {
+      display: none;
+    }
+  }
+</style>

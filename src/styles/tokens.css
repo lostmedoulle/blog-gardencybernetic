@@ -1,0 +1,36 @@
+:root {
+  /* Color Palette - Cybernetic Minimalist Dark Navy */
+  --background: #090d16;
+  --surface: #0f1524;
+  --surface-muted: #151c2e;
+  --text: #e2e8f0;
+  --text-muted: #8092ab;
+  --border: #1e293b;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+
+  /* Cybernetic Accent Highlights */
+  --violet: #8b5cf6;
+  --violet-bright: #a78bfa;
+  --violet-glow: rgba(139, 92, 246, 0.25);
+  
+  --green: #10b981;
+  --green-bright: #34d399;
+  --green-glow: rgba(16, 185, 129, 0.25);
+
+  --cyan: #06b6d4;
+  --cyan-bright: #22d3ee;
+  --cyan-glow: rgba(6, 182, 212, 0.25);
+
+  /* Layout & Spacing Tokens */
+  --content-width: 1200px;
+  --sidebar-width: 260px;
+  --radius: 12px;
+  --radius-sm: 6px;
+  --radius-lg: 16px;
+  --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 25px rgba(139, 92, 246, 0.15);
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+}

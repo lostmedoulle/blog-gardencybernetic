@@ -1,0 +1,186 @@
+---
+import PixelIcon from '../ui/PixelIcon.astro';
+import { AnimatedGarden } from './AnimatedGarden';
+import { SystemStatus } from './SystemStatus';
+---
+
+<section class="hero-section">
+  <div class="hero-grid">
+    <!-- Left Column: Copy & Actions -->
+    <div class="hero-content">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span class="status-text">Building in public</span>
+      </div>
+
+      <h1 class="hero-headline">
+        A cybernetic <br class="mobile-break" />
+        garden of <span class="gradient-text">ideas.🌱</span>
+      </h1>
+
+      <p class="hero-subheadline">
+        Exploring the intersection of code, cognition, and creativity to build resilient systems and share what I learn along the way.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/docs/frameworks/the-work-once-principle" class="btn btn-primary">
+          <span>Explore the Garden</span>
+          <PixelIcon name="arrow" size={16} />
+        </a>
+        <a href="#about" class="btn btn-secondary">
+          <span>About Me</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Illustration & System Status -->
+    <div class="hero-widgets">
+      <div class="garden-illustration-wrapper">
+        <AnimatedGarden client:visible />
+      </div>
+      <div class="status-widget-wrapper">
+        <SystemStatus client:visible />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding: 2.5rem 0 3.5rem 0;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background-color: var(--surface-muted);
+    border: 1px solid var(--border-subtle);
+    margin-bottom: 1.5rem;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--green-bright);
+    box-shadow: 0 0 10px var(--green);
+  }
+
+  .status-text {
+    font-family: var(--font-mono);
+    font-size: 0.825rem;
+    color: var(--text-muted);
+  }
+
+  .hero-headline {
+    font-size: 3.25rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--green-bright) 0%, var(--cyan-bright) 50%, var(--violet-bright) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subheadline {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: var(--violet);
+    color: #ffffff;
+    box-shadow: 0 4px 14px var(--violet-glow);
+  }
+
+  .btn-primary:hover {
+    background-color: #7c3aed;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--violet-glow);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .btn-secondary:hover {
+    color: var(--text);
+    border-color: var(--border);
+    background-color: var(--surface);
+  }
+
+  .hero-widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .status-widget-wrapper {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    z-index: 30;
+  }
+
+  @media (max-width: 1100px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .status-widget-wrapper {
+      position: relative;
+      top: 0;
+      right: 0;
+      max-width: 100%;
+    }
+
+    .hero-headline {
+      font-size: 2.5rem;
+    }
+  }
+</style>
