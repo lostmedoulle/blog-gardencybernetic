@@ -1,0 +1,237 @@
+---
+import PixelIcon from '../ui/PixelIcon.astro';
+
+interface TocItem {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  toc?: TocItem[];
+  status?: string;
+  category?: string;
+  tags?: string[];
+  language?: string;
+  author?: string;
+  dateUpdated?: string;
+}
+
+const {
+  toc = [],
+  status = "Hypothesis",
+  category = "Framework",
+  tags = ["automation", "systems-thinking", "knowledge", "productivity"],
+  language = "FR",
+  author = "Med",
+  dateUpdated = "27 juillet 2026",
+} = Astro.props;
+
+const defaultToc = [
+  { text: 'En une phrase', slug: 'en-une-phrase', active: true },
+  { text: 'Pourquoi j’écris cela', slug: 'pourquoi-jecris-cela' },
+  { text: 'Le problème observé', slug: 'le-probleme-observe' },
+  { text: 'Mon hypothèse', slug: 'mon-hypothese' },
+  { text: 'Le framework', slug: 'le-framework' },
+  { text: 'Mise en œuvre', slug: 'mise-en-oeuvre' },
+  { text: 'Résultats observés', slug: 'resultats-observes' },
+  { text: 'Ce qui a fonctionné', slug: 'ce-qui-a-fonctionne' },
+  { text: 'Ce qui n’a pas fonctionné', slug: 'ce-qui-na-pas-fonctionne' },
+  { text: 'Analyse causale', slug: 'analyse-causale' },
+  { text: 'Limites et conditions d’échec', slug: 'limites-et-conditions-dechec' },
+  { text: 'Décision actuelle', slug: 'decision-actuelle' },
+  { text: 'Ce que je ferais différemment', slug: 'ce-que-je-ferais-differemment' },
+  { text: 'Questions ouvertes', slug: 'questions-ouvertes' },
+  { text: 'Changelog intellectuel', slug: 'changelog-intellectuel' },
+  { text: 'Sources et artefacts', slug: 'sources-et-artefacts' },
+];
+
+const activeToc = toc.length > 0 ? toc : defaultToc;
+---
+
+<aside class="article-meta-sidebar">
+  <!-- Sommaire / Table of Contents -->
+  <div class="toc-panel">
+    <h3 class="toc-heading">SOMMAIRE</h3>
+    <nav class="toc-list-nav">
+      <ul class="toc-list">
+        {activeToc.map((item: any, idx: number) => (
+          <li>
+            <a href={`#${item.slug}`} class={`toc-item-link ${idx === 0 ? 'active' : ''}`}>
+              {idx === 0 && <span class="toc-active-bar"></span>}
+              <span class="toc-text">{item.text}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Metadata Card -->
+  <div class="meta-card-panel">
+    <div class="meta-field">
+      <span class="meta-label">STATUT</span>
+      <span class="meta-value">{status}</span>
+    </div>
+
+    <div class="meta-field">
+      <span class="meta-label">CATÉGORIE</span>
+      <span class="meta-value">{category}</span>
+    </div>
+
+    <div class="meta-field">
+      <span class="meta-label">TAGS</span>
+      <div class="meta-tags-list">
+        {tags.map((tag: string) => (
+          <span class="tag-badge">{tag}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="meta-field">
+      <span class="meta-label">LANGUE</span>
+      <span class="meta-value">{language.toUpperCase()}</span>
+    </div>
+
+    <div class="meta-field">
+      <span class="meta-label">AUTEUR</span>
+      <span class="meta-value">{author}</span>
+    </div>
+
+    <div class="meta-field">
+      <span class="meta-label">DERNIÈRE MISE À JOUR</span>
+      <span class="meta-value">{dateUpdated}</span>
+    </div>
+  </div>
+
+  <!-- Pixel Plant Crosshair Target Graphic -->
+  <div class="plant-crosshair-widget">
+    <PixelIcon name="target-plant" size={80} />
+  </div>
+</aside>
+
+<style>
+  .article-meta-sidebar {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+  }
+
+  .toc-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .toc-heading {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .toc-item-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+    line-height: 1.4;
+    text-decoration: none;
+    position: relative;
+    padding-left: 0.5rem;
+  }
+
+  .toc-item-link:hover {
+    color: var(--text);
+  }
+
+  .toc-item-link.active {
+    color: var(--green-bright);
+    font-weight: 600;
+  }
+
+  .toc-active-bar {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 2px;
+    background-color: var(--green-bright);
+    box-shadow: 0 0 8px var(--green);
+  }
+
+  .meta-card-panel {
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    font-family: var(--font-mono);
+  }
+
+  .meta-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .meta-label {
+    font-size: 0.725rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .meta-value {
+    font-size: 0.875rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .meta-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.15rem;
+  }
+
+  .tag-badge {
+    font-size: 0.75rem;
+    background-color: var(--surface-muted);
+    color: var(--text-muted);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .plant-crosshair-widget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 1100px) {
+    .article-meta-sidebar {
+      width: 100%;
+      position: relative;
+      top: 0;
+    }
+  }
+</style>

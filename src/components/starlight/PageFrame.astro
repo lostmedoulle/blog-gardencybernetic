@@ -1,18 +1,58 @@
 ---
 import Sidebar from '../home/Sidebar.astro';
+import ArticleHeader from './ArticleHeader.astro';
+import ArticleMetaSidebar from './ArticleMetaSidebar.astro';
 import '../../styles/tokens.css';
 import '../../styles/global.css';
 
 const currentPath = Astro.url.pathname;
+const isDocPage = currentPath.split('/').filter(Boolean).length >= 2;
+
+const entry = Astro.props.entry;
+const frontmatter = entry?.data || {};
+const headings = entry?.headings || [];
 ---
 
 <div class="layout-container">
+  <!-- Left Main Navigation Sidebar -->
   <Sidebar currentPath={currentPath} />
 
+  <!-- Main Content Wrapper -->
   <div class="content-wrapper">
-    <main class="main-content" id="main-content">
-      <slot />
-    </main>
+    <div class="article-grid">
+      <!-- Center Main Content -->
+      <main class="main-content" id="main-content">
+        {isDocPage && (
+          <ArticleHeader
+            title={frontmatter.title}
+            description={frontmatter.description}
+            category={frontmatter.category || 'Framework'}
+            status={frontmatter.status || 'Hypothesis'}
+            confidence={frontmatter.confidence || 'Medium'}
+            version={frontmatter.version || '0.1.0'}
+            dateCreated={frontmatter.dateCreated || '27 juillet 2026'}
+            readingTime={frontmatter.readingTime ? `${frontmatter.readingTime} min de lecture` : '8 min de lecture'}
+          />
+        )}
+
+        <div class="article-markdown-body">
+          <slot />
+        </div>
+      </main>
+
+      <!-- Right Metadata & Table of Contents Sidebar -->
+      {isDocPage && (
+        <ArticleMetaSidebar
+          toc={headings}
+          status={frontmatter.status}
+          category={frontmatter.category}
+          tags={frontmatter.tags}
+          language={frontmatter.language}
+          author={frontmatter.authors ? frontmatter.authors[0] : 'Med'}
+          dateUpdated={frontmatter.dateUpdated ? new Date(frontmatter.dateUpdated).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) : '27 juillet 2026'}
+        />
+      )}
+    </div>
   </div>
 </div>
 
@@ -27,19 +67,27 @@ const currentPath = Astro.url.pathname;
   .content-wrapper {
     flex: 1;
     margin-left: var(--sidebar-width);
-    padding: 2.5rem 3rem;
+    padding: 2rem 2.5rem;
     max-width: calc(100vw - var(--sidebar-width));
     overflow-x: hidden;
   }
 
-  .main-content {
-    max-width: var(--content-width);
+  .article-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 3.5rem;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
-  @media (max-width: 900px) {
-    .layout-container {
-      flex-direction: column;
+  .main-content {
+    min-width: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .article-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
 
     .content-wrapper {

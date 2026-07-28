@@ -1,0 +1,292 @@
+---
+import PixelIcon from '../ui/PixelIcon.astro';
+import { AnimatedGarden } from '../home/AnimatedGarden';
+
+interface Props {
+  title: string;
+  description?: string;
+  category?: string;
+  status?: string;
+  confidence?: string;
+  version?: string;
+  dateCreated?: Date | string;
+  dateUpdated?: Date | string;
+  readingTime?: number | string;
+}
+
+const {
+  title = "Le principe du travail effectué une seule fois",
+  description = "Comment transformer une résolution locale en actif réutilisable.",
+  category = "Framework",
+  status = "Hypothesis",
+  confidence = "Medium",
+  version = "0.1.0",
+  dateCreated = "27 juillet 2026",
+  readingTime = "8 min de lecture",
+} = Astro.props;
+
+const formattedDate = typeof dateCreated === 'string' ? dateCreated : new Date(dateCreated).toLocaleDateString('fr-FR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<header class="article-header-wrapper">
+  <!-- Top Breadcrumb & Utilities Bar -->
+  <div class="breadcrumb-bar">
+    <div class="breadcrumb-left">
+      <span class="breadcrumb-dot">•</span>
+      <span class="breadcrumb-category">{category}s</span>
+      <span class="breadcrumb-slash">/</span>
+      <span class="breadcrumb-title">{title}</span>
+    </div>
+
+    <div class="breadcrumb-actions">
+      <button class="icon-btn" aria-label="Toggle theme">
+        <PixelIcon name="moon" size={16} />
+      </button>
+      <button class="icon-btn" aria-label="Options">
+        <PixelIcon name="options" size={16} />
+      </button>
+    </div>
+  </div>
+
+  <div class="header-main-grid">
+    <!-- Left Details -->
+    <div class="header-details">
+      <!-- Category & Status Badges -->
+      <div class="badges-row">
+        <span class="badge badge-category">{category.toUpperCase()}</span>
+        <span class="badge badge-status">{status.toUpperCase()}</span>
+      </div>
+
+      <!-- Title & Description -->
+      <h1 class="article-headline">{title}</h1>
+      <p class="article-subheadline">{description}</p>
+
+      <!-- Meta Row -->
+      <div class="article-meta-row">
+        <span class="meta-item">
+          📅 {formattedDate}
+        </span>
+        <span class="meta-item">
+          ⏱️ {readingTime}
+        </span>
+        <span class="meta-item">
+          🔄 v{version}
+        </span>
+        <span class="meta-item confidence-item">
+          <span class="confidence-dot"></span> Confiance : {confidence}
+        </span>
+      </div>
+    </div>
+
+    <!-- Right Quick Action Buttons -->
+    <div class="header-quick-actions">
+      <button class="action-btn">
+        <PixelIcon name="save" size={15} />
+        <span>Sauvegarder</span>
+      </button>
+      <button class="action-btn">
+        <PixelIcon name="share" size={15} />
+        <span>Partager</span>
+      </button>
+      <button class="action-btn">
+        <PixelIcon name="edit" size={15} />
+        <span>Modifier</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero Workspace Pixel Illustration Cover -->
+  <div class="article-cover-wrapper">
+    <AnimatedGarden client:visible />
+  </div>
+</header>
+
+<style>
+  .article-header-wrapper {
+    margin-bottom: 2.5rem;
+  }
+
+  .breadcrumb-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .breadcrumb-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb-dot {
+    color: var(--green-bright);
+  }
+
+  .breadcrumb-category {
+    color: var(--text-muted);
+  }
+
+  .breadcrumb-slash {
+    color: var(--border);
+  }
+
+  .breadcrumb-title {
+    color: var(--text);
+  }
+
+  .breadcrumb-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.35rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .icon-btn:hover {
+    color: var(--text);
+  }
+
+  .header-main-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .header-details {
+    flex: 1;
+  }
+
+  .badges-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-category {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--green-bright);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .badge-status {
+    background-color: rgba(139, 92, 246, 0.2);
+    color: var(--violet-bright);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .article-headline {
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-subheadline {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .article-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+  }
+
+  .confidence-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .confidence-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--violet-bright);
+  }
+
+  .header-quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    padding: 0.35rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .action-btn:hover {
+    color: var(--text);
+    background-color: var(--surface);
+  }
+
+  .article-cover-wrapper {
+    margin-top: 1.75rem;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
+
+  @media (max-width: 850px) {
+    .header-main-grid {
+      flex-direction: column;
+    }
+
+    .header-quick-actions {
+      flex-direction: row;
+    }
+
+    .article-headline {
+      font-size: 2rem;
+    }
+  }
+</style>

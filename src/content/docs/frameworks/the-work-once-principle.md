@@ -1,43 +1,48 @@
 ---
-title: The Work Once Principle
-description: Turn solved work into reusable assets, automated processes, and durable knowledge.
-dateCreated: 2025-05-18
-dateUpdated: 2025-06-01
-version: 1.2.0
-status: validated
-confidence: high
+title: "Le principe du travail effectué une seule fois"
+description: "Comment transformer une résolution locale en actif réutilisable."
+dateCreated: 2026-07-27
+dateUpdated: 2026-07-27
+version: 0.1.0
+status: hypothesis
+confidence: medium
 category: framework
-tags: ["systems", "automation", "productivity"]
+tags: ["automation", "systems-thinking", "knowledge", "productivity"]
 featured: true
 draft: false
 authors: ["Med"]
 language: fr
-readingTime: 6
+readingTime: 8
 ---
 
-# The Work Once Principle
+## En une phrase
 
-The **Work Once Principle** is a foundational framework for personal and organizational leverage:
+Chaque problème résolu devrait produire, lorsque cela est économiquement pertinent, un actif réutilisable : code, procédure, modèle, test, prompt ou connaissance structurée.
 
-> **Every non-trivial problem solved manually more than twice must be converted into a durable artifact—code, template, or automated pipeline.**
+## Pourquoi j'écris cela
 
-## Core Pillars
+Dans plusieurs projets, j'ai observé que la même compréhension était reconstruite plusieurs fois : une règle métier était réexpliquée, un mapping était récréé, une anomalie était réanalysée, une décision restait enfermée dans une conversation.
 
-1. **Codification**: Record solutions in version-controlled markdown, scripts, or components immediately after solving them.
-2. **Automation**: Wrap repetitive manual workflows in deterministic scripts or background agent tasks.
-3. **Synthesis**: Combine isolated learnings into interconnected cognitive mental models.
+Le problème n'était pas seulement le temps perdu. Le raisonnement disparaissait avec le contexte.
 
-```ts
-function improve(system: System): System {
-  while (true) {
-    const observation = observe(system);
-    const insight = reflect(observation);
-    system = iterate(system, insight);
-    share(system);
-  }
-}
-```
+## Le problème observé
 
-## Feedback Loops & Validation
+Les organisations stockent généralement les résultats, mais rarement le raisonnement ayant produit ces résultats.
 
-When a task recurs, check whether a reusable asset already exists. If not, spend 1.5x the task execution time creating an automated or standardized solution. Over time, friction approaches zero.
+Cela crée trois pertes : répétition du travail, dépendance à certaines personnes, impossibilité de vérifier pourquoi une décision avait été prise.
+
+> Le raisonnement non capturé est une dette cognitive.
+
+## Mon hypothèse
+
+<div class="highlight-cyan">
+
+Si une résolution récurrente est transformée en actif structuré, testable et accessible, alors le coût marginal des usages suivants diminue sans dégrader la qualité.
+
+</div>
+
+Elle dépend de plusieurs conditions :
+- le problème doit réellement se répéter ;
+- l'actif doit être découvrable ;
+- le coût de maintenance doit rester inférieur au gain ;
+- le contexte ne doit pas changer trop rapidement.

@@ -1,5 +1,6 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
+import { SystemStatus } from './SystemStatus';
 
 interface Props {
   currentPath?: string;
@@ -7,33 +8,39 @@ interface Props {
 
 const { currentPath = '/' } = Astro.props;
 
-const navItems = [
+const mainNavItems = [
   { name: 'Home', href: '/', icon: 'home' as const, active: currentPath === '/' },
-  { name: 'Frameworks', href: '/frameworks', icon: 'cube' as const, active: currentPath.startsWith('/frameworks') },
-  { name: 'Essays', href: '/essays', icon: 'sprout' as const, active: currentPath.startsWith('/essays') },
-  { name: 'Experiments', href: '/experiments', icon: 'potion' as const, active: currentPath.startsWith('/experiments') },
-  { name: 'Notes', href: '/notes', icon: 'book' as const, active: currentPath.startsWith('/notes') },
+  { name: 'Frameworks', href: '/frameworks', icon: 'cube' as const, active: currentPath.startsWith('/frameworks') || currentPath.includes('/frameworks/') },
+  { name: 'Essays', href: '/essays', icon: 'sprout' as const, active: currentPath.startsWith('/essays') || currentPath.includes('/essays/') },
+  { name: 'Experiments', href: '/experiments', icon: 'potion' as const, active: currentPath.startsWith('/experiments') || currentPath.includes('/experiments/') },
+  { name: 'Notes', href: '/notes', icon: 'book' as const, active: currentPath.startsWith('/notes') || currentPath.includes('/notes/') },
   { name: 'About', href: '#about', icon: 'user' as const, active: currentPath === '#about' },
+];
+
+const secondaryNavItems = [
+  { name: 'GitHub', href: 'https://github.com/Empy-LAM/blog-gardencybernetic', icon: 'github' as const, external: true },
+  { name: 'RSS Feed', href: '#rss', icon: 'rss' as const, external: false },
 ];
 ---
 
 <aside class="sidebar">
+  <!-- Brand / Avatar Header -->
   <div class="sidebar-header">
     <a href="/" class="brand-link">
-      <div class="avatar-wrapper">
-        <PixelIcon name="avatar" size={38} />
+      <div class="avatar-pixel-container">
+        <PixelIcon name="robot" size={32} />
       </div>
-      <div class="brand-info">
-        <span class="brand-name">
-          Med's <span class="accent-text">Cybernetic</span> Garden 🌱
-        </span>
+      <div class="brand-titles">
+        <span class="brand-name-top">Med's</span>
+        <span class="brand-name-sub">Cybernetic Garden</span>
       </div>
     </a>
   </div>
 
+  <!-- Primary Navigation -->
   <nav class="sidebar-nav" aria-label="Main Navigation">
     <ul class="nav-list">
-      {navItems.map(item => (
+      {mainNavItems.map(item => (
         <li>
           <a href={item.href} class={`nav-link ${item.active ? 'active' : ''}`}>
             <span class="nav-icon">
@@ -45,37 +52,49 @@ const navItems = [
       ))}
     </ul>
 
-    <div class="nav-divider"></div>
-
-    <div class="search-link-wrapper">
+    <!-- Search Button -->
+    <div class="search-btn-wrapper">
       <a href="#search" class="search-btn">
         <PixelIcon name="search" size={16} />
         <span>Search</span>
-        <kbd class="kbd-badge">⌘K</kbd>
       </a>
     </div>
+
+    <div class="nav-divider"></div>
+
+    <!-- Secondary Links (GitHub & RSS) -->
+    <ul class="nav-list secondary-list">
+      {secondaryNavItems.map(item => (
+        <li>
+          <a
+            href={item.href}
+            target={item.external ? '_blank' : '_self'}
+            rel={item.external ? 'noopener noreferrer' : ''}
+            class="nav-link secondary"
+          >
+            <span class="nav-icon">
+              <PixelIcon name={item.icon} size={18} />
+            </span>
+            <span class="nav-label">{item.name}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </nav>
 
-  <div class="sidebar-footer">
-    <div class="social-links">
-      <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <PixelIcon name="github" size={18} />
-      </a>
-      <a href="#rss" aria-label="RSS Feed">
-        <PixelIcon name="rss" size={18} />
-      </a>
-      <a href="mailto:med@example.com" aria-label="Email">
-        <PixelIcon name="mail" size={18} />
-      </a>
+  <!-- Sidebar System Status Widget & Lamp Illustration -->
+  <div class="sidebar-bottom-section">
+    <div class="sidebar-status-widget">
+      <SystemStatus client:visible />
     </div>
 
-    <div class="footer-meta">
-      <p class="copyright">© 2025 Med</p>
-      <p class="tagline">Building in public.<br />Thinking in systems.</p>
+    <div class="sidebar-lamp-illustration">
+      <PixelIcon name="lamp" size={42} />
     </div>
 
-    <div class="pixel-plant-mascot">
-      <PixelIcon name="sprout" size={32} />
+    <div class="sidebar-footer">
+      <p class="copyright">© 2026 Med</p>
+      <p class="rights">All rights reserved.</p>
     </div>
   </div>
 </aside>
@@ -91,13 +110,13 @@ const navItems = [
     border-right: 1px solid var(--border-subtle);
     display: flex;
     flex-direction: column;
-    padding: 1.75rem 1.25rem;
+    padding: 1.5rem 1.15rem;
     z-index: 50;
     overflow-y: auto;
   }
 
   .sidebar-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 
   .brand-link {
@@ -105,36 +124,39 @@ const navItems = [
     align-items: center;
     gap: 0.85rem;
     color: var(--text);
-    transition: opacity 0.2s ease;
   }
 
-  .brand-link:hover {
-    opacity: 0.9;
+  .avatar-pixel-container {
+    width: 44px;
+    height: 44px;
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 
-  .avatar-wrapper {
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .brand-info {
+  .brand-titles {
     display: flex;
     flex-direction: column;
   }
 
-  .brand-name {
-    font-size: 1.05rem;
+  .brand-name-top {
+    font-size: 1.15rem;
     font-weight: 700;
-    line-height: 1.2;
     color: var(--text);
+    line-height: 1.1;
   }
 
-  .accent-text {
-    color: var(--violet-bright);
+  .brand-name-sub {
+    font-size: 0.775rem;
+    color: var(--text-muted);
+    line-height: 1.2;
   }
 
   .sidebar-nav {
-    flex: 1;
     display: flex;
     flex-direction: column;
   }
@@ -143,17 +165,17 @@ const navItems = [
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   .nav-link {
     display: flex;
     align-items: center;
     gap: 0.85rem;
-    padding: 0.65rem 0.85rem;
+    padding: 0.6rem 0.85rem;
     border-radius: var(--radius-sm);
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.925rem;
     font-weight: 500;
     transition: all 0.2s ease;
   }
@@ -164,98 +186,71 @@ const navItems = [
   }
 
   .nav-link.active {
-    color: var(--violet-bright);
-    background-color: rgba(139, 92, 246, 0.12);
+    color: var(--green-bright);
+    background-color: rgba(16, 185, 129, 0.12);
     font-weight: 600;
+    border-left: 2px solid var(--green);
   }
 
-  .nav-icon {
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-divider {
-    height: 1px;
-    background-color: var(--border-subtle);
-    margin: 1.25rem 0;
+  .search-btn-wrapper {
+    margin-top: 0.5rem;
   }
 
   .search-btn {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.85rem;
     padding: 0.6rem 0.85rem;
     border-radius: var(--radius-sm);
     color: var(--text-muted);
-    font-size: 0.9rem;
-    background-color: var(--surface-muted);
-    border: 1px solid var(--border-subtle);
+    font-size: 0.925rem;
     cursor: pointer;
     transition: all 0.2s ease;
   }
 
   .search-btn:hover {
     color: var(--text);
-    border-color: var(--violet);
+    background-color: var(--surface);
   }
 
-  .kbd-badge {
-    margin-left: auto;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    background-color: var(--background);
-    padding: 0.15rem 0.4rem;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    color: var(--text-muted);
+  .nav-divider {
+    height: 1px;
+    background-color: var(--border-subtle);
+    margin: 1rem 0;
+  }
+
+  .sidebar-bottom-section {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sidebar-status-widget {
+    transform: scale(0.95);
+    transform-origin: bottom left;
+  }
+
+  .sidebar-lamp-illustration {
+    display: flex;
+    justify-content: center;
+    opacity: 0.85;
+    margin-top: 0.25rem;
   }
 
   .sidebar-footer {
-    margin-top: auto;
-    padding-top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .social-links {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    font-size: 0.775rem;
     color: var(--text-muted);
-  }
-
-  .social-links a {
-    transition: color 0.2s ease;
-  }
-
-  .social-links a:hover {
-    color: var(--violet-bright);
-  }
-
-  .footer-meta {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.4;
+    line-height: 1.35;
+    text-align: left;
   }
 
   .copyright {
     font-weight: 600;
     color: var(--text);
-    margin-bottom: 0.2rem;
   }
 
-  .pixel-plant-mascot {
-    margin-top: 0.5rem;
-    opacity: 0.85;
-    transition: transform 0.3s ease;
-  }
-
-  .pixel-plant-mascot:hover {
-    transform: translateY(-2px) scale(1.05);
-  }
-
-  /* Responsive drawer behavior for smaller screens */
   @media (max-width: 900px) {
     .sidebar {
       position: relative;
