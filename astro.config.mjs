@@ -7,11 +7,16 @@ export default defineConfig({
     starlight({
       title: "Med's Cybernetic Garden",
       social: {
-        github: 'https://github.com',
+        github: 'https://github.com/Empy-LAM/blog-gardencybernetic',
+      },
+      components: {
+        PageFrame: './src/components/starlight/PageFrame.astro',
+        Header: './src/components/starlight/Header.astro',
       },
       customCss: [
         './src/styles/tokens.css',
         './src/styles/global.css',
+        './src/styles/starlight-custom.css',
       ],
       sidebar: [
         {
@@ -25,6 +30,10 @@ export default defineConfig({
         {
           label: 'Experiments',
           autogenerate: { directory: 'experiments' },
+        },
+        {
+          label: 'Notes',
+          autogenerate: { directory: 'notes' },
         },
       ],
     }),

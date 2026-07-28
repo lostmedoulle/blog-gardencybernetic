@@ -1,0 +1,117 @@
+/* Starlight Theme Customization - Cybernetic Dark Navy Theme */
+
+:root {
+  --sl-color-accent-low: rgba(139, 92, 246, 0.15);
+  --sl-color-accent: #8b5cf6;
+  --sl-color-accent-high: #a78bfa;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #e2e8f0;
+  --sl-color-gray-2: #cbd5e1;
+  --sl-color-gray-3: #94a3b8;
+  --sl-color-gray-4: #64748b;
+  --sl-color-gray-5: #334155;
+  --sl-color-gray-6: #1e293b;
+  --sl-color-black: #090d16;
+
+  --sl-color-bg: #090d16;
+  --sl-color-bg-nav: #0f1524;
+  --sl-color-bg-sidebar: #090d16;
+  --sl-color-bg-inline-code: #151c2e;
+  
+  --sl-color-border: rgba(255, 255, 255, 0.08);
+
+  --sl-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --sl-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --sl-nav-height: 0px;
+  --sl-sidebar-width: 0px;
+}
+
+/* Hide default Starlight header / navbar elements */
+header.header {
+  display: none !important;
+}
+
+.sidebar-pane {
+  display: none !important;
+}
+
+.main-frame {
+  padding-top: 0 !important;
+}
+
+.content-panel {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Article Heading & Content Styling */
+.sl-markdown-content h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 1.5rem !important;
+  line-height: 1.2 !important;
+}
+
+.sl-markdown-content h2 {
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  padding-bottom: 0.5rem !important;
+  margin-top: 2.25rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.sl-markdown-content h3 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: var(--violet-bright) !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.sl-markdown-content p, .sl-markdown-content li {
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  color: var(--text-muted) !important;
+}
+
+.sl-markdown-content strong {
+  color: var(--text) !important;
+}
+
+.sl-markdown-content blockquote {
+  border-left: 3px solid var(--violet) !important;
+  background-color: var(--surface) !important;
+  padding: 1rem 1.25rem !important;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0 !important;
+  margin: 1.5rem 0 !important;
+}
+
+.sl-markdown-content blockquote p {
+  color: var(--text) !important;
+  font-style: italic !important;
+}
+
+/* Code Blocks Styling */
+.sl-markdown-content pre {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius) !important;
+  padding: 1.25rem !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.sl-markdown-content code {
+  font-family: var(--font-mono) !important;
+}
+
+/* Right Table of Contents Sidebar (if rendered) */
+starlight-toc {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius) !important;
+  padding: 1rem !important;
+}
