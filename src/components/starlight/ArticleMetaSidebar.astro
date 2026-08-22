@@ -1,5 +1,4 @@
 ---
-import PixelIcon from '../ui/PixelIcon.astro';
 
 interface TocItem {
   depth: number;
@@ -92,11 +91,6 @@ const activeToc = toc;
         <span class="meta-value">{dateUpdated}</span>
       </div>
     )}
-  </div>
-
-  <!-- Pixel Plant Crosshair Target Graphic -->
-  <div class="plant-crosshair-widget">
-    <PixelIcon name="target-plant" size={80} />
   </div>
 </aside>
 
@@ -213,14 +207,6 @@ const activeToc = toc;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     border: 1px solid var(--border-subtle);
-  }
-
-  .plant-crosshair-widget {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1.5rem;
-    opacity: 0.85;
   }
 
   @media (max-width: 1100px) {
