@@ -7,7 +7,7 @@ export default defineConfig({
     starlight({
       title: "Med's Cybernetic Garden",
       social: {
-        github: 'https://github.com/Empy-LAM/blog-gardencybernetic',
+        github: 'https://github.com/lostmedoulle/blog-gardencybernetic',
       },
       components: {
         PageFrame: './src/components/starlight/PageFrame.astro',
