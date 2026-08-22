@@ -3,46 +3,39 @@ name: Déployer sur GitHub Pages
 on:
   push:
     branches: [main]
-  # Permet de relancer un déploiement à la main depuis l'onglet Actions.
+  # Permet de relancer un déploiement à la main depuis l'onglet Actions,
+  # notamment juste après avoir activé Pages dans les réglages du dépôt.
   workflow_dispatch:
 
-# Nécessaire pour que l'action de déploiement puisse publier sur Pages.
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Un seul déploiement à la fois ; les pushes suivants annulent celui en cours.
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
+  # Le build est séparé du déploiement : il valide le contenu à chaque push,
+  # même tant que GitHub Pages n'est pas encore activé sur le dépôt.
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
 
-      # `enablement: true` crée le site Pages s'il n'existe pas encore : le
-      # dépôt n'a donc aucun réglage à activer à la main au préalable.
-      - name: Configurer GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
       - name: Installer Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Installer les dépendances
         run: npm ci
 
-      # `npm run build` déclenche déjà validate:content et generate:index via
-      # le hook prebuild : un frontmatter invalide fait échouer le déploiement
-      # avant publication, pas après.
+      # `npm run build` déclenche validate:content et generate:index via le
+      # hook prebuild : un frontmatter invalide échoue ici, avant publication.
       - name: Construire le site
         run: npm run build
 
@@ -58,6 +51,11 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Prérequis : Settings → Pages → Source : GitHub Actions.
+      # Cette activation ne peut pas être faite par le workflow : le
+      # GITHUB_TOKEN peut déployer vers un site Pages existant, mais pas en
+      # créer un (« Resource not accessible by integration »). C'est une
+      # restriction volontaire de GitHub, réservée à un administrateur.
       - name: Publier sur GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
