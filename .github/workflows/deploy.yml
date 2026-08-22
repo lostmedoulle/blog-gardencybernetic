@@ -51,11 +51,16 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # Prérequis : Settings → Pages → Source : GitHub Actions.
-      # Cette activation ne peut pas être faite par le workflow : le
-      # GITHUB_TOKEN peut déployer vers un site Pages existant, mais pas en
-      # créer un (« Resource not accessible by integration »). C'est une
-      # restriction volontaire de GitHub, réservée à un administrateur.
+      # Tente de créer le site Pages s'il n'existe pas encore. Sur un dépôt
+      # privé cet appel échoue (Pages y exige un plan payant) ; sur un dépôt
+      # public il crée le site avec le GITHUB_TOKEN.
+      # Placée dans le job `deploy` et non `build` : un échec ici ne doit pas
+      # empêcher la validation du contenu ni la compilation.
+      - name: Activer GitHub Pages si nécessaire
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Publier sur GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
