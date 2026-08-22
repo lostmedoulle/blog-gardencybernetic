@@ -1,5 +1,6 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
+import { withBase } from '../../utils/paths';
 
 const categories = [
   {
@@ -32,7 +33,7 @@ const categories = [
 <section class="categories-section">
   <div class="categories-grid">
     {categories.map((cat, idx) => (
-      <a href={cat.href} class="category-item">
+      <a href={withBase(cat.href)} class="category-item">
         <div class="category-icon-wrapper">
           <PixelIcon name={cat.icon} size={36} />
         </div>

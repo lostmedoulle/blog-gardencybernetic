@@ -2,26 +2,28 @@
 import PixelIcon from '../ui/PixelIcon.astro';
 import GardenStatus from './GardenStatus.astro';
 import { SUPPORT } from '../../config/support';
+import { withBase, stripBase } from '../../utils/paths';
 
 interface Props {
   currentPath?: string;
 }
 
-const { currentPath = '/' } = Astro.props;
+// `Astro.url.pathname` inclut la base du site : on la retire pour comparer les routes.
+const currentPath = stripBase(Astro.props.currentPath ?? '/');
 
 const mainNavItems = [
-  { name: 'Accueil', href: '/', icon: 'home' as const, active: currentPath === '/' },
-  { name: 'Frameworks', href: '/frameworks', icon: 'cube' as const, active: currentPath.startsWith('/frameworks') || currentPath.includes('/frameworks/') },
-  { name: 'Essais', href: '/essays', icon: 'sprout' as const, active: currentPath.startsWith('/essays') || currentPath.includes('/essays/') },
-  { name: 'Expériences', href: '/experiments', icon: 'potion' as const, active: currentPath.startsWith('/experiments') || currentPath.includes('/experiments/') },
-  { name: 'Laboratoire', href: '/lab', icon: 'flask' as const, active: currentPath.startsWith('/lab') },
-  { name: 'Notes', href: '/notes', icon: 'book' as const, active: currentPath.startsWith('/notes') || currentPath.includes('/notes/') },
-  { name: 'À propos', href: '/about', icon: 'user' as const, active: currentPath.startsWith('/about') },
+  { name: 'Accueil', href: withBase('/'), icon: 'home' as const, active: currentPath === '/' },
+  { name: 'Frameworks', href: withBase('/frameworks'), icon: 'cube' as const, active: currentPath.startsWith('/frameworks') || currentPath.includes('/frameworks/') },
+  { name: 'Essais', href: withBase('/essays'), icon: 'sprout' as const, active: currentPath.startsWith('/essays') || currentPath.includes('/essays/') },
+  { name: 'Expériences', href: withBase('/experiments'), icon: 'potion' as const, active: currentPath.startsWith('/experiments') || currentPath.includes('/experiments/') },
+  { name: 'Laboratoire', href: withBase('/lab'), icon: 'flask' as const, active: currentPath.startsWith('/lab') },
+  { name: 'Notes', href: withBase('/notes'), icon: 'book' as const, active: currentPath.startsWith('/notes') || currentPath.includes('/notes/') },
+  { name: 'À propos', href: withBase('/about'), icon: 'user' as const, active: currentPath.startsWith('/about') },
 ];
 
 const secondaryNavItems = [
   { name: 'GitHub', href: 'https://github.com/lostmedoulle/blog-gardencybernetic', icon: 'github' as const, external: true },
-  { name: 'Flux RSS', href: '/rss.xml', icon: 'rss' as const, external: false },
+  { name: 'Flux RSS', href: withBase('/rss.xml'), icon: 'rss' as const, external: false },
 ];
 ---
 
@@ -40,7 +42,7 @@ const secondaryNavItems = [
       <span class="nav-toggle-bar"></span>
       <span class="nav-toggle-bar"></span>
     </button>
-    <a href="/" class="brand-link">
+    <a href={withBase('/')} class="brand-link">
       <div class="avatar-pixel-container">
         <PixelIcon name="robot" size={32} />
       </div>
@@ -69,7 +71,7 @@ const secondaryNavItems = [
 
     <!-- Search Button -->
     <div class="search-btn-wrapper">
-      <a href="/search" class="search-btn">
+      <a href={withBase('/search')} class="search-btn">
         <PixelIcon name="search" size={16} />
         <span>Rechercher</span>
       </a>
@@ -100,7 +102,7 @@ const secondaryNavItems = [
   <!-- Sidebar System Status Widget & Lamp Illustration -->
   <div class="sidebar-bottom-section">
     <a
-      href="/support"
+      href={withBase('/support')}
       class={`sponsor-btn ${currentPath.startsWith('/support') ? 'active' : ''}`}
     >
       <PixelIcon name="heart" size={16} />

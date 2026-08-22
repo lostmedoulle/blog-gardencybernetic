@@ -1,6 +1,11 @@
 ---
 import HomeLayout from '../layouts/HomeLayout.astro';
 import PixelIcon from '../components/ui/PixelIcon.astro';
+import { withBase } from '../utils/paths';
+
+const pagefindCss = withBase('/pagefind/pagefind-ui.css');
+const pagefindJs = withBase('/pagefind/pagefind-ui.js');
+const pagefindBundle = withBase('/pagefind/');
 ---
 
 <HomeLayout
@@ -27,13 +32,14 @@ import PixelIcon from '../components/ui/PixelIcon.astro';
   </div>
 </HomeLayout>
 
-<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
-<script is:inline src="/pagefind/pagefind-ui.js"></script>
-<script is:inline>
+<link rel="stylesheet" href={pagefindCss} />
+<script is:inline src={pagefindJs}></script>
+<script is:inline define:vars={{ pagefindBundle }}>
   window.addEventListener('DOMContentLoaded', () => {
     if (typeof window.PagefindUI !== 'function') return;
     new window.PagefindUI({
       element: '#search-root',
+      bundlePath: pagefindBundle,
       showSubResults: true,
       showImages: false,
       translations: {

@@ -110,20 +110,52 @@ vite, les autres pour la structure complète de chaque type.
 | `language` | non | `fr` |
 | `readingTime` | non | non affiché |
 
-## ⚠️ À configurer avant la mise en ligne
+## Déploiement
 
-1. **Domaine.** `astro.config.mjs` utilise `SITE` (défaut :
-   `https://lostmedoulle.github.io`). Le remplacer par le domaine réel, ou
-   builder avec `SITE_URL=https://mon-domaine.ch npm run build`. Cette valeur
-   alimente le sitemap, les URLs canoniques et le flux RSS.
+Le site se déploie sur **GitHub Pages** via `.github/workflows/deploy.yml` :
+chaque push sur `main` reconstruit et publie. Le workflow lance `npm run build`,
+qui déclenche `validate:content` — un frontmatter invalide fait donc échouer le
+déploiement **avant** publication, jamais après.
 
-2. **Sponsoring.** Le bouton « Soutenir » pointe vers GitHub Sponsors. Pour
-   qu'il fonctionne :
-   - activer GitHub Sponsors sur le compte (<https://github.com/sponsors>) ;
-   - y créer un palier mensuel à **10 CHF** ;
-   - le fichier `.github/FUNDING.yml` affichera alors le bouton natif du dépôt.
+### Activation (une seule fois)
 
-   Le montant, l'URL, les contreparties et les coûts affichés sont centralisés
+`Settings` → `Pages` → **Source : GitHub Actions**.
+
+Le site sera servi sur `https://lostmedoulle.github.io/blog-gardencybernetic/`.
+
+### Sous-chemin
+
+Un dépôt de projet GitHub Pages est servi sous un sous-chemin, pas à la racine.
+`astro.config.mjs` définit donc `base: '/blog-gardencybernetic'`. Astro préfixe
+ses propres routes, mais **pas** les `href` écrits à la main : utiliser
+`withBase()` de `src/utils/paths.ts` pour tout lien interne, et `stripBase()`
+pour comparer un `Astro.url.pathname` à une route.
+
+```astro
+---
+import { withBase } from '../utils/paths';
+---
+<a href={withBase('/lab')}>Laboratoire</a>
+```
+
+### Passer à un domaine propre
+
+```bash
+SITE_URL=https://mon-domaine.ch SITE_BASE=/ npm run build
+```
+
+`withBase()` devient alors transparent, sans autre modification. Ajouter aussi
+un fichier `public/CNAME` contenant le domaine.
+
+## ⚠️ Reste à configurer
+
+**Sponsoring.** Le bouton « Soutenir » pointe vers GitHub Sponsors. Pour
+qu'il fonctionne :
+- activer GitHub Sponsors sur le compte (<https://github.com/sponsors>) ;
+- y créer un palier mensuel à **10 CHF** ;
+- le fichier `.github/FUNDING.yml` affichera alors le bouton natif du dépôt.
+
+Le montant, l'URL, les contreparties et les coûts affichés sont centralisés
    dans `src/config/support.ts` — c'est le seul fichier à modifier pour changer
    l'offre partout (page `/support`, encart de fin d'article, barre latérale).
 
@@ -137,6 +169,7 @@ src/
     support/   encart de sponsoring réutilisable
     ui/        primitives (PixelIcon, SectionHeading)
   config/support.ts   configuration du sponsoring
+  utils/              helpers de dates et de chemins (withBase / stripBase)
   content/docs/       articles, par catégorie
   layouts/            HomeLayout (pages hors Starlight)
   pages/              index, catégories, about, support, search, rss.xml

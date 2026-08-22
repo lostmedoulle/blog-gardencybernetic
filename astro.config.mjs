@@ -2,12 +2,17 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import react from '@astrojs/react';
 
-// ⚠️ À remplacer par ton domaine réel avant la mise en ligne.
-// Peut aussi être surchargé au build : SITE_URL=https://mon-domaine.ch npm run build
+// Déploiement par défaut : GitHub Pages, dépôt de projet.
+// Le site est donc servi sous https://lostmedoulle.github.io/blog-gardencybernetic/
+//
+// Pour passer à un domaine propre, builder avec :
+//   SITE_URL=https://mon-domaine.ch SITE_BASE=/ npm run build
 const SITE = process.env.SITE_URL ?? 'https://lostmedoulle.github.io';
+const BASE = process.env.SITE_BASE ?? '/blog-gardencybernetic';
 
 export default defineConfig({
   site: SITE,
+  base: BASE,
   integrations: [
     starlight({
       title: "Med's Cybernetic Garden",
@@ -38,7 +43,7 @@ export default defineConfig({
             rel: 'alternate',
             type: 'application/rss+xml',
             title: "Med's Cybernetic Garden",
-            href: `${SITE}/rss.xml`,
+            href: new URL(`${BASE}/rss.xml`.replace(/\/+/g, '/'), SITE).href,
           },
         },
       ],

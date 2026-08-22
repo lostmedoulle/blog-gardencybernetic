@@ -2,6 +2,7 @@
 import HomeLayout from '../layouts/HomeLayout.astro';
 import PixelIcon from '../components/ui/PixelIcon.astro';
 import SupportCTA from '../components/support/SupportCTA.astro';
+import { withBase } from '../utils/paths';
 
 const statuses = [
   { key: 'thought', desc: "Idée brute, pas encore formulée en hypothèse testable." },
@@ -68,7 +69,7 @@ const statuses = [
     <h2>La règle des échecs</h2>
     <p>
       Une hypothèse réfutée n'est pas supprimée. Elle est déplacée dans le
-      <a href="/lab">Laboratoire</a> avec le raisonnement qui l'avait rendue crédible et le
+      <a href={withBase("/lab")}>Laboratoire</a> avec le raisonnement qui l'avait rendue crédible et le
       signal qui l'a tuée. Publier uniquement ce qui a marché produit un corpus survivant :
       lisible, propre, et faux par omission.
     </p>

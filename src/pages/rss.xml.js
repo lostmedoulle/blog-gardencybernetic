@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import { articleDate } from '../utils/dates';
+import { withBase } from '../utils/paths';
 
 const CATEGORY_PATH = {
   framework: 'frameworks',
@@ -18,7 +19,7 @@ export async function GET(context) {
       title: doc.data.title,
       description: doc.data.description ?? '',
       pubDate: articleDate(doc.data),
-      link: `/${doc.id}/`,
+      link: withBase(`/${doc.id}/`),
       categories: [doc.data.category, ...(doc.data.tags ?? [])],
       customData: `<status>${doc.data.status}</status><confidence>${doc.data.confidence}</confidence>`,
     }))
@@ -31,7 +32,8 @@ export async function GET(context) {
     title: "Med's Cybernetic Garden",
     description:
       "Systèmes, automatisation, connaissance et jugement humain. Hypothèses testées en public, échecs documentés.",
-    site: context.site,
+    // Le lien du canal doit pointer l'accueil réel du site, base comprise.
+    site: new URL(withBase('/'), context.site),
     items,
     customData: '<language>fr</language>',
   });

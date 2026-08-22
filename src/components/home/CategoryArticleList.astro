@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import PixelIcon from '../ui/PixelIcon.astro';
 import { sortTimestamp, formatDate, articleDate } from '../../utils/dates';
+import { withBase } from '../../utils/paths';
 
 interface Props {
   category: 'framework' | 'experiment' | 'essay' | 'note' | 'lab';
@@ -55,7 +56,7 @@ const statusColorMap: Record<string, { bg: string; color: string; border: string
       const formattedDate = formatDate(articleDate(doc.data));
 
       return (
-        <a href={`/${doc.id}/`} class="article-card">
+        <a href={withBase(`/${doc.id}/`)} class="article-card">
           <div class="card-header">
             <h2 class="article-title">{doc.data.title}</h2>
             <div class="status-badges">

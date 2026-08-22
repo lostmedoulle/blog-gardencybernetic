@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import PixelIcon from '../ui/PixelIcon.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
 import { sortTimestamp, formatDate, articleDate } from '../../utils/dates';
+import { withBase } from '../../utils/paths';
 
 const CATEGORY_LABEL = {
   framework: 'Frameworks',
@@ -23,7 +24,7 @@ const featured =
 
 const title = featured?.data.title ?? 'Aucun article publié';
 const excerpt = featured?.data.description ?? 'Le premier article arrive bientôt.';
-const href = featured ? `/${featured.id}/` : '/';
+const href = withBase(featured ? `/${featured.id}/` : '/');
 const category = featured ? CATEGORY_LABEL[featured.data.category] ?? featured.data.category : '';
 const readingTime = featured?.data.readingTime
   ? `${featured.data.readingTime} min de lecture`

@@ -2,6 +2,7 @@
 import PixelIcon from '../ui/PixelIcon.astro';
 import { AnimatedGarden } from '../home/AnimatedGarden';
 import { formatDate } from '../../utils/dates';
+import { withBase } from '../../utils/paths';
 
 interface Props {
   title: string;
@@ -53,7 +54,7 @@ const formattedDate =
   <div class="breadcrumb-bar">
     <div class="breadcrumb-left">
       <span class="breadcrumb-dot">•</span>
-      <a href={crumb.href} class="breadcrumb-category">{crumb.label}</a>
+      <a href={withBase(crumb.href)} class="breadcrumb-category">{crumb.label}</a>
       <span class="breadcrumb-slash">/</span>
       <span class="breadcrumb-title">{title}</span>
     </div>

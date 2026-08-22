@@ -4,11 +4,14 @@ import ArticleHeader from './ArticleHeader.astro';
 import ArticleMetaSidebar from './ArticleMetaSidebar.astro';
 import SupportCTA from '../support/SupportCTA.astro';
 import { formatDate, articleDate } from '../../utils/dates';
+import { stripBase } from '../../utils/paths';
 import '../../styles/tokens.css';
 import '../../styles/global.css';
 
 const currentPath = Astro.url.pathname;
-const isDocPage = currentPath.split('/').filter(Boolean).length >= 2;
+// Comparaison de route : retirer la base, sinon le sous-chemin de GitHub Pages
+// compterait comme un segment et toute page passerait pour un article.
+const isDocPage = stripBase(currentPath).split('/').filter(Boolean).length >= 2;
 
 const entry = Astro.props.entry;
 const frontmatter = entry?.data || {};

@@ -1,5 +1,6 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
+import { withBase } from '../../utils/paths';
 import { AnimatedGarden } from './AnimatedGarden';
 ---
 
@@ -22,11 +23,11 @@ import { AnimatedGarden } from './AnimatedGarden';
       </p>
 
       <div class="hero-actions">
-        <a href="/frameworks/the-work-once-principle/" class="btn btn-primary">
+        <a href={withBase('/frameworks/the-work-once-principle/')} class="btn btn-primary">
           <span>Explorer le jardin</span>
           <PixelIcon name="arrow" size={16} />
         </a>
-        <a href="/about" class="btn btn-secondary">
+        <a href={withBase('/about')} class="btn btn-secondary">
           <span>À propos</span>
         </a>
       </div>
