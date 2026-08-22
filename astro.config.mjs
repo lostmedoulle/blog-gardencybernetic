@@ -48,11 +48,11 @@ export default defineConfig({
           autogenerate: { directory: 'frameworks' },
         },
         {
-          label: 'Essays',
+          label: 'Essais',
           autogenerate: { directory: 'essays' },
         },
         {
-          label: 'Experiments',
+          label: 'Expériences',
           autogenerate: { directory: 'experiments' },
         },
         {

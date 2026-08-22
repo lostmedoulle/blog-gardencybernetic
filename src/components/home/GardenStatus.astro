@@ -1,0 +1,196 @@
+---
+import { getCollection } from 'astro:content';
+import { articleDate, formatDate } from '../../utils/dates';
+
+/**
+ * Remplace l'ancien widget « System Status » et ses jauges inventées
+ * (Energy 78 % / Focus 92 % / Curiosity 100 %) par des chiffres réellement
+ * calculés depuis la collection de contenu au moment du build.
+ */
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+
+const STATUS_META: Record<string, { label: string; color: string }> = {
+  validated: { label: 'validé', color: '#34d399' },
+  testing: { label: 'en test', color: '#22d3ee' },
+  hypothesis: { label: 'hypothèse', color: '#fbbf24' },
+  thought: { label: 'idée', color: '#a78bfa' },
+  limited: { label: 'limité', color: '#f59e0b' },
+  refuted: { label: 'réfuté', color: '#f87171' },
+  deprecated: { label: 'obsolète', color: '#94a3b8' },
+  superseded: { label: 'remplacé', color: '#64748b' },
+};
+
+const docs = (await getCollection('docs')).filter(d => !d.data.draft);
+const total = docs.length;
+
+const counts = docs.reduce<Record<string, number>>((acc, doc) => {
+  const key = doc.data.status ?? 'thought';
+  acc[key] = (acc[key] ?? 0) + 1;
+  return acc;
+}, {});
+
+// Ordre stable : du plus éprouvé au plus incertain, puis les statuts éteints.
+const ORDER = ['validated', 'testing', 'hypothesis', 'thought', 'limited', 'refuted', 'deprecated', 'superseded'];
+const rows = ORDER.filter(key => counts[key] > 0).map(key => ({
+  key,
+  label: STATUS_META[key].label,
+  color: STATUS_META[key].color,
+  count: counts[key],
+  share: total > 0 ? Math.round((counts[key] / total) * 100) : 0,
+}));
+
+const lastUpdated = docs
+  .map(d => articleDate(d.data))
+  .filter((d): d is Date => Boolean(d))
+  .sort((a, b) => b.getTime() - a.getTime())[0];
+---
+
+<div class={`garden-status ${compact ? 'compact' : ''}`}>
+  <div class="status-header">
+    <div class="status-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="shape-rendering: crispEdges;">
+        <path d="M11 12h2v7h-2z" fill="#10b981" />
+        <path d="M6 9h5v4H6z" fill="#34d399" />
+        <path d="M13 10h5v4h-5z" fill="#10b981" />
+      </svg>
+      <span>État du jardin</span>
+    </div>
+    <span class="status-total">{total}</span>
+  </div>
+
+  <div class="status-bar" role="img" aria-label={`Répartition de ${total} articles par statut`}>
+    {rows.map(row => (
+      <span
+        class="status-segment"
+        style={`width: ${row.share}%; background-color: ${row.color};`}
+        title={`${row.count} ${row.label}`}
+      ></span>
+    ))}
+  </div>
+
+  <ul class="status-list">
+    {rows.map(row => (
+      <li class="status-row">
+        <span class="status-dot" style={`background-color: ${row.color};`}></span>
+        <span class="status-label">{row.label}</span>
+        <span class="status-count">{row.count}</span>
+      </li>
+    ))}
+  </ul>
+
+  {lastUpdated && (
+    <p class="status-footer">
+      Dernière révision : <span class="status-date">{formatDate(lastUpdated)}</span>
+    </p>
+  )}
+</div>
+
+<style>
+  .garden-status {
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    padding: 1.15rem;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 300px;
+    color: var(--text);
+  }
+
+  .status-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .status-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .status-total {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 9999px;
+    color: var(--text-muted);
+    background-color: var(--surface-muted);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .status-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: var(--surface-muted);
+    margin-bottom: 0.9rem;
+  }
+
+  .status-segment {
+    display: block;
+    height: 100%;
+  }
+
+  .status-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    color: var(--text-muted);
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .status-label {
+    flex: 1;
+  }
+
+  .status-count {
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .status-footer {
+    margin: 0.9rem 0 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .status-date {
+    font-family: var(--font-mono);
+    color: var(--text);
+  }
+
+  .garden-status.compact {
+    padding: 0.95rem 1rem;
+  }
+</style>

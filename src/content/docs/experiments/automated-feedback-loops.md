@@ -11,7 +11,7 @@ tags: ["experiments", "ai", "agents"]
 featured: false
 draft: false
 authors: ["Med"]
-language: fr
+language: en
 readingTime: 5
 ---
 Exploring how autonomous software agents maintain code quality, verify test outputs, and iterate on solutions without manual intervention.

@@ -11,7 +11,7 @@ tags: ["notes", "systems", "gardening"]
 featured: false
 draft: false
 authors: ["Med"]
-language: fr
+language: en
 readingTime: 3
 ---
 ## Contexte

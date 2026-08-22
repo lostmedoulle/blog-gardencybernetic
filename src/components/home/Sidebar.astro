@@ -1,6 +1,6 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
-import { SystemStatus } from './SystemStatus';
+import GardenStatus from './GardenStatus.astro';
 import { SUPPORT } from '../../config/support';
 
 interface Props {
@@ -10,18 +10,18 @@ interface Props {
 const { currentPath = '/' } = Astro.props;
 
 const mainNavItems = [
-  { name: 'Home', href: '/', icon: 'home' as const, active: currentPath === '/' },
+  { name: 'Accueil', href: '/', icon: 'home' as const, active: currentPath === '/' },
   { name: 'Frameworks', href: '/frameworks', icon: 'cube' as const, active: currentPath.startsWith('/frameworks') || currentPath.includes('/frameworks/') },
-  { name: 'Essays', href: '/essays', icon: 'sprout' as const, active: currentPath.startsWith('/essays') || currentPath.includes('/essays/') },
-  { name: 'Experiments', href: '/experiments', icon: 'potion' as const, active: currentPath.startsWith('/experiments') || currentPath.includes('/experiments/') },
+  { name: 'Essais', href: '/essays', icon: 'sprout' as const, active: currentPath.startsWith('/essays') || currentPath.includes('/essays/') },
+  { name: 'Expériences', href: '/experiments', icon: 'potion' as const, active: currentPath.startsWith('/experiments') || currentPath.includes('/experiments/') },
   { name: 'Laboratoire', href: '/lab', icon: 'flask' as const, active: currentPath.startsWith('/lab') },
   { name: 'Notes', href: '/notes', icon: 'book' as const, active: currentPath.startsWith('/notes') || currentPath.includes('/notes/') },
-  { name: 'About', href: '/about', icon: 'user' as const, active: currentPath.startsWith('/about') },
+  { name: 'À propos', href: '/about', icon: 'user' as const, active: currentPath.startsWith('/about') },
 ];
 
 const secondaryNavItems = [
   { name: 'GitHub', href: 'https://github.com/lostmedoulle/blog-gardencybernetic', icon: 'github' as const, external: true },
-  { name: 'RSS Feed', href: '/rss.xml', icon: 'rss' as const, external: false },
+  { name: 'Flux RSS', href: '/rss.xml', icon: 'rss' as const, external: false },
 ];
 ---
 
@@ -53,7 +53,7 @@ const secondaryNavItems = [
 
   <!-- Primary Navigation -->
   <div class="sidebar-collapsible" id="sidebar-nav" data-collapsible>
-  <nav class="sidebar-nav" aria-label="Main Navigation">
+  <nav class="sidebar-nav" aria-label="Navigation principale">
     <ul class="nav-list">
       {mainNavItems.map(item => (
         <li>
@@ -71,7 +71,7 @@ const secondaryNavItems = [
     <div class="search-btn-wrapper">
       <a href="/search" class="search-btn">
         <PixelIcon name="search" size={16} />
-        <span>Search</span>
+        <span>Rechercher</span>
       </a>
     </div>
 
@@ -108,7 +108,7 @@ const secondaryNavItems = [
     </a>
 
     <div class="sidebar-status-widget">
-      <SystemStatus client:visible />
+      <GardenStatus compact />
     </div>
 
     <div class="sidebar-lamp-illustration">
@@ -117,7 +117,7 @@ const secondaryNavItems = [
 
     <div class="sidebar-footer">
       <p class="copyright">© 2026 Med</p>
-      <p class="rights">All rights reserved.</p>
+      <p class="rights">Tous droits réservés.</p>
     </div>
   </div>
   </div>

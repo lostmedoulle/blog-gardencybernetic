@@ -17,7 +17,7 @@
     "related": [],
     "supersedes": null,
     "supersededBy": null,
-    "language": "fr",
+    "language": "en",
     "draft": false,
     "sourcePath": "src/content/docs/essays/designing-systems-that-heal.md"
   },
@@ -39,7 +39,7 @@
     "related": [],
     "supersedes": null,
     "supersededBy": null,
-    "language": "fr",
+    "language": "en",
     "draft": false,
     "sourcePath": "src/content/docs/experiments/automated-feedback-loops.md"
   },
@@ -148,7 +148,7 @@
     "related": [],
     "supersedes": null,
     "supersededBy": null,
-    "language": "fr",
+    "language": "en",
     "draft": false,
     "sourcePath": "src/content/docs/notes/getting-started-with-gardening.md"
   }
