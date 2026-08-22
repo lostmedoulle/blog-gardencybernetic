@@ -109,6 +109,23 @@ vite, les autres pour la structure complète de chaque type.
 | `authors` | non | `["Med"]` |
 | `language` | non | `fr` |
 | `readingTime` | non | non affiché |
+| `cover` | non | aucune image |
+| `coverAlt` | non | vide (image décorative) |
+
+### Image de couverture
+
+Les articles n'affichent pas d'image par défaut : ils commencent directement
+par le texte. Pour en ajouter une à un article précis, déposer le fichier dans
+`public/images/` et le déclarer :
+
+```yaml
+cover: /images/mon-article.png
+coverAlt: Description de ce que montre l'image
+```
+
+Laisser `coverAlt` vide si l'image est purement décorative et n'apporte rien
+au texte — un lecteur de synthèse vocale la sautera alors, ce qui est le bon
+comportement.
 
 ## Déploiement
 

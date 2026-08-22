@@ -34,7 +34,12 @@ export const collections = {
         supersededBy: z.string().optional(),
         language: z.enum(['fr', 'en']).default('fr'),
         readingTime: z.number().optional(),
+        /** Chemin d'une image de couverture, ex. /images/mon-article.png
+            (fichier placé dans public/images/). Absent = pas d'image. */
         cover: z.string().optional(),
+        /** Texte alternatif de la couverture. Laisser vide si l'image est
+            purement décorative et n'ajoute rien au texte. */
+        coverAlt: z.string().optional(),
       }),
     }),
   }),

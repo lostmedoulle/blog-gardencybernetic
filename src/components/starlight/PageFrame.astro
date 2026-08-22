@@ -47,6 +47,8 @@ const shareUrl = Astro.site ? new URL(currentPath, Astro.site).href : currentPat
             readingTime={frontmatter.readingTime ? `${frontmatter.readingTime} min de lecture` : ''}
             editUrl={editUrl}
             shareUrl={shareUrl}
+            cover={frontmatter.cover}
+            coverAlt={frontmatter.coverAlt}
           />
         )}
 

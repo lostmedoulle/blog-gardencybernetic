@@ -1,6 +1,5 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
-import { AnimatedGarden } from '../home/AnimatedGarden';
 import { formatDate } from '../../utils/dates';
 import { withBase } from '../../utils/paths';
 
@@ -16,6 +15,8 @@ interface Props {
   readingTime?: number | string;
   editUrl?: string;
   shareUrl?: string;
+  cover?: string;
+  coverAlt?: string;
 }
 
 /** Le fil d'Ariane ajoutait naïvement un « s » : 'lab' devenait 'labs'. */
@@ -38,6 +39,8 @@ const {
   readingTime = '',
   editUrl,
   shareUrl,
+  cover,
+  coverAlt = '',
 } = Astro.props;
 
 const crumb = CATEGORY_ROUTE[String(category).toLowerCase()] ?? {
@@ -110,10 +113,15 @@ const formattedDate =
     </div>
   </div>
 
-  <!-- Hero Workspace Pixel Illustration Cover -->
-  <div class="article-cover-wrapper">
-    <AnimatedGarden client:visible />
-  </div>
+  <!-- Couverture : uniquement si l'article en déclare une. L'illustration
+       générique affichée auparavant était identique sur tous les articles :
+       elle occupait l'espace le plus visible de la page sans rien apprendre
+       au lecteur, et repoussait le texte sous la ligne de flottaison. -->
+  {cover && (
+    <div class="article-cover-wrapper">
+      <img src={withBase(cover)} alt={coverAlt} class="article-cover-image" />
+    </div>
+  )}
 </header>
 
 <style>
@@ -281,6 +289,12 @@ const formattedDate =
   .action-btn:hover {
     color: var(--text);
     background-color: var(--surface);
+  }
+
+  .article-cover-image {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .article-cover-wrapper {
