@@ -51,16 +51,15 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # Tente de créer le site Pages s'il n'existe pas encore. Sur un dépôt
-      # privé cet appel échoue (Pages y exige un plan payant) ; sur un dépôt
-      # public il crée le site avec le GITHUB_TOKEN.
-      # Placée dans le job `deploy` et non `build` : un échec ici ne doit pas
-      # empêcher la validation du contenu ni la compilation.
-      - name: Activer GitHub Pages si nécessaire
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
+      # Prérequis, à faire une fois par un administrateur du dépôt :
+      # Settings → Pages → Source : GitHub Actions.
+      #
+      # Cette activation n'est pas automatisable. actions/configure-pages avec
+      # enablement: true a été testé sur dépôt privé puis public : il échoue
+      # dans les deux cas sur « Create Pages site failed: Resource not
+      # accessible by integration ». Le GITHUB_TOKEN d'Actions peut déployer
+      # vers un site Pages existant, mais sa création exige un jeton
+      # d'administrateur.
       - name: Publier sur GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
