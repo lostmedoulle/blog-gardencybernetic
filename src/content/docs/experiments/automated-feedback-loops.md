@@ -14,9 +14,6 @@ authors: ["Med"]
 language: fr
 readingTime: 5
 ---
-
-# Automated Feedback Loops in Agentic Workflows
-
 Exploring how autonomous software agents maintain code quality, verify test outputs, and iterate on solutions without manual intervention.
 
 ## Experiment Goals

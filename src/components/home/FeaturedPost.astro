@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import PixelIcon from '../ui/PixelIcon.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
+import { sortTimestamp, formatDate, articleDate } from '../../utils/dates';
 
 const CATEGORY_LABEL = {
   framework: 'Frameworks',
@@ -15,9 +16,7 @@ const docs = await getCollection('docs', ({ data }) => !data.draft);
 
 // L'article mis en avant est celui marqué `featured: true` le plus récemment mis à jour.
 // Sans candidat, on retombe sur l'article le plus récent, toutes catégories confondues.
-const byRecency = (a, b) =>
-  new Date(b.data.dateUpdated ?? b.data.dateCreated).getTime() -
-  new Date(a.data.dateUpdated ?? a.data.dateCreated).getTime();
+const byRecency = (a, b) => sortTimestamp(b.data) - sortTimestamp(a.data);
 
 const featured =
   docs.filter(d => d.data.featured).sort(byRecency)[0] ?? docs.sort(byRecency)[0];
@@ -29,13 +28,7 @@ const category = featured ? CATEGORY_LABEL[featured.data.category] ?? featured.d
 const readingTime = featured?.data.readingTime
   ? `${featured.data.readingTime} min de lecture`
   : '';
-const date = featured
-  ? new Date(featured.data.dateUpdated ?? featured.data.dateCreated).toLocaleDateString('fr-FR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  : '';
+const date = featured ? formatDate(articleDate(featured.data)) : '';
 ---
 
 <section class="featured-section">

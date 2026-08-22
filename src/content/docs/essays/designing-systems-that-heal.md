@@ -14,9 +14,6 @@ authors: ["Med"]
 language: fr
 readingTime: 8
 ---
-
-# Designing Systems That Heal
-
 Complex software systems inevitably encounter unforeseen disruptions. Rather than aiming for brittle perfection, resilient architecture prioritizes **self-healing** and **adaptive feedback loops**.
 
 ## The Cybernetic Perspective

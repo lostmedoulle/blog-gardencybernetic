@@ -27,6 +27,58 @@ npm run preview  # prévisualiser le build
 
 La validation et l'indexation tournent automatiquement en `prebuild`.
 
+## Ajouter un article
+
+Trois façons, de la plus simple à la plus contrôlée.
+
+### 1. Depuis le navigateur, sur GitHub (aucune installation)
+
+1. Aller dans le dossier de la catégorie, par exemple
+   [`src/content/docs/lab/`](https://github.com/lostmedoulle/blog-gardencybernetic/tree/main/src/content/docs/lab).
+2. **Add file → Create new file** (ou **Upload files** pour déposer un `.md`
+   déjà écrit).
+3. Nommer le fichier `mon-article.md` — le nom du fichier devient l'URL.
+4. Coller le contenu, avec au minimum ces quatre lignes en tête :
+
+```markdown
+---
+title: Le titre de l'article
+category: lab
+---
+
+Le texte, en markdown.
+```
+
+`title` et `category` suffisent. Tout le reste (`status`, `confidence`, `version`,
+`draft`, `authors`, `language`) prend une valeur par défaut, et les dates sont
+facultatives. Ajouter les champs plus tard, quand l'article mûrit.
+
+Le gabarit complet à copier est dans [`templates/minimal.md`](templates/minimal.md).
+
+### 2. Modifier un article existant
+
+Chaque page d'article a un lien **Modifier** en haut à droite : il ouvre
+directement le fichier dans l'éditeur GitHub. Éditer, commit, c'est publié.
+
+### 3. En local, avec l'assistant
+
+```bash
+npm run new:article
+```
+
+Pose les questions une par une (type, titre, statut, confiance, tags, notes
+brutes) et génère le fichier au bon endroit avec le frontmatter complet.
+
+### Vérifier avant de publier
+
+```bash
+npm run validate:content
+```
+
+Les champs manquants produisent des **avertissements** (non bloquants) ; seuls
+un `category` invalide, un fichier rangé dans le mauvais dossier ou une date
+illisible sont des **erreurs**.
+
 ## Sections
 
 | Section | Catégorie (`category`) | Dossier |
@@ -37,7 +89,26 @@ La validation et l'indexation tournent automatiquement en `prebuild`.
 | Laboratoire | `lab` | `src/content/docs/lab/` |
 | Notes | `note` | `src/content/docs/notes/` |
 
-Les gabarits correspondants sont dans `templates/`.
+Les gabarits correspondants sont dans `templates/` — `minimal.md` pour démarrer
+vite, les autres pour la structure complète de chaque type.
+
+### Frontmatter
+
+| Champ | Obligatoire | Défaut |
+| --- | --- | --- |
+| `title` | oui | — |
+| `category` | oui | — |
+| `description` | non (recommandé) | vide |
+| `status` | non | `thought` |
+| `confidence` | non | `low` |
+| `dateCreated` / `dateUpdated` | non | aucune date affichée |
+| `version` | non | `0.1.0` |
+| `draft` | non | `false` |
+| `featured` | non | `false` |
+| `tags` | non | `[]` |
+| `authors` | non | `["Med"]` |
+| `language` | non | `fr` |
+| `readingTime` | non | non affiché |
 
 ## ⚠️ À configurer avant la mise en ligne
 

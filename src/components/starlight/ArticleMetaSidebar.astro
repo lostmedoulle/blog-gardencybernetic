@@ -19,53 +19,41 @@ interface Props {
 
 const {
   toc = [],
-  status = "Hypothesis",
-  category = "Framework",
-  tags = ["automation", "systems-thinking", "knowledge", "productivity"],
-  language = "FR",
-  author = "Med",
-  dateUpdated = "27 juillet 2026",
+  status = 'thought',
+  category = 'note',
+  tags = [],
+  language = 'FR',
+  author = 'Med',
+  dateUpdated = '',
 } = Astro.props;
 
-const defaultToc = [
-  { text: 'En une phrase', slug: 'en-une-phrase', active: true },
-  { text: 'Pourquoi j’écris cela', slug: 'pourquoi-jecris-cela' },
-  { text: 'Le problème observé', slug: 'le-probleme-observe' },
-  { text: 'Mon hypothèse', slug: 'mon-hypothese' },
-  { text: 'Le framework', slug: 'le-framework' },
-  { text: 'Mise en œuvre', slug: 'mise-en-oeuvre' },
-  { text: 'Résultats observés', slug: 'resultats-observes' },
-  { text: 'Ce qui a fonctionné', slug: 'ce-qui-a-fonctionne' },
-  { text: 'Ce qui n’a pas fonctionné', slug: 'ce-qui-na-pas-fonctionne' },
-  { text: 'Analyse causale', slug: 'analyse-causale' },
-  { text: 'Limites et conditions d’échec', slug: 'limites-et-conditions-dechec' },
-  { text: 'Décision actuelle', slug: 'decision-actuelle' },
-  { text: 'Ce que je ferais différemment', slug: 'ce-que-je-ferais-differemment' },
-  { text: 'Questions ouvertes', slug: 'questions-ouvertes' },
-  { text: 'Changelog intellectuel', slug: 'changelog-intellectuel' },
-  { text: 'Sources et artefacts', slug: 'sources-et-artefacts' },
-];
-
-const activeToc = toc.length > 0 ? toc : defaultToc;
+// Pas de sommaire de secours : afficher des sections qui n'existent pas dans
+// l'article est pire que ne rien afficher.
+const activeToc = toc;
 ---
 
 <aside class="article-meta-sidebar">
   <!-- Sommaire / Table of Contents -->
-  <div class="toc-panel">
-    <h3 class="toc-heading">SOMMAIRE</h3>
-    <nav class="toc-list-nav">
-      <ul class="toc-list">
-        {activeToc.map((item: any, idx: number) => (
-          <li>
-            <a href={`#${item.slug}`} class={`toc-item-link ${idx === 0 ? 'active' : ''}`}>
-              {idx === 0 && <span class="toc-active-bar"></span>}
-              <span class="toc-text">{item.text}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
+  {activeToc.length > 0 && (
+    <div class="toc-panel">
+      <h3 class="toc-heading">SOMMAIRE</h3>
+      <nav class="toc-list-nav">
+        <ul class="toc-list">
+          {activeToc.map((item: any, idx: number) => (
+            <li>
+              <a
+                href={`#${item.slug}`}
+                class={`toc-item-link ${idx === 0 ? 'active' : ''} ${item.depth === 3 ? 'nested' : ''}`}
+              >
+                {idx === 0 && <span class="toc-active-bar"></span>}
+                <span class="toc-text">{item.text}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  )}
 
   <!-- Metadata Card -->
   <div class="meta-card-panel">
@@ -98,10 +86,12 @@ const activeToc = toc.length > 0 ? toc : defaultToc;
       <span class="meta-value">{author}</span>
     </div>
 
-    <div class="meta-field">
-      <span class="meta-label">DERNIÈRE MISE À JOUR</span>
-      <span class="meta-value">{dateUpdated}</span>
-    </div>
+    {dateUpdated && (
+      <div class="meta-field">
+        <span class="meta-label">DERNIÈRE MISE À JOUR</span>
+        <span class="meta-value">{dateUpdated}</span>
+      </div>
+    )}
   </div>
 
   <!-- Pixel Plant Crosshair Target Graphic -->
@@ -111,6 +101,12 @@ const activeToc = toc.length > 0 ? toc : defaultToc;
 </aside>
 
 <style>
+  .toc-item-link.nested .toc-text {
+    padding-left: 0.85rem;
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
   .article-meta-sidebar {
     width: 260px;
     display: flex;

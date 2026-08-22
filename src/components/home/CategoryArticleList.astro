@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import PixelIcon from '../ui/PixelIcon.astro';
+import { sortTimestamp, formatDate, articleDate } from '../../utils/dates';
 
 interface Props {
   category: 'framework' | 'experiment' | 'essay' | 'note' | 'lab';
@@ -19,11 +20,7 @@ const filteredArticles = allDocs
     const isProd = import.meta.env.PROD;
     return isCategory && (!isProd || !doc.data.draft);
   })
-  .sort((a, b) => {
-    const dateA = new Date(a.data.dateUpdated || a.data.dateCreated).getTime();
-    const dateB = new Date(b.data.dateUpdated || b.data.dateCreated).getTime();
-    return dateB - dateA;
-  });
+  .sort((a, b) => sortTimestamp(b.data) - sortTimestamp(a.data));
 
 const statusColorMap: Record<string, { bg: string; color: string; border: string }> = {
   validated: { bg: 'rgba(16, 185, 129, 0.15)', color: '#34d399', border: 'rgba(16, 185, 129, 0.3)' },
@@ -55,11 +52,7 @@ const statusColorMap: Record<string, { bg: string; color: string; border: string
   ) : (
     filteredArticles.map(doc => {
       const statusStyle = statusColorMap[doc.data.status] || statusColorMap.thought;
-      const formattedDate = new Date(doc.data.dateUpdated || doc.data.dateCreated).toLocaleDateString('fr-FR', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      });
+      const formattedDate = formatDate(articleDate(doc.data));
 
       return (
         <a href={`/${doc.id}/`} class="article-card">

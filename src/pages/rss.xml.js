@@ -1,5 +1,6 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { articleDate } from '../utils/dates';
 
 const CATEGORY_PATH = {
   framework: 'frameworks',
@@ -16,12 +17,15 @@ export async function GET(context) {
     .map(doc => ({
       title: doc.data.title,
       description: doc.data.description ?? '',
-      pubDate: new Date(doc.data.dateUpdated ?? doc.data.dateCreated),
+      pubDate: articleDate(doc.data),
       link: `/${doc.id}/`,
       categories: [doc.data.category, ...(doc.data.tags ?? [])],
       customData: `<status>${doc.data.status}</status><confidence>${doc.data.confidence}</confidence>`,
     }))
-    .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+    .sort((a, b) => (b.pubDate?.getTime() ?? 0) - (a.pubDate?.getTime() ?? 0))
+    // `@astrojs/rss` refuse une pubDate invalide : on omet le champ plutôt que
+    // d'émettre une date bidon pour un article qui n'en porte pas.
+    .map(({ pubDate, ...rest }) => (pubDate ? { ...rest, pubDate } : rest));
 
   return rss({
     title: "Med's Cybernetic Garden",

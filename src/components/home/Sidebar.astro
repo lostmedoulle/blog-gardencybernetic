@@ -25,9 +25,21 @@ const secondaryNavItems = [
 ];
 ---
 
-<aside class="sidebar">
+<aside class="sidebar" data-sidebar>
   <!-- Brand / Avatar Header -->
   <div class="sidebar-header">
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="sidebar-nav"
+      aria-label="Ouvrir le menu"
+      data-nav-toggle
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
     <a href="/" class="brand-link">
       <div class="avatar-pixel-container">
         <PixelIcon name="robot" size={32} />
@@ -40,6 +52,7 @@ const secondaryNavItems = [
   </div>
 
   <!-- Primary Navigation -->
+  <div class="sidebar-collapsible" id="sidebar-nav" data-collapsible>
   <nav class="sidebar-nav" aria-label="Main Navigation">
     <ul class="nav-list">
       {mainNavItems.map(item => (
@@ -107,7 +120,19 @@ const secondaryNavItems = [
       <p class="rights">All rights reserved.</p>
     </div>
   </div>
+  </div>
 </aside>
+
+<script>
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const sidebar = document.querySelector('[data-sidebar]');
+
+  toggle?.addEventListener('click', () => {
+    const open = sidebar?.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', String(Boolean(open)));
+    toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  });
+</script>
 
 <style>
   .sidebar {
@@ -127,6 +152,34 @@ const secondaryNavItems = [
 
   .sidebar-header {
     margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  /* Le bouton n'existe qu'en dessous du point de rupture. */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 40px;
+    height: 40px;
+    padding: 0 9px;
+    flex-shrink: 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    cursor: pointer;
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    height: 2px;
+    width: 100%;
+    border-radius: 2px;
+    background-color: var(--text);
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
   .brand-link {
@@ -235,6 +288,9 @@ const secondaryNavItems = [
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    /* Sans ceci, le conteneur flex compressait ce bloc et la dernière barre du
+       widget System Status était tronquée en bas de la barre latérale. */
+    flex-shrink: 0;
   }
 
   .sponsor-btn {
@@ -263,6 +319,7 @@ const secondaryNavItems = [
   .sidebar-status-widget {
     transform: scale(0.95);
     transform-origin: bottom left;
+    flex-shrink: 0;
   }
 
   .sidebar-lamp-illustration {
@@ -286,11 +343,52 @@ const secondaryNavItems = [
 
   @media (max-width: 900px) {
     .sidebar {
-      position: relative;
+      position: sticky;
+      top: 0;
       width: 100%;
       height: auto;
+      max-height: 100vh;
       border-right: none;
       border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 1rem;
+      background-color: var(--background);
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .sidebar-header {
+      margin-bottom: 0;
+    }
+
+    /* Replié par défaut : le contenu de la page commence immédiatement sous
+       la barre de marque, au lieu d'être repoussé sous tout le menu. */
+    .sidebar-collapsible {
+      display: none;
+      padding-top: 1.25rem;
+      overflow-y: auto;
+      max-height: calc(100vh - 5rem);
+    }
+
+    .sidebar.nav-open .sidebar-collapsible {
+      display: block;
+    }
+
+    .sidebar.nav-open .nav-toggle-bar:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .sidebar.nav-open .nav-toggle-bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .sidebar.nav-open .nav-toggle-bar:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .sidebar-bottom-section {
+      margin-top: 1.5rem;
     }
   }
 </style>

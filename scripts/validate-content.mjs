@@ -126,20 +126,23 @@ function main() {
     }
 
     if (!data.description || typeof data.description !== 'string' || data.description.trim() === '') {
-      errors.push(`[${relativePath}] Le champ 'description' est obligatoire et ne doit pas être vide.`);
-      fileHasErrors = true;
+      warnings.push(`[${relativePath}] 'description' absente — elle sert de résumé dans les listes, le RSS et les aperçus de partage.`);
     }
 
-    // Check status
-    if (!data.status || !ALLOWED_STATUSES.includes(data.status)) {
+    // Check status — facultatif (défaut 'thought'), mais valide s'il est fourni.
+    if (data.status !== undefined && !ALLOWED_STATUSES.includes(data.status)) {
       errors.push(`[${relativePath}] Statut invalide '${data.status}'. Statuts autorisés : ${ALLOWED_STATUSES.join(', ')}.`);
       fileHasErrors = true;
+    } else if (data.status === undefined) {
+      warnings.push(`[${relativePath}] 'status' absent — 'thought' sera appliqué par défaut.`);
     }
 
-    // Check confidence
-    if (!data.confidence || !ALLOWED_CONFIDENCES.includes(data.confidence)) {
+    // Check confidence — facultatif (défaut 'low'), mais valide s'il est fourni.
+    if (data.confidence !== undefined && !ALLOWED_CONFIDENCES.includes(data.confidence)) {
       errors.push(`[${relativePath}] Niveau de confiance invalide '${data.confidence}'. Niveaux autorisés : ${ALLOWED_CONFIDENCES.join(', ')}.`);
       fileHasErrors = true;
+    } else if (data.confidence === undefined) {
+      warnings.push(`[${relativePath}] 'confidence' absent — 'low' sera appliqué par défaut.`);
     }
 
     // Check category & folder coherence
@@ -155,21 +158,25 @@ function main() {
       }
     }
 
-    // Check dates
-    const dCreated = new Date(data.dateCreated);
-    const dUpdated = new Date(data.dateUpdated);
+    // Check dates — facultatives, mais une date fournie doit être analysable.
+    const dCreated = data.dateCreated === undefined ? null : new Date(data.dateCreated);
+    const dUpdated = data.dateUpdated === undefined ? null : new Date(data.dateUpdated);
 
-    if (isNaN(dCreated.getTime())) {
-      errors.push(`[${relativePath}] 'dateCreated' invalide ou absente.`);
+    if (dCreated && isNaN(dCreated.getTime())) {
+      errors.push(`[${relativePath}] 'dateCreated' illisible : '${data.dateCreated}'. Format attendu : AAAA-MM-JJ.`);
       fileHasErrors = true;
     }
 
-    if (isNaN(dUpdated.getTime())) {
-      errors.push(`[${relativePath}] 'dateUpdated' invalide ou absente.`);
+    if (dUpdated && isNaN(dUpdated.getTime())) {
+      errors.push(`[${relativePath}] 'dateUpdated' illisible : '${data.dateUpdated}'. Format attendu : AAAA-MM-JJ.`);
       fileHasErrors = true;
     }
 
-    if (!isNaN(dCreated.getTime()) && !isNaN(dUpdated.getTime())) {
+    if (!dCreated && !dUpdated) {
+      warnings.push(`[${relativePath}] Aucune date — l'article sera listé en dernier et n'affichera pas de date.`);
+    }
+
+    if (dCreated && dUpdated && !isNaN(dCreated.getTime()) && !isNaN(dUpdated.getTime())) {
       if (dUpdated < dCreated) {
         errors.push(`[${relativePath}] 'dateUpdated' (${data.dateUpdated}) ne peut pas être antérieure à 'dateCreated' (${data.dateCreated}).`);
         fileHasErrors = true;
@@ -191,9 +198,9 @@ function main() {
       }
     }
 
-    // Check draft
-    if (typeof data.draft !== 'boolean') {
-      errors.push(`[${relativePath}] Le champ 'draft' doit être un booléen (true/false).`);
+    // Check draft — facultatif (défaut false), mais booléen s'il est fourni.
+    if (data.draft !== undefined && typeof data.draft !== 'boolean') {
+      errors.push(`[${relativePath}] Le champ 'draft' doit être un booléen (true/false), reçu : '${data.draft}'.`);
       fileHasErrors = true;
     }
 
@@ -225,7 +232,7 @@ function main() {
   console.log('📊 --- Rapport de validation ---');
   console.log(`📁 Total d'articles examinés : ${files.length}`);
   console.log(`✅ Articles valides          : ${validCount}`);
-  console.log(`⚠️ Warnings                  : ${warningCount}`);
+  console.log(`⚠️ Warnings                  : ${warnings.length}`);
   console.log(`❌ Erreurs                   : ${errorCount}\n`);
 
   if (warnings.length > 0) {

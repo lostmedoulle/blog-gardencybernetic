@@ -1,6 +1,7 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
 import { AnimatedGarden } from '../home/AnimatedGarden';
+import { formatDate } from '../../utils/dates';
 
 interface Props {
   title: string;
@@ -12,24 +13,39 @@ interface Props {
   dateCreated?: Date | string;
   dateUpdated?: Date | string;
   readingTime?: number | string;
+  editUrl?: string;
+  shareUrl?: string;
 }
 
+/** Le fil d'Ariane ajoutait naïvement un « s » : 'lab' devenait 'labs'. */
+const CATEGORY_ROUTE: Record<string, { label: string; href: string }> = {
+  framework: { label: 'frameworks', href: '/frameworks' },
+  experiment: { label: 'experiments', href: '/experiments' },
+  essay: { label: 'essays', href: '/essays' },
+  note: { label: 'notes', href: '/notes' },
+  lab: { label: 'laboratoire', href: '/lab' },
+};
+
 const {
-  title = "Le principe du travail effectué une seule fois",
-  description = "Comment transformer une résolution locale en actif réutilisable.",
-  category = "Framework",
-  status = "Hypothesis",
-  confidence = "Medium",
-  version = "0.1.0",
-  dateCreated = "27 juillet 2026",
-  readingTime = "8 min de lecture",
+  title,
+  description,
+  category = 'note',
+  status = 'thought',
+  confidence = 'low',
+  version = '0.1.0',
+  dateCreated = '',
+  readingTime = '',
+  editUrl,
+  shareUrl,
 } = Astro.props;
 
-const formattedDate = typeof dateCreated === 'string' ? dateCreated : new Date(dateCreated).toLocaleDateString('fr-FR', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
+const crumb = CATEGORY_ROUTE[String(category).toLowerCase()] ?? {
+  label: String(category).toLowerCase(),
+  href: '/',
+};
+
+const formattedDate =
+  typeof dateCreated === 'string' ? dateCreated : formatDate(dateCreated);
 ---
 
 <header class="article-header-wrapper">
@@ -37,19 +53,11 @@ const formattedDate = typeof dateCreated === 'string' ? dateCreated : new Date(d
   <div class="breadcrumb-bar">
     <div class="breadcrumb-left">
       <span class="breadcrumb-dot">•</span>
-      <span class="breadcrumb-category">{category}s</span>
+      <a href={crumb.href} class="breadcrumb-category">{crumb.label}</a>
       <span class="breadcrumb-slash">/</span>
       <span class="breadcrumb-title">{title}</span>
     </div>
 
-    <div class="breadcrumb-actions">
-      <button class="icon-btn" aria-label="Toggle theme">
-        <PixelIcon name="moon" size={16} />
-      </button>
-      <button class="icon-btn" aria-label="Options">
-        <PixelIcon name="options" size={16} />
-      </button>
-    </div>
   </div>
 
   <div class="header-main-grid">
@@ -63,16 +71,20 @@ const formattedDate = typeof dateCreated === 'string' ? dateCreated : new Date(d
 
       <!-- Title & Description -->
       <h1 class="article-headline">{title}</h1>
-      <p class="article-subheadline">{description}</p>
+      {description && <p class="article-subheadline">{description}</p>}
 
       <!-- Meta Row -->
       <div class="article-meta-row">
-        <span class="meta-item">
-          📅 {formattedDate}
-        </span>
-        <span class="meta-item">
-          ⏱️ {readingTime}
-        </span>
+        {formattedDate && (
+          <span class="meta-item">
+            📅 {formattedDate}
+          </span>
+        )}
+        {readingTime && (
+          <span class="meta-item">
+            ⏱️ {readingTime}
+          </span>
+        )}
         <span class="meta-item">
           🔄 v{version}
         </span>
@@ -84,18 +96,16 @@ const formattedDate = typeof dateCreated === 'string' ? dateCreated : new Date(d
 
     <!-- Right Quick Action Buttons -->
     <div class="header-quick-actions">
-      <button class="action-btn">
-        <PixelIcon name="save" size={15} />
-        <span>Sauvegarder</span>
-      </button>
-      <button class="action-btn">
+      <button class="action-btn" data-share data-share-url={shareUrl} data-share-title={title}>
         <PixelIcon name="share" size={15} />
-        <span>Partager</span>
+        <span data-share-label>Partager</span>
       </button>
-      <button class="action-btn">
-        <PixelIcon name="edit" size={15} />
-        <span>Modifier</span>
-      </button>
+      {editUrl && (
+        <a class="action-btn" href={editUrl} target="_blank" rel="noopener noreferrer">
+          <PixelIcon name="edit" size={15} />
+          <span>Modifier</span>
+        </a>
+      )}
     </div>
   </div>
 
@@ -245,12 +255,15 @@ const formattedDate = typeof dateCreated === 'string' ? dateCreated : new Date(d
   .header-quick-actions {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.5rem;
     flex-shrink: 0;
   }
 
   .action-btn {
     display: flex;
+    text-decoration: none;
+    white-space: nowrap;
     align-items: center;
     gap: 0.5rem;
     background-color: transparent;
@@ -290,3 +303,28 @@ const formattedDate = typeof dateCreated === 'string' ? dateCreated : new Date(d
     }
   }
 </style>
+
+<script>
+  document.querySelectorAll('[data-share]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const url = btn.getAttribute('data-share-url') || window.location.href;
+      const title = btn.getAttribute('data-share-title') || document.title;
+      const label = btn.querySelector('[data-share-label]');
+
+      try {
+        if (navigator.share) {
+          await navigator.share({ title, url });
+          return;
+        }
+        await navigator.clipboard.writeText(url);
+        if (label) {
+          const previous = label.textContent;
+          label.textContent = 'Lien copié';
+          setTimeout(() => { label.textContent = previous; }, 1800);
+        }
+      } catch {
+        /* partage annulé par l'utilisateur : rien à faire */
+      }
+    });
+  });
+</script>

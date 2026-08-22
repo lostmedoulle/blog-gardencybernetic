@@ -1,7 +1,6 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
 import { AnimatedGarden } from './AnimatedGarden';
-import { SystemStatus } from './SystemStatus';
 ---
 
 <section class="hero-section">
@@ -33,13 +32,10 @@ import { SystemStatus } from './SystemStatus';
       </div>
     </div>
 
-    <!-- Right Column: Interactive Illustration & System Status -->
+    <!-- Right Column: Interactive Illustration -->
     <div class="hero-widgets">
       <div class="garden-illustration-wrapper">
         <AnimatedGarden client:visible />
-      </div>
-      <div class="status-widget-wrapper">
-        <SystemStatus client:visible />
       </div>
     </div>
   </div>
@@ -160,24 +156,12 @@ import { SystemStatus } from './SystemStatus';
     position: relative;
   }
 
-  .status-widget-wrapper {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    z-index: 30;
-  }
 
   @media (max-width: 1100px) {
     .hero-grid {
       grid-template-columns: 1fr;
     }
 
-    .status-widget-wrapper {
-      position: relative;
-      top: 0;
-      right: 0;
-      max-width: 100%;
-    }
 
     .hero-headline {
       font-size: 2.5rem;

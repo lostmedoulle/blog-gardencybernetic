@@ -23,6 +23,8 @@ export default defineConfig({
       components: {
         PageFrame: './src/components/starlight/PageFrame.astro',
         Header: './src/components/starlight/Header.astro',
+        PageTitle: './src/components/starlight/PageTitle.astro',
+        PageSidebar: './src/components/starlight/PageSidebar.astro',
       },
       customCss: [
         './src/styles/tokens.css',
