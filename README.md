@@ -117,11 +117,25 @@ chaque push sur `main` reconstruit et publie. Le workflow lance `npm run build`,
 qui déclenche `validate:content` — un frontmatter invalide fait donc échouer le
 déploiement **avant** publication, jamais après.
 
-### Activation (une seule fois)
+### Activation (une seule fois, par un administrateur du dépôt)
 
-`Settings` → `Pages` → **Source : GitHub Actions**.
+1. **Rendre le dépôt public** — `Settings` → `General` → bas de page →
+   `Change repository visibility` → **Public**.
+   GitHub Pages sur un dépôt privé exige un plan payant (Pro, Team ou
+   Enterprise). Sur un plan gratuit, un dépôt privé ne peut pas publier de site.
+2. **Activer Pages** — `Settings` → `Pages` → **Source : GitHub Actions**.
+3. **Relancer le workflow** — onglet `Actions` → « Déployer sur GitHub Pages »
+   → `Run workflow`. Inutile de refaire un commit.
 
 Le site sera servi sur `https://lostmedoulle.github.io/blog-gardencybernetic/`.
+
+Ces trois étapes ne peuvent pas être automatisées : le `GITHUB_TOKEN` d'Actions
+peut déployer vers un site Pages existant, mais ni en créer un, ni changer la
+visibilité du dépôt. GitHub réserve ces opérations à un administrateur.
+
+Tant que Pages n'est pas activé, le job `build` réussit (le contenu est validé
+et le site compilé à chaque push) et seul le job `deploy` échoue, avec le
+message « Ensure GitHub Pages has been enabled ».
 
 ### Sous-chemin
 
