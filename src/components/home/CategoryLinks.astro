@@ -20,6 +20,12 @@ const categories = [
     icon: 'potion' as const,
     href: '/experiments',
   },
+  {
+    title: 'Laboratoire',
+    description: 'Post-mortems: refuted hypotheses, what broke, and the rule that replaced it.',
+    icon: 'flask' as const,
+    href: '/lab',
+  },
 ];
 ---
 
@@ -53,8 +59,8 @@ const categories = [
 
   .categories-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
     position: relative;
   }
 
@@ -114,6 +120,13 @@ const categories = [
     height: 70%;
     width: 1px;
     background-color: var(--border-subtle);
+  }
+
+  @media (max-width: 1200px) {
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
   }
 
   @media (max-width: 900px) {

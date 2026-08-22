@@ -1,0 +1,390 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+import PixelIcon from '../components/ui/PixelIcon.astro';
+import { SUPPORT } from '../config/support';
+
+const { amount, currency, period, label } = SUPPORT.tier;
+---
+
+<HomeLayout
+  title="Soutenir — Med's Cybernetic Garden"
+  description={`Devenir sponsor du jardin cybernétique pour ${amount} ${currency} par ${period} : financer les expériences, les post-mortems et l'hébergement.`}
+>
+  <div class="page-header">
+    <div class="header-icon">
+      <PixelIcon name="heart" size={32} />
+    </div>
+    <div>
+      <h1>Soutenir le jardin</h1>
+      <p class="subtitle">
+        Un palier, un prix, aucune ambiguïté.
+      </p>
+    </div>
+  </div>
+
+  <section class="tier-section">
+    <div class="tier-card">
+      <div class="tier-head">
+        <span class="tier-label">{label}</span>
+        <div class="tier-price">
+          <span class="price-amount">{amount}</span>
+          <span class="price-currency">{currency}</span>
+          <span class="price-period">/ {period}</span>
+        </div>
+      </div>
+
+      <p class="tier-pitch">
+        Ce blog n'a ni publicité, ni tracker, ni article réservé aux abonnés.
+        Tout est lisible par tout le monde, tout de suite. Le sponsoring finance
+        le temps et les outils qui produisent le contenu — il n'achète pas l'accès.
+      </p>
+
+      <ul class="perks-list">
+        {SUPPORT.perks.map(perk => (
+          <li>
+            <span class="perk-marker">▸</span>
+            <span>{perk}</span>
+          </li>
+        ))}
+      </ul>
+
+      <a href={SUPPORT.url} class="tier-button" target="_blank" rel="noopener noreferrer">
+        <PixelIcon name="github" size={17} />
+        <span>Devenir sponsor sur GitHub</span>
+        <PixelIcon name="arrow" size={15} />
+      </a>
+
+      <p class="tier-note">
+        Paiement géré par GitHub Sponsors. Résiliable à tout moment, en un clic,
+        sans avoir à m'écrire.
+      </p>
+    </div>
+
+    <div class="side-column">
+      <div class="info-block">
+        <h2>Où va l'argent</h2>
+        <ul class="cost-list">
+          {SUPPORT.costs.map(cost => (
+            <li>
+              <span class="cost-label">{cost.label}</span>
+              <span class="cost-detail">{cost.detail}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="info-text">
+          Tant que les coûts ne sont pas couverts, chaque contribution y passe
+          intégralement. Au-delà, elle achète du temps d'écriture.
+        </p>
+      </div>
+
+      <div class="info-block">
+        <h2>Ce que le sponsoring ne change pas</h2>
+        <ul class="promise-list">
+          <li>Aucun article ne passera derrière un paywall.</li>
+          <li>Aucun sponsor ne relit un texte avant publication.</li>
+          <li>Les statuts <code>refuted</code> et <code>limited</code> restent publiés.</li>
+          <li>Pas de contenu sponsorisé déguisé en essai.</li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h2>Autrement</h2>
+        <p class="info-text">
+          Si 10 {currency} par {period} n'est pas envisageable : partager un article,
+          signaler une erreur ou proposer un contre-argument a une valeur réelle.
+          Le dépôt est ouvert aux issues.
+        </p>
+        <a
+          href="https://github.com/lostmedoulle/blog-gardencybernetic/issues"
+          class="text-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ouvrir une issue →
+        </a>
+      </div>
+    </div>
+  </section>
+</HomeLayout>
+
+<style>
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .header-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .tier-section {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 3rem;
+  }
+
+  .tier-card {
+    padding: 1.85rem;
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgba(139, 92, 246, 0.07) 0%, rgba(6, 182, 212, 0.05) 100%),
+      var(--surface);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .tier-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-bottom: 1.15rem;
+    margin-bottom: 1.15rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .tier-label {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 9999px;
+    color: var(--violet-bright);
+    background-color: rgba(139, 92, 246, 0.16);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+  }
+
+  .tier-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+  }
+
+  .price-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+
+  .price-currency {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cyan-bright);
+  }
+
+  .price-period {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .tier-pitch {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin: 0 0 1.35rem 0;
+  }
+
+  .perks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.6rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .perks-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.925rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .perk-marker {
+    color: var(--green-bright);
+    font-size: 0.8rem;
+    line-height: 1.7;
+    flex-shrink: 0;
+  }
+
+  .tier-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.85rem 1.35rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--violet);
+    color: #ffffff;
+    font-size: 0.975rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 14px var(--violet-glow);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .tier-button:hover {
+    background-color: #7c3aed;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--violet-glow);
+  }
+
+  .tier-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 0.9rem 0 0 0;
+    line-height: 1.5;
+  }
+
+  .side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .info-block {
+    padding: 1.35rem 1.4rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    background-color: var(--surface);
+  }
+
+  .info-block h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.9rem 0;
+  }
+
+  .cost-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.9rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cost-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.85rem;
+    font-size: 0.875rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--border-subtle);
+  }
+
+  .cost-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .cost-label {
+    color: var(--text);
+  }
+
+  .cost-detail {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--cyan-bright);
+    white-space: nowrap;
+  }
+
+  .promise-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .promise-list li {
+    position: relative;
+    padding-left: 1.15rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  .promise-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green-bright);
+    font-size: 0.8rem;
+  }
+
+  .promise-list code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    background-color: var(--surface-muted);
+    color: var(--violet-bright);
+  }
+
+  .info-text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .text-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--violet-bright);
+    text-decoration: none;
+  }
+
+  .text-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 900px) {
+    .tier-section {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

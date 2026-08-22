@@ -1,0 +1,275 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+import PixelIcon from '../components/ui/PixelIcon.astro';
+import SupportCTA from '../components/support/SupportCTA.astro';
+
+const statuses = [
+  { key: 'thought', desc: "Idée brute, pas encore formulée en hypothèse testable." },
+  { key: 'hypothesis', desc: "Formulée, falsifiable, pas encore testée." },
+  { key: 'testing', desc: "Test en cours, résultats partiels." },
+  { key: 'validated', desc: "Tenue dans le contexte décrit — pas universellement." },
+  { key: 'limited', desc: "Tenue, mais dans un domaine plus étroit que prévu." },
+  { key: 'refuted', desc: "Cassée par une mesure. Reste publiée, dans le Laboratoire." },
+  { key: 'deprecated', desc: "Plus pertinente, le contexte a changé." },
+  { key: 'superseded', desc: "Remplacée par une version plus juste." },
+];
+---
+
+<HomeLayout
+  title="À propos — Med's Cybernetic Garden"
+  description="Comment ce jardin cybernétique fonctionne : statuts, niveaux de confiance, et la règle de publication des échecs."
+>
+  <div class="page-header">
+    <div class="header-icon">
+      <PixelIcon name="robot" size={32} />
+    </div>
+    <div>
+      <h1>À propos</h1>
+      <p class="subtitle">Ce que ce site est, et selon quelles règles il est écrit.</p>
+    </div>
+  </div>
+
+  <div class="prose">
+    <h2>Le principe</h2>
+    <p>
+      Ce n'est pas un blog au sens habituel. C'est un système de notes publiques versionnées :
+      chaque texte porte un statut, un niveau de confiance et une date de dernière révision.
+      Un article n'est pas « publié puis figé » — il est cultivé, révisé, et parfois arraché.
+    </p>
+    <p>
+      Le fil conducteur est cybernétique : comment des systèmes — techniques, cognitifs,
+      organisationnels — se régulent grâce à leurs boucles de rétroaction, et pourquoi ils
+      dérivent quand ces boucles sont coupées.
+    </p>
+
+    <h2>Les quatre jardins</h2>
+    <ul class="section-list">
+      <li><strong>Frameworks</strong> — modèles mentaux et outils de décision réutilisables.</li>
+      <li><strong>Essays</strong> — textes longs, argumentés, sur la technique et le jugement.</li>
+      <li><strong>Experiments</strong> — protocoles réels avec mesures, sur l'automatisation et l'IA.</li>
+      <li><strong>Laboratoire</strong> — post-mortems : ce qui a cassé et pourquoi.</li>
+      <li><strong>Notes</strong> — fragments courts, matière première des trois autres.</li>
+    </ul>
+
+    <h2>Les statuts</h2>
+    <p>
+      Chaque texte affiche l'un de ces huit statuts. Ils ne sont pas décoratifs : ils indiquent
+      exactement combien de poids accorder à ce que vous lisez.
+    </p>
+    <div class="status-table">
+      {statuses.map(s => (
+        <div class="status-row">
+          <code class={`status-key status-${s.key}`}>{s.key}</code>
+          <span class="status-desc">{s.desc}</span>
+        </div>
+      ))}
+    </div>
+
+    <h2>La règle des échecs</h2>
+    <p>
+      Une hypothèse réfutée n'est pas supprimée. Elle est déplacée dans le
+      <a href="/lab">Laboratoire</a> avec le raisonnement qui l'avait rendue crédible et le
+      signal qui l'a tuée. Publier uniquement ce qui a marché produit un corpus survivant :
+      lisible, propre, et faux par omission.
+    </p>
+
+    <h2>Correction et contradiction</h2>
+    <p>
+      Si un texte contient une erreur, le chemin le plus rapide est une issue sur le dépôt.
+      Les corrections apparaissent dans le changelog de l'article concerné, pas en silence.
+    </p>
+    <p>
+      <a
+        href="https://github.com/lostmedoulle/blog-gardencybernetic/issues"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Ouvrir une issue sur GitHub →</a>
+    </p>
+  </div>
+
+  <SupportCTA />
+</HomeLayout>
+
+<style>
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .header-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .prose {
+    max-width: 760px;
+  }
+
+  .prose h2 {
+    font-size: 1.3rem;
+    font-weight: 650;
+    color: var(--text);
+    margin: 2.25rem 0 0.85rem 0;
+    letter-spacing: -0.015em;
+  }
+
+  .prose h2:first-child {
+    margin-top: 0;
+  }
+
+  .prose p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin: 0 0 1rem 0;
+  }
+
+  .prose a {
+    color: var(--violet-bright);
+    text-decoration: none;
+  }
+
+  .prose a:hover {
+    text-decoration: underline;
+  }
+
+  .section-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .section-list li {
+    position: relative;
+    padding-left: 1.15rem;
+    font-size: 0.975rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .section-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--green-bright);
+    font-size: 0.8rem;
+  }
+
+  .section-list strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .status-table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .status-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: var(--surface);
+  }
+
+  .status-row:last-child {
+    border-bottom: none;
+  }
+
+  .status-key {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    flex-shrink: 0;
+    min-width: 96px;
+    text-align: center;
+    background-color: rgba(139, 92, 246, 0.15);
+    color: var(--violet-bright);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .status-validated {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .status-testing {
+    background-color: rgba(6, 182, 212, 0.15);
+    color: #22d3ee;
+    border-color: rgba(6, 182, 212, 0.3);
+  }
+
+  .status-hypothesis {
+    background-color: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border-color: rgba(251, 191, 36, 0.3);
+  }
+
+  .status-limited {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  .status-refuted {
+    background-color: rgba(248, 113, 113, 0.15);
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.3);
+  }
+
+  .status-deprecated,
+  .status-superseded {
+    background-color: rgba(100, 116, 139, 0.15);
+    color: #94a3b8;
+    border-color: rgba(100, 116, 139, 0.3);
+  }
+
+  .status-desc {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .status-row {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+  }
+</style>

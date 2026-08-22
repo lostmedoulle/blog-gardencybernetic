@@ -21,7 +21,7 @@ export const collections = {
           'superseded'
         ]),
         confidence: z.enum(['low', 'medium', 'high']),
-        category: z.enum(['framework', 'experiment', 'essay', 'note']),
+        category: z.enum(['framework', 'experiment', 'essay', 'note', 'lab']),
         tags: z.array(z.string()).default([]),
         featured: z.boolean().default(false),
         draft: z.boolean().default(false),

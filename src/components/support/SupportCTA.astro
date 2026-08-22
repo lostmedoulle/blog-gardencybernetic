@@ -1,0 +1,122 @@
+---
+import PixelIcon from '../ui/PixelIcon.astro';
+import { SUPPORT } from '../../config/support';
+
+interface Props {
+  /** 'inline' = encart compact en fin d'article. 'card' = bloc autonome. */
+  variant?: 'inline' | 'card';
+}
+
+const { variant = 'inline' } = Astro.props;
+const { amount, currency, period } = SUPPORT.tier;
+---
+
+<aside class={`support-cta ${variant}`}>
+  <div class="cta-icon">
+    <PixelIcon name="heart" size={variant === 'card' ? 32 : 26} />
+  </div>
+
+  <div class="cta-body">
+    <p class="cta-title">Ce jardin est gratuit et sans publicité.</p>
+    <p class="cta-text">
+      {amount} {currency} par {period} couvrent l'hébergement et les crédits de calcul
+      des expériences. Pas de paywall, pas de tracker — juste des lecteurs qui financent
+      le prochain test.
+    </p>
+  </div>
+
+  <a href={SUPPORT.url} class="cta-button" target="_blank" rel="noopener noreferrer">
+    <span>Soutenir · {amount} {currency}/{period}</span>
+    <PixelIcon name="arrow" size={15} />
+  </a>
+</aside>
+
+<style>
+  .support-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    padding: 1.25rem 1.4rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgba(244, 114, 182, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%),
+      var(--surface);
+    margin: 2.5rem 0 1rem 0;
+  }
+
+  .support-cta.card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1.6rem;
+  }
+
+  .cta-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-muted);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .cta-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cta-title {
+    font-size: 0.975rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.3rem 0;
+    line-height: 1.35;
+  }
+
+  .cta-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .cta-button {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.15rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--violet);
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow: 0 4px 14px var(--violet-glow);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .cta-button:hover {
+    background-color: #7c3aed;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--violet-glow);
+  }
+
+  @media (max-width: 760px) {
+    .support-cta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.9rem;
+    }
+
+    .cta-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

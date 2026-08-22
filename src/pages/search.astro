@@ -1,0 +1,124 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+import PixelIcon from '../components/ui/PixelIcon.astro';
+---
+
+<HomeLayout
+  title="Recherche — Med's Cybernetic Garden"
+  description="Rechercher dans l'ensemble des frameworks, essais, expériences, post-mortems et notes du jardin."
+>
+  <div class="page-header">
+    <div class="header-icon">
+      <PixelIcon name="search" size={32} />
+    </div>
+    <div>
+      <h1>Recherche</h1>
+      <p class="subtitle">Plein texte, sur tout le jardin.</p>
+    </div>
+  </div>
+
+  <div id="search-root" class="search-root">
+    <noscript>
+      <p class="fallback">
+        La recherche nécessite JavaScript. Sans lui, la navigation par catégorie
+        reste disponible dans la barre latérale.
+      </p>
+    </noscript>
+  </div>
+</HomeLayout>
+
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof window.PagefindUI !== 'function') return;
+    new window.PagefindUI({
+      element: '#search-root',
+      showSubResults: true,
+      showImages: false,
+      translations: {
+        placeholder: 'Chercher dans le jardin…',
+        clear_search: 'Effacer',
+        load_more: 'Voir plus de résultats',
+        search_label: 'Rechercher sur ce site',
+        zero_results: 'Aucun résultat pour [SEARCH_TERM]',
+        many_results: '[COUNT] résultats pour [SEARCH_TERM]',
+        one_result: '1 résultat pour [SEARCH_TERM]',
+        searching: 'Recherche de [SEARCH_TERM]…',
+      },
+    });
+  });
+</script>
+
+<style is:global>
+  .search-root {
+    --pagefind-ui-scale: 0.9;
+    --pagefind-ui-primary: var(--text);
+    --pagefind-ui-text: var(--text);
+    --pagefind-ui-background: var(--surface);
+    --pagefind-ui-border: var(--border);
+    --pagefind-ui-tag: var(--surface-muted);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: var(--radius-sm);
+    --pagefind-ui-font: var(--font-sans);
+    max-width: 760px;
+    padding-bottom: 3rem;
+  }
+
+  .search-root .pagefind-ui__result-link {
+    color: var(--violet-bright);
+  }
+
+  .search-root .pagefind-ui__result-excerpt {
+    color: var(--text-muted);
+  }
+
+  .search-root mark {
+    background-color: rgba(139, 92, 246, 0.25);
+    color: var(--text);
+    border-radius: 3px;
+  }
+</style>
+
+<style>
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .header-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .fallback {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+</style>

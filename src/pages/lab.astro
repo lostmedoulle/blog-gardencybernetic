@@ -1,0 +1,18 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+import CategoryArticleList from '../components/home/CategoryArticleList.astro';
+import SupportCTA from '../components/support/SupportCTA.astro';
+---
+
+<HomeLayout
+  title="Laboratoire — Med's Cybernetic Garden"
+  description="Post-mortems : hypothèses réfutées, expériences ratées, et la règle mise à jour qui en sort."
+>
+  <CategoryArticleList
+    category="lab"
+    title="Laboratoire"
+    subtitle="Les hypothèses qui n'ont pas tenu. Ce qui a cassé, pourquoi, et la règle mise à jour."
+    icon="flask"
+  />
+  <SupportCTA />
+</HomeLayout>

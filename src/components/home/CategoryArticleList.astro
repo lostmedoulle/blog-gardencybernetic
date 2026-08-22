@@ -3,10 +3,10 @@ import { getCollection } from 'astro:content';
 import PixelIcon from '../ui/PixelIcon.astro';
 
 interface Props {
-  category: 'framework' | 'experiment' | 'essay' | 'note';
+  category: 'framework' | 'experiment' | 'essay' | 'note' | 'lab';
   title: string;
   subtitle: string;
-  icon: 'cube' | 'sprout' | 'potion' | 'book';
+  icon: 'cube' | 'sprout' | 'potion' | 'book' | 'flask';
 }
 
 const { category, title, subtitle, icon } = Astro.props;

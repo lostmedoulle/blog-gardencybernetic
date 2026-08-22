@@ -2,6 +2,7 @@
 import Sidebar from '../home/Sidebar.astro';
 import ArticleHeader from './ArticleHeader.astro';
 import ArticleMetaSidebar from './ArticleMetaSidebar.astro';
+import SupportCTA from '../support/SupportCTA.astro';
 import '../../styles/tokens.css';
 import '../../styles/global.css';
 
@@ -38,6 +39,8 @@ const headings = entry?.headings || [];
         <div class="article-markdown-body">
           <slot />
         </div>
+
+        {isDocPage && <SupportCTA />}
       </main>
 
       <!-- Right Metadata & Table of Contents Sidebar -->

@@ -3,13 +3,14 @@ import path from 'node:path';
 
 const ALLOWED_STATUSES = ['thought', 'hypothesis', 'testing', 'validated', 'limited', 'refuted', 'deprecated', 'superseded'];
 const ALLOWED_CONFIDENCES = ['low', 'medium', 'high'];
-const ALLOWED_CATEGORIES = ['framework', 'experiment', 'essay', 'note'];
+const ALLOWED_CATEGORIES = ['framework', 'experiment', 'essay', 'note', 'lab'];
 
 const CATEGORY_DIR_MAP = {
   framework: 'frameworks',
   experiment: 'experiments',
   essay: 'essays',
   note: 'notes',
+  lab: 'lab',
 };
 
 function parseFrontmatter(fileContent, filePath) {

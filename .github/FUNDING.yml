@@ -1,0 +1,4 @@
+# Affiche le bouton « Sponsor » en haut du dépôt GitHub.
+# ⚠️ Prérequis : activer GitHub Sponsors sur le compte lostmedoulle
+#    (https://github.com/sponsors) et y créer un palier mensuel à 10 CHF.
+github: [lostmedoulle]

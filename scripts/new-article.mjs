@@ -20,9 +20,10 @@ const CATEGORY_MAP = {
   experiment: 'experiments',
   essay: 'essays',
   note: 'notes',
+  lab: 'lab',
 };
 
-const ALLOWED_TYPES = ['framework', 'experiment', 'essay', 'note'];
+const ALLOWED_TYPES = ['framework', 'experiment', 'essay', 'note', 'lab'];
 const ALLOWED_STATUSES = ['thought', 'hypothesis', 'testing', 'validated', 'limited', 'refuted', 'deprecated', 'superseded'];
 const ALLOWED_CONFIDENCES = ['low', 'medium', 'high'];
 
@@ -33,7 +34,7 @@ async function main() {
 
   try {
     // 1. Type
-    let type = (await rl.question('1. Type (framework / experiment / essay / note) [framework]: ')).trim().toLowerCase() || 'framework';
+    let type = (await rl.question('1. Type (framework / experiment / essay / note / lab) [framework]: ')).trim().toLowerCase() || 'framework';
     if (!ALLOWED_TYPES.includes(type)) {
       console.error(`❌ Type invalide. Choix autorisés: ${ALLOWED_TYPES.join(', ')}`);
       process.exit(1);

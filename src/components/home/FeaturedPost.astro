@@ -1,24 +1,41 @@
 ---
+import { getCollection } from 'astro:content';
 import PixelIcon from '../ui/PixelIcon.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
 
-interface Props {
-  title?: string;
-  excerpt?: string;
-  date?: string;
-  readingTime?: string;
-  category?: string;
-  href?: string;
-}
+const CATEGORY_LABEL = {
+  framework: 'Frameworks',
+  experiment: 'Experiments',
+  essay: 'Essays',
+  note: 'Notes',
+  lab: 'Laboratoire',
+};
 
-const {
-  title = "Designing Systems That Heal",
-  excerpt = "How to build feedback-rich systems that adapt, recover, and get better over time.",
-  date = "May 18, 2025",
-  readingTime = "8 min read",
-  category = "Essays",
-  href = "/essays/designing-systems-that-heal/",
-} = Astro.props;
+const docs = await getCollection('docs', ({ data }) => !data.draft);
+
+// L'article mis en avant est celui marqué `featured: true` le plus récemment mis à jour.
+// Sans candidat, on retombe sur l'article le plus récent, toutes catégories confondues.
+const byRecency = (a, b) =>
+  new Date(b.data.dateUpdated ?? b.data.dateCreated).getTime() -
+  new Date(a.data.dateUpdated ?? a.data.dateCreated).getTime();
+
+const featured =
+  docs.filter(d => d.data.featured).sort(byRecency)[0] ?? docs.sort(byRecency)[0];
+
+const title = featured?.data.title ?? 'Aucun article publié';
+const excerpt = featured?.data.description ?? 'Le premier article arrive bientôt.';
+const href = featured ? `/${featured.id}/` : '/';
+const category = featured ? CATEGORY_LABEL[featured.data.category] ?? featured.data.category : '';
+const readingTime = featured?.data.readingTime
+  ? `${featured.data.readingTime} min de lecture`
+  : '';
+const date = featured
+  ? new Date(featured.data.dateUpdated ?? featured.data.dateCreated).toLocaleDateString('fr-FR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : '';
 ---
 
 <section class="featured-section">
@@ -38,11 +55,11 @@ const {
       <p class="post-excerpt">{excerpt}</p>
 
       <div class="post-meta">
-        <span class="meta-item">{date}</span>
-        <span class="meta-dot">•</span>
-        <span class="meta-item">{readingTime}</span>
-        <span class="meta-dot">•</span>
-        <span class="meta-category">{category}</span>
+        {date && <span class="meta-item">{date}</span>}
+        {date && readingTime && <span class="meta-dot">•</span>}
+        {readingTime && <span class="meta-item">{readingTime}</span>}
+        {(date || readingTime) && category && <span class="meta-dot">•</span>}
+        {category && <span class="meta-category">{category}</span>}
       </div>
     </div>
 

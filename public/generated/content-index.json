@@ -108,6 +108,29 @@
     "sourcePath": "src/content/docs/frameworks/the-work-once-principle.md"
   },
   {
+    "title": "Le laboratoire des échecs",
+    "description": "Pourquoi ce blog publie ses hypothèses réfutées au lieu de les effacer.",
+    "slug": "index-du-laboratoire",
+    "category": "lab",
+    "status": "validated",
+    "confidence": "high",
+    "version": "0.1.0",
+    "tags": [
+      "post-mortem",
+      "méthode",
+      "cybernetics",
+      "feedback"
+    ],
+    "dateCreated": "2026-08-22",
+    "dateUpdated": "2026-08-22",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/lab/index-du-laboratoire.md"
+  },
+  {
     "title": "Getting Started with Cybernetic Gardening",
     "description": "Initial observations on combining automated workflows with personal knowledge gardens.",
     "slug": "getting-started-with-gardening",
