@@ -2,11 +2,13 @@
 import { getCollection } from 'astro:content';
 import PixelIcon from '../ui/PixelIcon.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
+import { sortTimestamp, formatDate, articleDate } from '../../utils/dates';
+import { withBase } from '../../utils/paths';
 
 const CATEGORY_LABEL = {
   framework: 'Frameworks',
-  experiment: 'Experiments',
-  essay: 'Essays',
+  experiment: 'Expériences',
+  essay: 'Essais',
   note: 'Notes',
   lab: 'Laboratoire',
 };
@@ -15,31 +17,23 @@ const docs = await getCollection('docs', ({ data }) => !data.draft);
 
 // L'article mis en avant est celui marqué `featured: true` le plus récemment mis à jour.
 // Sans candidat, on retombe sur l'article le plus récent, toutes catégories confondues.
-const byRecency = (a, b) =>
-  new Date(b.data.dateUpdated ?? b.data.dateCreated).getTime() -
-  new Date(a.data.dateUpdated ?? a.data.dateCreated).getTime();
+const byRecency = (a, b) => sortTimestamp(b.data) - sortTimestamp(a.data);
 
 const featured =
   docs.filter(d => d.data.featured).sort(byRecency)[0] ?? docs.sort(byRecency)[0];
 
 const title = featured?.data.title ?? 'Aucun article publié';
 const excerpt = featured?.data.description ?? 'Le premier article arrive bientôt.';
-const href = featured ? `/${featured.id}/` : '/';
+const href = withBase(featured ? `/${featured.id}/` : '/');
 const category = featured ? CATEGORY_LABEL[featured.data.category] ?? featured.data.category : '';
 const readingTime = featured?.data.readingTime
   ? `${featured.data.readingTime} min de lecture`
   : '';
-const date = featured
-  ? new Date(featured.data.dateUpdated ?? featured.data.dateCreated).toLocaleDateString('fr-FR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  : '';
+const date = featured ? formatDate(articleDate(featured.data)) : '';
 ---
 
 <section class="featured-section">
-  <SectionHeading title="Featured Post" icon="star" />
+  <SectionHeading title="Article mis en avant" icon="star" />
 
   <a href={href} class="featured-card">
     <div class="featured-media">
@@ -49,7 +43,7 @@ const date = featured
     <div class="featured-details">
       <div class="title-row">
         <h3 class="post-title">{title}</h3>
-        <span class="featured-badge">Featured</span>
+        <span class="featured-badge">À la une</span>
       </div>
 
       <p class="post-excerpt">{excerpt}</p>

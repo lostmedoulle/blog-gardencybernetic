@@ -1,34 +1,48 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
-import { SystemStatus } from './SystemStatus';
+import GardenStatus from './GardenStatus.astro';
 import { SUPPORT } from '../../config/support';
+import { withBase, stripBase } from '../../utils/paths';
 
 interface Props {
   currentPath?: string;
 }
 
-const { currentPath = '/' } = Astro.props;
+// `Astro.url.pathname` inclut la base du site : on la retire pour comparer les routes.
+const currentPath = stripBase(Astro.props.currentPath ?? '/');
 
 const mainNavItems = [
-  { name: 'Home', href: '/', icon: 'home' as const, active: currentPath === '/' },
-  { name: 'Frameworks', href: '/frameworks', icon: 'cube' as const, active: currentPath.startsWith('/frameworks') || currentPath.includes('/frameworks/') },
-  { name: 'Essays', href: '/essays', icon: 'sprout' as const, active: currentPath.startsWith('/essays') || currentPath.includes('/essays/') },
-  { name: 'Experiments', href: '/experiments', icon: 'potion' as const, active: currentPath.startsWith('/experiments') || currentPath.includes('/experiments/') },
-  { name: 'Laboratoire', href: '/lab', icon: 'flask' as const, active: currentPath.startsWith('/lab') },
-  { name: 'Notes', href: '/notes', icon: 'book' as const, active: currentPath.startsWith('/notes') || currentPath.includes('/notes/') },
-  { name: 'About', href: '/about', icon: 'user' as const, active: currentPath.startsWith('/about') },
+  { name: 'Accueil', href: withBase('/'), icon: 'home' as const, active: currentPath === '/' },
+  { name: 'Frameworks', href: withBase('/frameworks'), icon: 'cube' as const, active: currentPath.startsWith('/frameworks') || currentPath.includes('/frameworks/') },
+  { name: 'Essais', href: withBase('/essays'), icon: 'sprout' as const, active: currentPath.startsWith('/essays') || currentPath.includes('/essays/') },
+  { name: 'Expériences', href: withBase('/experiments'), icon: 'potion' as const, active: currentPath.startsWith('/experiments') || currentPath.includes('/experiments/') },
+  { name: 'Laboratoire', href: withBase('/lab'), icon: 'flask' as const, active: currentPath.startsWith('/lab') },
+  { name: 'Notes', href: withBase('/notes'), icon: 'book' as const, active: currentPath.startsWith('/notes') || currentPath.includes('/notes/') },
+  { name: 'À propos', href: withBase('/about'), icon: 'user' as const, active: currentPath.startsWith('/about') },
 ];
 
 const secondaryNavItems = [
   { name: 'GitHub', href: 'https://github.com/lostmedoulle/blog-gardencybernetic', icon: 'github' as const, external: true },
-  { name: 'RSS Feed', href: '/rss.xml', icon: 'rss' as const, external: false },
+  { name: 'Flux RSS', href: withBase('/rss.xml'), icon: 'rss' as const, external: false },
 ];
 ---
 
-<aside class="sidebar">
+<aside class="sidebar" data-sidebar>
   <!-- Brand / Avatar Header -->
   <div class="sidebar-header">
-    <a href="/" class="brand-link">
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="sidebar-nav"
+      aria-label="Ouvrir le menu"
+      data-nav-toggle
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <a href={withBase('/')} class="brand-link">
       <div class="avatar-pixel-container">
         <PixelIcon name="robot" size={32} />
       </div>
@@ -40,7 +54,8 @@ const secondaryNavItems = [
   </div>
 
   <!-- Primary Navigation -->
-  <nav class="sidebar-nav" aria-label="Main Navigation">
+  <div class="sidebar-collapsible" id="sidebar-nav" data-collapsible>
+  <nav class="sidebar-nav" aria-label="Navigation principale">
     <ul class="nav-list">
       {mainNavItems.map(item => (
         <li>
@@ -56,9 +71,9 @@ const secondaryNavItems = [
 
     <!-- Search Button -->
     <div class="search-btn-wrapper">
-      <a href="/search" class="search-btn">
+      <a href={withBase('/search')} class="search-btn">
         <PixelIcon name="search" size={16} />
-        <span>Search</span>
+        <span>Rechercher</span>
       </a>
     </div>
 
@@ -87,7 +102,7 @@ const secondaryNavItems = [
   <!-- Sidebar System Status Widget & Lamp Illustration -->
   <div class="sidebar-bottom-section">
     <a
-      href="/support"
+      href={withBase('/support')}
       class={`sponsor-btn ${currentPath.startsWith('/support') ? 'active' : ''}`}
     >
       <PixelIcon name="heart" size={16} />
@@ -95,7 +110,7 @@ const secondaryNavItems = [
     </a>
 
     <div class="sidebar-status-widget">
-      <SystemStatus client:visible />
+      <GardenStatus compact />
     </div>
 
     <div class="sidebar-lamp-illustration">
@@ -104,10 +119,22 @@ const secondaryNavItems = [
 
     <div class="sidebar-footer">
       <p class="copyright">© 2026 Med</p>
-      <p class="rights">All rights reserved.</p>
+      <p class="rights">Tous droits réservés.</p>
     </div>
   </div>
+  </div>
 </aside>
+
+<script>
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const sidebar = document.querySelector('[data-sidebar]');
+
+  toggle?.addEventListener('click', () => {
+    const open = sidebar?.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', String(Boolean(open)));
+    toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  });
+</script>
 
 <style>
   .sidebar {
@@ -127,6 +154,34 @@ const secondaryNavItems = [
 
   .sidebar-header {
     margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  /* Le bouton n'existe qu'en dessous du point de rupture. */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 40px;
+    height: 40px;
+    padding: 0 9px;
+    flex-shrink: 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background-color: var(--surface);
+    cursor: pointer;
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    height: 2px;
+    width: 100%;
+    border-radius: 2px;
+    background-color: var(--text);
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
   .brand-link {
@@ -235,6 +290,9 @@ const secondaryNavItems = [
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    /* Sans ceci, le conteneur flex compressait ce bloc et la dernière barre du
+       widget System Status était tronquée en bas de la barre latérale. */
+    flex-shrink: 0;
   }
 
   .sponsor-btn {
@@ -263,6 +321,7 @@ const secondaryNavItems = [
   .sidebar-status-widget {
     transform: scale(0.95);
     transform-origin: bottom left;
+    flex-shrink: 0;
   }
 
   .sidebar-lamp-illustration {
@@ -286,11 +345,52 @@ const secondaryNavItems = [
 
   @media (max-width: 900px) {
     .sidebar {
-      position: relative;
+      position: sticky;
+      top: 0;
       width: 100%;
       height: auto;
+      max-height: 100vh;
       border-right: none;
       border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 1rem;
+      background-color: var(--background);
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .sidebar-header {
+      margin-bottom: 0;
+    }
+
+    /* Replié par défaut : le contenu de la page commence immédiatement sous
+       la barre de marque, au lieu d'être repoussé sous tout le menu. */
+    .sidebar-collapsible {
+      display: none;
+      padding-top: 1.25rem;
+      overflow-y: auto;
+      max-height: calc(100vh - 5rem);
+    }
+
+    .sidebar.nav-open .sidebar-collapsible {
+      display: block;
+    }
+
+    .sidebar.nav-open .nav-toggle-bar:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .sidebar.nav-open .nav-toggle-bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .sidebar.nav-open .nav-toggle-bar:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .sidebar-bottom-section {
+      margin-top: 1.5rem;
     }
   }
 </style>

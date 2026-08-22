@@ -11,12 +11,9 @@ tags: ["notes", "systems", "gardening"]
 featured: false
 draft: false
 authors: ["Med"]
-language: fr
+language: en
 readingTime: 3
 ---
-
-# Getting Started with Cybernetic Gardening
-
 ## Contexte
 
 Building a digital garden requires clear metadata contracts and frictionless authoring.

@@ -2,6 +2,7 @@
 import HomeLayout from '../layouts/HomeLayout.astro';
 import PixelIcon from '../components/ui/PixelIcon.astro';
 import SupportCTA from '../components/support/SupportCTA.astro';
+import { withBase } from '../utils/paths';
 
 const statuses = [
   { key: 'thought', desc: "Idée brute, pas encore formulée en hypothèse testable." },
@@ -45,8 +46,8 @@ const statuses = [
     <h2>Les quatre jardins</h2>
     <ul class="section-list">
       <li><strong>Frameworks</strong> — modèles mentaux et outils de décision réutilisables.</li>
-      <li><strong>Essays</strong> — textes longs, argumentés, sur la technique et le jugement.</li>
-      <li><strong>Experiments</strong> — protocoles réels avec mesures, sur l'automatisation et l'IA.</li>
+      <li><strong>Essais</strong> — textes longs, argumentés, sur la technique et le jugement.</li>
+      <li><strong>Expériences</strong> — protocoles réels avec mesures, sur l'automatisation et l'IA.</li>
       <li><strong>Laboratoire</strong> — post-mortems : ce qui a cassé et pourquoi.</li>
       <li><strong>Notes</strong> — fragments courts, matière première des trois autres.</li>
     </ul>
@@ -68,7 +69,7 @@ const statuses = [
     <h2>La règle des échecs</h2>
     <p>
       Une hypothèse réfutée n'est pas supprimée. Elle est déplacée dans le
-      <a href="/lab">Laboratoire</a> avec le raisonnement qui l'avait rendue crédible et le
+      <a href={withBase("/lab")}>Laboratoire</a> avec le raisonnement qui l'avait rendue crédible et le
       signal qui l'a tuée. Publier uniquement ce qui a marché produit un corpus survivant :
       lisible, propre, et faux par omission.
     </p>

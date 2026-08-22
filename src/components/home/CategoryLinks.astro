@@ -1,28 +1,29 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
+import { withBase } from '../../utils/paths';
 
 const categories = [
   {
     title: 'Frameworks',
-    description: 'Mental models and practical frameworks for designing better systems.',
+    description: 'Modèles mentaux et outils de décision réutilisables pour concevoir de meilleurs systèmes.',
     icon: 'cube' as const,
     href: '/frameworks',
   },
   {
-    title: 'Essays',
-    description: 'Long-form thoughts on technology, society, and being human.',
+    title: 'Essais',
+    description: 'Textes longs et argumentés sur la technique, la société et le jugement.',
     icon: 'sprout' as const,
     href: '/essays',
   },
   {
-    title: 'Experiments',
-    description: 'Hands-on explorations in automation, AI, and code. What works, what breaks.',
+    title: 'Expériences',
+    description: 'Protocoles réels avec mesures, sur l\'automatisation et l\'IA. Ce qui marche, ce qui casse.',
     icon: 'potion' as const,
     href: '/experiments',
   },
   {
     title: 'Laboratoire',
-    description: 'Post-mortems: refuted hypotheses, what broke, and the rule that replaced it.',
+    description: 'Post-mortems : hypothèses réfutées, ce qui a cassé, et la règle qui l\'a remplacée.',
     icon: 'flask' as const,
     href: '/lab',
   },
@@ -32,7 +33,7 @@ const categories = [
 <section class="categories-section">
   <div class="categories-grid">
     {categories.map((cat, idx) => (
-      <a href={cat.href} class="category-item">
+      <a href={withBase(cat.href)} class="category-item">
         <div class="category-icon-wrapper">
           <PixelIcon name={cat.icon} size={36} />
         </div>

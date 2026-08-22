@@ -7,8 +7,11 @@ export const collections = {
     loader: docsLoader(),
     schema: docsSchema({
       extend: z.object({
-        dateCreated: z.coerce.date(),
-        dateUpdated: z.coerce.date(),
+        // Optionnelles : un fichier déposé à la main via l'interface GitHub ne
+        // doit pas casser le build parce qu'il manque une date. Les composants
+        // et le flux RSS retombent sur la date disponible, sinon masquent le champ.
+        dateCreated: z.coerce.date().optional(),
+        dateUpdated: z.coerce.date().optional(),
         version: z.string().default('0.1.0'),
         status: z.enum([
           'thought',
@@ -19,8 +22,8 @@ export const collections = {
           'refuted',
           'deprecated',
           'superseded'
-        ]),
-        confidence: z.enum(['low', 'medium', 'high']),
+        ]).default('thought'),
+        confidence: z.enum(['low', 'medium', 'high']).default('low'),
         category: z.enum(['framework', 'experiment', 'essay', 'note', 'lab']),
         tags: z.array(z.string()).default([]),
         featured: z.boolean().default(false),

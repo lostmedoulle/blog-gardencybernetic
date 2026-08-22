@@ -3,15 +3,27 @@ import Sidebar from '../home/Sidebar.astro';
 import ArticleHeader from './ArticleHeader.astro';
 import ArticleMetaSidebar from './ArticleMetaSidebar.astro';
 import SupportCTA from '../support/SupportCTA.astro';
+import { formatDate, articleDate } from '../../utils/dates';
+import { stripBase } from '../../utils/paths';
 import '../../styles/tokens.css';
 import '../../styles/global.css';
 
 const currentPath = Astro.url.pathname;
-const isDocPage = currentPath.split('/').filter(Boolean).length >= 2;
+// Comparaison de route : retirer la base, sinon le sous-chemin de GitHub Pages
+// compterait comme un segment et toute page passerait pour un article.
+const isDocPage = stripBase(currentPath).split('/').filter(Boolean).length >= 2;
 
 const entry = Astro.props.entry;
 const frontmatter = entry?.data || {};
-const headings = entry?.headings || [];
+// `headings` est une prop de premier niveau de StarlightRouteData, pas une
+// propriété de `entry`. La lire au mauvais endroit renvoyait toujours [], ce
+// qui faisait tomber ArticleMetaSidebar sur son sommaire de démonstration.
+const headings = (Astro.props.headings || []).filter(h => h.depth >= 2 && h.depth <= 3);
+
+const REPO_EDIT_BASE =
+  'https://github.com/lostmedoulle/blog-gardencybernetic/edit/main/src/content/docs';
+const editUrl = entry?.id ? `${REPO_EDIT_BASE}/${entry.id}.md` : undefined;
+const shareUrl = Astro.site ? new URL(currentPath, Astro.site).href : currentPath;
 ---
 
 <div class="layout-container">
@@ -31,8 +43,10 @@ const headings = entry?.headings || [];
             status={frontmatter.status || 'Hypothesis'}
             confidence={frontmatter.confidence || 'Medium'}
             version={frontmatter.version || '0.1.0'}
-            dateCreated={frontmatter.dateCreated || '27 juillet 2026'}
-            readingTime={frontmatter.readingTime ? `${frontmatter.readingTime} min de lecture` : '8 min de lecture'}
+            dateCreated={formatDate(frontmatter.dateCreated)}
+            readingTime={frontmatter.readingTime ? `${frontmatter.readingTime} min de lecture` : ''}
+            editUrl={editUrl}
+            shareUrl={shareUrl}
           />
         )}
 
@@ -52,7 +66,7 @@ const headings = entry?.headings || [];
           tags={frontmatter.tags}
           language={frontmatter.language}
           author={frontmatter.authors ? frontmatter.authors[0] : 'Med'}
-          dateUpdated={frontmatter.dateUpdated ? new Date(frontmatter.dateUpdated).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) : '27 juillet 2026'}
+          dateUpdated={formatDate(articleDate(frontmatter))}
         />
       )}
     </div>

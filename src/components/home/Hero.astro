@@ -1,7 +1,7 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
+import { withBase } from '../../utils/paths';
 import { AnimatedGarden } from './AnimatedGarden';
-import { SystemStatus } from './SystemStatus';
 ---
 
 <section class="hero-section">
@@ -10,36 +10,33 @@ import { SystemStatus } from './SystemStatus';
     <div class="hero-content">
       <div class="status-badge">
         <span class="status-dot"></span>
-        <span class="status-text">Building in public</span>
+        <span class="status-text">Construit en public</span>
       </div>
 
       <h1 class="hero-headline">
-        A cybernetic <br class="mobile-break" />
-        garden of <span class="gradient-text">ideas.🌱</span>
+        Un jardin <br class="mobile-break" />
+        cybernétique <span class="gradient-text">d'idées.</span>
       </h1>
 
       <p class="hero-subheadline">
-        Exploring the intersection of code, cognition, and creativity to build resilient systems and share what I learn along the way.
+        Des notes publiques et versionnées sur les systèmes, l'automatisation et le jugement. Chaque texte porte son statut et son niveau de confiance — les hypothèses réfutées restent en ligne.
       </p>
 
       <div class="hero-actions">
-        <a href="/frameworks/the-work-once-principle/" class="btn btn-primary">
-          <span>Explore the Garden</span>
+        <a href={withBase('/frameworks/the-work-once-principle/')} class="btn btn-primary">
+          <span>Explorer le jardin</span>
           <PixelIcon name="arrow" size={16} />
         </a>
-        <a href="/about" class="btn btn-secondary">
-          <span>About Me</span>
+        <a href={withBase('/about')} class="btn btn-secondary">
+          <span>À propos</span>
         </a>
       </div>
     </div>
 
-    <!-- Right Column: Interactive Illustration & System Status -->
+    <!-- Right Column: Interactive Illustration -->
     <div class="hero-widgets">
       <div class="garden-illustration-wrapper">
         <AnimatedGarden client:visible />
-      </div>
-      <div class="status-widget-wrapper">
-        <SystemStatus client:visible />
       </div>
     </div>
   </div>
@@ -160,24 +157,12 @@ import { SystemStatus } from './SystemStatus';
     position: relative;
   }
 
-  .status-widget-wrapper {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    z-index: 30;
-  }
 
   @media (max-width: 1100px) {
     .hero-grid {
       grid-template-columns: 1fr;
     }
 
-    .status-widget-wrapper {
-      position: relative;
-      top: 0;
-      right: 0;
-      max-width: 100%;
-    }
 
     .hero-headline {
       font-size: 2.5rem;

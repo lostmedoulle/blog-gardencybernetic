@@ -1,5 +1,6 @@
 ---
 import Sidebar from '../components/home/Sidebar.astro';
+import { withBase } from '../utils/paths';
 import '../styles/tokens.css';
 import '../styles/global.css';
 
@@ -10,7 +11,7 @@ interface Props {
 
 const {
   title = "Med's Cybernetic Garden",
-  description = "A personal intellectual system exploring systems, automation, knowledge and human judgment.",
+  description = "Un système intellectuel personnel : systèmes, automatisation, connaissance et jugement humain. Hypothèses testées en public, échecs documentés.",
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -22,7 +23,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
@@ -45,7 +46,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
     <meta name="twitter:description" content={description} />
 
     <!-- Flux RSS -->
-    <link rel="alternate" type="application/rss+xml" title="Med's Cybernetic Garden" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Med's Cybernetic Garden" href={withBase("/rss.xml")} />
 
     <!-- Google Fonts for Inter and JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
