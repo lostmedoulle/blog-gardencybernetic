@@ -19,6 +19,11 @@
   --sl-color-bg-inline-code: #151c2e;
   
   --sl-color-border: rgba(255, 255, 255, 0.08);
+  /* Non redéfinie, cette variable valait rgb(237, 238, 243) — un blanc quasi
+     pur qui tranchait violemment sur le fond sombre. */
+  --sl-color-hairline: rgba(255, 255, 255, 0.06);
+  --sl-color-hairline-light: rgba(255, 255, 255, 0.06);
+  --sl-color-hairline-shade: rgba(255, 255, 255, 0.06);
 
   --sl-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --sl-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
@@ -42,6 +47,17 @@ header.header {
 .content-panel {
   padding: 0 !important;
   max-width: 100% !important;
+  /* Starlight sépare ses panneaux par un filet horizontal ; la mise en page
+     est ici gérée par ArticleHeader, ce trait n'a plus rien à délimiter. */
+  border-top: none !important;
+}
+
+/* Le sommaire et les métadonnées sont rendus par ArticleMetaSidebar : la
+   barre latérale native de Starlight est vide (override PageSidebar), mais son
+   conteneur dessinait encore un filet vertical sur toute la hauteur. */
+.right-sidebar-container,
+.right-sidebar {
+  display: none !important;
 }
 
 /* Article Heading & Content Styling matching Reference Image */
