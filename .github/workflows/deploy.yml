@@ -24,6 +24,13 @@ jobs:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
 
+      # `enablement: true` crée le site Pages s'il n'existe pas encore : le
+      # dépôt n'a donc aucun réglage à activer à la main au préalable.
+      - name: Configurer GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Installer Node
         uses: actions/setup-node@v4
         with:
