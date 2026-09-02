@@ -13,6 +13,8 @@ draft: false
 authors: ["Med"]
 language: fr
 readingTime: 10
+cover: /images/agent-instrument-de-mesure.jpg
+coverAlt: "Illustration cyberpunk : une personne penchée sur un ordinateur portable dont l'écran holographique affiche un fichier Skills.md, sous les néons d'une ville nocturne."
 ---
 
 ## Le point de départ
@@ -20,6 +22,8 @@ readingTime: 10
 Je suis le goulot d'étranglement de mon entreprise.
 
 Business analyst et développeur, seul point de passage vers l'automatisation. Tout le monde veut automatiser quelque chose. Je ne peux pas absorber la demande. Le diagnostic était facile et l'idée qui a suivi paraissait évidente : si je ne peux pas concevoir pour tout le monde, que chacun conçoive pour soi. Un agent qui accompagne l'utilisateur dans l'explicitation de son propre travail, et qui produit en sortie une spécification testable.
+
+Nous utilisons Copilot Studio pour cette mise en œuvre.
 
 L'idée fonctionne. Pas pour la raison que je croyais.
 
