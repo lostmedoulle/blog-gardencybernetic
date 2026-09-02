@@ -103,10 +103,23 @@ const shareUrl = Astro.site ? new URL(currentPath, Astro.site).href : currentPat
     min-width: 0;
   }
 
+  /* La colonne de métadonnées passe sous le contenu avant que la barre
+     latérale ne change de comportement : les deux seuils sont distincts. */
   @media (max-width: 1100px) {
     .article-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
+    }
+  }
+
+  /* 900px est le seuil auquel la barre latérale quitte `position: fixed` et
+     revient dans le flux sur toute la largeur. Tant qu'elle est fixe, le
+     contenu doit garder sa marge, sinon il passe dessous ; une fois qu'elle
+     est dans le flux, le conteneur doit être en colonne, sinon les deux se
+     partagent la largeur et le contenu se retrouve écrasé hors écran. */
+  @media (max-width: 900px) {
+    .layout-container {
+      flex-direction: column;
     }
 
     .content-wrapper {

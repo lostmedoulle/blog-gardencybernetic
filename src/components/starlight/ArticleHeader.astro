@@ -316,6 +316,22 @@ const formattedDate =
     .article-headline {
       font-size: 2rem;
     }
+
+    /* Le titre complet dans le fil d'Ariane occupait jusqu'à trois lignes en
+       chasse fixe, immédiatement au-dessus du <h1> qui répète le même texte.
+       La catégorie reste : c'est le seul segment cliquable et utile ici. */
+    .breadcrumb-slash,
+    .breadcrumb-title {
+      display: none;
+    }
+  }
+
+  /* Un titre long tenait sur cinq lignes et repoussait le texte hors du
+     premier écran. */
+  @media (max-width: 600px) {
+    .article-headline {
+      font-size: 1.75rem;
+    }
   }
 </style>
 
