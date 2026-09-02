@@ -1,7 +1,7 @@
 ---
 import PixelIcon from '../ui/PixelIcon.astro';
 import { withBase } from '../../utils/paths';
-import { AnimatedGarden } from './AnimatedGarden';
+import FeedbackLoop from './FeedbackLoop.astro';
 ---
 
 <section class="hero-section">
@@ -36,7 +36,7 @@ import { AnimatedGarden } from './AnimatedGarden';
     <!-- Right Column: Interactive Illustration -->
     <div class="hero-widgets">
       <div class="garden-illustration-wrapper">
-        <AnimatedGarden client:visible />
+        <FeedbackLoop />
       </div>
     </div>
   </div>

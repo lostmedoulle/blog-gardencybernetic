@@ -22,6 +22,31 @@
     "sourcePath": "src/content/docs/essays/designing-systems-that-heal.md"
   },
   {
+    "title": "L'agent n'est pas un outil de production, c'est un instrument de mesure",
+    "description": "Automatisation, processus, et le signal qu'on éteint sans le vouloir.",
+    "slug": "agent-instrument-de-mesure",
+    "category": "experiment",
+    "status": "hypothesis",
+    "confidence": "medium",
+    "version": "0.1.0",
+    "tags": [
+      "automatisation",
+      "processus",
+      "cybernetics",
+      "feedback",
+      "elicitation",
+      "diagnostic"
+    ],
+    "dateCreated": "2026-09-02",
+    "dateUpdated": "2026-09-02",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/experiments/agent-instrument-de-mesure.md"
+  },
+  {
     "title": "Automated Feedback Loops in Agentic Workflows",
     "description": "Hands-on explorations in continuous validation, subagent verification, and auto-tuning.",
     "slug": "automated-feedback-loops",

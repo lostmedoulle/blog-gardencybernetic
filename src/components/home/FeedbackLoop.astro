@@ -1,0 +1,139 @@
+---
+/**
+ * Boucle de régulation : action → mesure → écart → correction → action.
+ *
+ * Remplace l'ancienne scène décorative (fenêtre, skyline, robot) qui ne disait
+ * rien du sujet du site. SVG statique, aucune hydratation : l'animation est
+ * portée par CSS et se désactive si le lecteur a demandé moins de mouvement.
+ */
+
+const NODES = [
+  { x: 30, y: 44, label: 'ACTION', sub: 'le processus tourne', color: 'var(--green-bright)' },
+  { x: 274, y: 44, label: 'MESURE', sub: 'compteurs allumés', color: 'var(--cyan-bright)' },
+  { x: 274, y: 232, label: 'ÉCART', sub: 'dérive détectée', color: 'var(--violet-bright)' },
+  { x: 30, y: 232, label: 'CORRECTION', sub: 'le modèle change', color: 'var(--green-bright)' },
+];
+
+const W = 176;
+const H = 62;
+---
+
+<figure class="loop-figure">
+  <svg viewBox="0 0 480 338" role="img" aria-labelledby="loop-title loop-desc" class="loop-svg">
+    <title id="loop-title">Boucle de régulation</title>
+    <desc id="loop-desc">
+      Un cycle en quatre étapes : l'action produit une mesure, la mesure révèle
+      un écart, l'écart déclenche une correction, la correction modifie l'action.
+      Un signal circule en continu le long de la boucle.
+    </desc>
+
+    <defs>
+      <marker id="loop-arrow" viewBox="0 0 10 10" refX="8" refY="5"
+              markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor" />
+      </marker>
+    </defs>
+
+    <!-- Chemin de la boucle, parcouru par le signal -->
+    <path
+      id="loop-path"
+      d="M 118 106 L 118 75 Q 118 44 149 44 L 361 44 Q 392 44 392 75 L 392 201
+         Q 392 232 361 232 L 149 232 Q 118 232 118 201 Z"
+      fill="none"
+      stroke="var(--border)"
+      stroke-width="1.5"
+    />
+
+    <!-- Flèches de sens, une par segment -->
+    <g class="loop-arrows" stroke-width="1.5" fill="none">
+      <line x1="230" y1="44" x2="262" y2="44" marker-end="url(#loop-arrow)" />
+      <line x1="392" y1="120" x2="392" y2="152" marker-end="url(#loop-arrow)" />
+      <line x1="280" y1="232" x2="248" y2="232" marker-end="url(#loop-arrow)" />
+      <line x1="118" y1="152" x2="118" y2="120" marker-end="url(#loop-arrow)" />
+    </g>
+
+    <!-- Signal en circulation -->
+    <circle class="loop-signal" r="5" fill="var(--cyan-bright)">
+      <animateMotion dur="9s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#loop-path" />
+      </animateMotion>
+    </circle>
+
+    {NODES.map(n => (
+      <g class="loop-node">
+        <rect x={n.x} y={n.y - H / 2} width={W} height={H} rx="10"
+              fill="var(--surface)" stroke="var(--border-subtle)" stroke-width="1" />
+        <rect x={n.x} y={n.y - H / 2} width="3" height={H} rx="1.5" fill={n.color} />
+        <text x={n.x + 18} y={n.y - 6} class="node-label" fill="var(--text)">{n.label}</text>
+        <text x={n.x + 18} y={n.y + 14} class="node-sub" fill="var(--text-muted)">{n.sub}</text>
+      </g>
+    ))}
+
+    <text x="240" y="132" class="loop-caption" fill="var(--text-muted)" text-anchor="middle">
+      couper la mesure,
+    </text>
+    <text x="240" y="152" class="loop-caption" fill="var(--text-muted)" text-anchor="middle">
+      c'est ouvrir la boucle —
+    </text>
+    <text x="240" y="172" class="loop-caption strong" fill="var(--text)" text-anchor="middle">
+      le système dérive en silence
+    </text>
+  </svg>
+</figure>
+
+<style>
+  .loop-figure {
+    margin: 0;
+    padding: 1.5rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(120% 90% at 70% 10%, rgba(6, 182, 212, 0.07), transparent 60%),
+      var(--surface);
+  }
+
+  .loop-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .loop-arrows {
+    color: var(--text-muted);
+    stroke: currentColor;
+    opacity: 0.55;
+  }
+
+  .node-label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .node-sub {
+    font-family: var(--font-sans);
+    font-size: 12px;
+  }
+
+  .loop-caption {
+    font-family: var(--font-sans);
+    font-size: 13px;
+  }
+
+  .loop-caption.strong {
+    font-weight: 600;
+  }
+
+  .loop-signal {
+    filter: drop-shadow(0 0 6px var(--cyan));
+  }
+
+  /* Le signal en mouvement est un ornement : il ne porte aucune information
+     que le schéma ne donne pas déjà à l'arrêt. */
+  @media (prefers-reduced-motion: reduce) {
+    .loop-signal {
+      display: none;
+    }
+  }
+</style>
