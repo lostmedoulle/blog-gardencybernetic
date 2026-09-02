@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import react from '@astrojs/react';
 
 // Déploiement par défaut : GitHub Pages, dépôt de projet.
 // Le site est donc servi sous https://lostmedoulle.github.io/blog-gardencybernetic/
@@ -70,6 +69,5 @@ export default defineConfig({
         },
       ],
     }),
-    react(),
   ],
 });
