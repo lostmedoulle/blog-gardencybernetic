@@ -215,5 +215,13 @@ const activeToc = toc;
       position: relative;
       top: 0;
     }
+
+    /* Empilé, le sommaire se retrouve après l'article, loin des ancres qu'il
+       vise : une liste de liens qui renvoient vers le haut de la page qu'on
+       vient de lire. La carte de métadonnées, elle, garde son sens en fin de
+       lecture. */
+    .toc-panel {
+      display: none;
+    }
   }
 </style>

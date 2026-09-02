@@ -224,6 +224,11 @@ const statusColorMap: Record<string, { bg: string; color: string; border: string
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    /* Sans retour à la ligne, une série de tags dépassait de l'écran sur
+       mobile et provoquait un défilement horizontal de toute la page. */
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+    min-width: 0;
   }
 
   .tag-pill {
