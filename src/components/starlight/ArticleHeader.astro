@@ -119,7 +119,14 @@ const formattedDate =
        au lecteur, et repoussait le texte sous la ligne de flottaison. -->
   {cover && (
     <div class="article-cover-wrapper">
-      <img src={withBase(cover)} alt={coverAlt} class="article-cover-image" />
+      <img
+        src={withBase(cover)}
+        alt={coverAlt}
+        class="article-cover-image"
+        width="1600"
+        height="420"
+        decoding="async"
+      />
     </div>
   )}
 </header>
@@ -294,7 +301,13 @@ const formattedDate =
   .article-cover-image {
     display: block;
     width: 100%;
-    height: auto;
+    /* Cadrage en bandeau : une couverture au format portrait affichée à
+       hauteur libre dépasserait l'écran et repousserait le texte sous la ligne
+       de flottaison. Le cadrage est légèrement remonté pour garder le sujet
+       plutôt que le bas de l'image. */
+    height: 420px;
+    object-fit: cover;
+    object-position: 50% 35%;
   }
 
   .article-cover-wrapper {
@@ -315,6 +328,10 @@ const formattedDate =
 
     .article-headline {
       font-size: 2rem;
+    }
+
+    .article-cover-image {
+      height: 260px;
     }
 
     /* Le titre complet dans le fil d'Ariane occupait jusqu'à trois lignes en
