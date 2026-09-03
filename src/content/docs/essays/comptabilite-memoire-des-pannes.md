@@ -12,6 +12,11 @@ featured: false
 draft: false
 authors: ["Med"]
 language: fr
+summary:
+  - "La comptabilité est la seule couche contrainte de boucler. Chaque écart entre le réel et sa représentation a donc dû être comblé par une écriture."
+  - "Cette écriture est une cicatrice : elle marque l'endroit exact où un problème a été absorbé plutôt que traité."
+  - "Le système devient irréparable non pas quand le bricolage apparaît, mais quand part la personne qui en connaissait le motif. Un ajustement légitime et une compensation d'erreur se ressemblent parfaitement dans le grand livre."
+  - "Une migration est le seul moment où les deux couches sont comparées frontalement. Une migration parfaitement fidèle referme cette fenêtre."
 readingTime: 11
 ---
 
@@ -42,6 +47,10 @@ La comptabilité boucle. Le signal s'éteint. Il n'existe plus aucun mécanisme 
 L'année suivante, l'écart réapparaît. On refait le même ajustement. Il entre dans la procédure de clôture. Dix ans plus tard, il fait partie du processus, et plus personne ne sait pourquoi il existe.
 
 Ce mécanisme a un nom dans la littérature : c'est un *workaround*, au sens de Steven Alter. Ce qui le rend particulier en comptabilité, c'est qu'il est daté. Chaque ajustement porte un exercice. L'archive est chronologique et lisible.
+
+![Le mécanisme en cinq temps : une divergence apparaît, personne ne remonte à la cause, un ajustement manuel comble l'écart, la comptabilité boucle et le signal s'éteint, puis l'ajustement se répète chaque année jusqu'à faire partie du processus. Le système devient irréparable quand part la personne qui connaissait le motif.](../../../assets/diagrams/mecanisme-cinq-temps.svg)
+
+*Le point de bascule n'est pas à l'étape 3, où le bricolage naît, mais après l'étape 5, quand sa raison disparaît avec la personne.*
 
 ## Trois causes, et la troisième est la plus grave
 

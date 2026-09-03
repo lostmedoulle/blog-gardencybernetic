@@ -3,6 +3,7 @@ import Sidebar from '../home/Sidebar.astro';
 import ArticleHeader from './ArticleHeader.astro';
 import ArticleMetaSidebar from './ArticleMetaSidebar.astro';
 import SupportCTA from '../support/SupportCTA.astro';
+import ArticleSummary from './ArticleSummary.astro';
 import { formatDate, articleDate } from '../../utils/dates';
 import { stripBase } from '../../utils/paths';
 import '../../styles/tokens.css';
@@ -51,6 +52,8 @@ const shareUrl = Astro.site ? new URL(currentPath, Astro.site).href : currentPat
             coverAlt={frontmatter.coverAlt}
           />
         )}
+
+        {isDocPage && <ArticleSummary points={frontmatter.summary} />}
 
         <div class="article-markdown-body">
           <slot />

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 660" width="480" height="660" role="img" aria-label="Le mécanisme en cinq temps : une divergence apparaît, personne ne remonte à la cause, un ajustement manuel comble l'écart, la comptabilité boucle et le signal s'éteint, puis l'ajustement se répète chaque année jusqu'à faire partie du processus. Le système devient irréparable quand part la personne qui connaissait le motif.">
+  <defs>
+    <style>
+      .n  { font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #090d16; }
+      .lb { font: 700 14px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; fill: #e2e8f0; }
+      .tx { font: 13.5px ui-sans-serif, system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .ft { font: italic 12.5px ui-sans-serif, system-ui, sans-serif; fill: #8092ab; }
+    </style>
+  </defs>
+  <rect width="480" height="660" fill="#0f1524"/>
+
+  <line x1="44" y1="46" x2="44" y2="470" stroke="#1e293b" stroke-width="2"/>
+
+  <circle cx="44" cy="46" r="13" fill="#fbbf24"/><text x="44" y="51" class="n" text-anchor="middle">1</text>
+  <text x="72" y="42" class="lb">LA DIVERGENCE APPARAÎT</text>
+  <text x="72" y="64" class="tx">Un cas que le processus n'avait pas prévu.</text>
+
+  <circle cx="44" cy="130" r="13" fill="#fbbf24"/><text x="44" y="135" class="n" text-anchor="middle">2</text>
+  <text x="72" y="126" class="lb">PERSONNE NE REMONTE À LA CAUSE</text>
+  <text x="72" y="148" class="tx">La clôture est dans huit jours, la personne qui</text>
+  <text x="72" y="168" class="tx">connaît ce dossier est en congé, le montant est petit.</text>
+
+  <circle cx="44" cy="222" r="13" fill="#22d3ee"/><text x="44" y="227" class="n" text-anchor="middle">3</text>
+  <text x="72" y="218" class="lb">UN AJUSTEMENT COMBLE L'ÉCART</text>
+  <text x="72" y="240" class="tx">Légitime, documenté, tracé. À ce stade, tout est propre.</text>
+
+  <circle cx="44" cy="298" r="13" fill="#f87171"/><text x="44" y="303" class="n" text-anchor="middle">4</text>
+  <text x="72" y="294" class="lb">LA COMPTABILITÉ BOUCLE</text>
+  <text x="72" y="316" class="tx">Le signal s'éteint. Plus rien ne rappelle que la cause</text>
+  <text x="72" y="336" class="tx">n'a pas été traitée, puisque le symptôme a disparu.</text>
+
+  <circle cx="44" cy="390" r="13" fill="#f87171"/><text x="44" y="395" class="n" text-anchor="middle">5</text>
+  <text x="72" y="386" class="lb">L'ANNÉE SUIVANTE, ON REFAIT</text>
+  <text x="72" y="408" class="tx">L'ajustement entre dans la procédure de clôture.</text>
+  <text x="72" y="428" class="tx">Dix ans plus tard, il fait partie du processus.</text>
+
+  <circle cx="44" cy="470" r="6" fill="#1e293b"/>
+
+  <rect x="20" y="504" width="440" height="106" rx="10" fill="#151c2e" stroke="rgba(248,113,113,.45)"/>
+  <rect x="20" y="504" width="3" height="106" rx="1.5" fill="#f87171"/>
+  <text x="38" y="528" class="lb" fill="#f87171">LE POINT DE NON-RETOUR</text>
+  <text x="38" y="550" class="tx">Ce n'est pas quand le bricolage apparaît. C'est quand</text>
+  <text x="38" y="570" class="tx">part la personne qui savait qu'il était provisoire.</text>
+  <text x="38" y="594" class="ft">Un ajustement légitime et une compensation d'erreur se</text>
+  <text x="38" y="608" class="ft">ressemblent parfaitement dans le grand livre.</text>
+
+  <text x="240" y="642" class="ft" text-anchor="middle">Chaque écriture est une cicatrice. L'archive est datée, donc lisible.</text>
+</svg>

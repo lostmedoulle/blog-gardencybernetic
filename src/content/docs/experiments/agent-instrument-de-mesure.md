@@ -12,6 +12,11 @@ featured: true
 draft: false
 authors: ["Med"]
 language: fr
+summary:
+  - "L'élicitation ne prépare pas l'automatisation. Elle rend le processus lisible pour la première fois."
+  - "Automatiser fait disparaître la douleur sans faire disparaître la cause. Or la douleur était le signal d'erreur qui aurait fini par forcer la correction."
+  - "Le skill n'est pas le livrable, c'est l'instrument de mesure. Le gain de temps est un sous-produit ; le diagnostic est le produit."
+  - "Le compteur doit rester allumé après la mise en production, sinon le remède détruit l'instrument."
 readingTime: 10
 cover: /images/agent-instrument-de-mesure.jpg
 coverAlt: "Illustration cyberpunk : une personne penchée sur un ordinateur portable dont l'écran holographique affiche un fichier Skills.md, sous les néons d'une ville nocturne."

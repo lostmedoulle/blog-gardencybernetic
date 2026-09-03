@@ -12,6 +12,11 @@ featured: false
 draft: false
 authors: ["Med"]
 language: fr
+summary:
+  - "Un mapping produit par un modèle est plausible, rapide et invérifiable. Sur 25 000 dossiers, il ne produit pas une erreur visible : il produit 25 000 lignes bien formées et fausses."
+  - "L'agent propose, un code externe tranche — un code qu'il ne peut ni lire pour s'y adapter, ni réécrire pour le satisfaire. Le non-déterminisme est admissible tant qu'il reste confiné en amont d'une porte déterministe."
+  - "Quand deux modèles interprètent différemment la même source, l'écart n'est pas un bug : c'est le signe que la règle est sous-spécifiée."
+  - "Réconciliation exhaustive après bascule : zéro écart. Mais zéro écart mesure la fidélité, pas la justesse — et une migration parfaitement fidèle est un échec de diagnostic."
 readingTime: 12
 ---
 
@@ -40,6 +45,10 @@ Un code externe juge. Il vérifie la conformité au modèle de données cible : 
 Et surtout : ce code est isolé. Il ne fait pas partie du corpus de compétences que l'agent peut modifier. L'agent ne peut ni le lire pour s'y adapter, ni le réécrire pour le satisfaire. Il subit le jugement, il ne le négocie pas.
 
 C'est la seule condition qui rend l'ensemble défendable devant un auditeur. Le non-déterminisme est admissible tant qu'il est confiné en amont d'une porte déterministe. Ce qui compte n'est pas que le processus soit prévisible de bout en bout, mais que la décision d'acceptation le soit.
+
+![Architecture en portes : l'agent produit dans une zone non déterministe, un code externe et isolé juge de façon binaire ; ce qui est rejeté repart vers l'agent, ce qui est accepté bascule, puis une dernière porte compare les résultats de l'ancien et du nouveau système.](../../../assets/diagrams/porte-deterministe.svg)
+
+*Deux portes, un seul principe : le non-déterminisme est admissible tant qu'il reste en amont d'une décision qui, elle, ne l'est pas.*
 
 ## L'architecture, en séquence
 
