@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 820" width="480" height="820" role="img" aria-label="Schéma du processus de diagnostic : demande, élicitation, six compteurs, verdict en quatre issues, puis compteurs maintenus allumés qui rebouclent sur la mesure.">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 1 L9 5 L0 9 z" fill="#8092ab"/>
+    </marker>
+    <marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 1 L9 5 L0 9 z" fill="#22d3ee"/>
+    </marker>
+    <style>
+      .lb { font: 700 15px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .06em; }
+      .tx { font: 14px ui-sans-serif, system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .mu { font: 13px ui-sans-serif, system-ui, -apple-system, sans-serif; fill: #8092ab; }
+      .cap{ font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #8092ab; letter-spacing: .1em; }
+    </style>
+  </defs>
+
+  <rect width="480" height="820" fill="#0f1524"/>
+
+  <!-- 1. Demande -->
+  <rect x="36" y="14" width="408" height="62" rx="10" fill="#151c2e" stroke="rgba(255,255,255,.09)"/>
+  <rect x="36" y="14" width="3" height="62" rx="1.5" fill="#8092ab"/>
+  <text x="54" y="38" class="lb" fill="#e2e8f0">DEMANDE</text>
+  <text x="54" y="60" class="tx">Un collègue veut automatiser une tâche pénible.</text>
+  <line x1="240" y1="76" x2="240" y2="92" stroke="#8092ab" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- 2. Élicitation -->
+  <rect x="36" y="96" width="408" height="78" rx="10" fill="#151c2e" stroke="rgba(255,255,255,.09)"/>
+  <rect x="36" y="96" width="3" height="78" rx="1.5" fill="#a78bfa"/>
+  <text x="54" y="120" class="lb" fill="#a78bfa">ÉLICITATION ASSISTÉE</text>
+  <text x="54" y="142" class="tx">L'agent exige que chaque règle, condition et</text>
+  <text x="54" y="162" class="tx">exception soit explicite. On ne peut pas tricher.</text>
+  <line x1="240" y1="174" x2="240" y2="190" stroke="#8092ab" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- 3. Six compteurs -->
+  <rect x="36" y="194" width="408" height="104" rx="10" fill="#151c2e" stroke="rgba(34,211,238,.35)"/>
+  <rect x="36" y="194" width="3" height="104" rx="1.5" fill="#22d3ee"/>
+  <text x="54" y="218" class="lb" fill="#22d3ee">SIX COMPTEURS</text>
+  <text x="54" y="240" class="mu">exceptions · contradictions entre exécutants</text>
+  <text x="54" y="260" class="mu">information manquante · contournements</text>
+  <text x="54" y="280" class="mu">handoffs et attentes · origine des décisions</text>
+  <line x1="240" y1="298" x2="240" y2="314" stroke="#8092ab" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- 4. Verdict -->
+  <text x="240" y="334" class="cap" text-anchor="middle">VERDICT — SUR LE PROCESSUS, JAMAIS SUR LA PERSONNE</text>
+
+  <rect x="36" y="346" width="408" height="62" rx="10" fill="#151c2e" stroke="rgba(52,211,153,.35)"/>
+  <rect x="36" y="346" width="3" height="62" rx="1.5" fill="#34d399"/>
+  <text x="54" y="370" class="lb" fill="#34d399">SAIN</text>
+  <text x="54" y="392" class="tx">Automatiser. Le skill est le livrable.</text>
+
+  <rect x="36" y="418" width="408" height="80" rx="10" fill="#151c2e" stroke="rgba(251,191,36,.35)"/>
+  <rect x="36" y="418" width="3" height="80" rx="1.5" fill="#fbbf24"/>
+  <text x="54" y="442" class="lb" fill="#fbbf24">MALADE LOCAL</text>
+  <text x="54" y="464" class="tx">Corriger d'abord. Automatiser avant reviendrait</text>
+  <text x="54" y="484" class="tx">à couler la version défectueuse dans le béton.</text>
+
+  <rect x="36" y="508" width="408" height="80" rx="10" fill="#151c2e" stroke="rgba(248,113,113,.3)"/>
+  <rect x="36" y="508" width="3" height="80" rx="1.5" fill="#fb923c"/>
+  <text x="54" y="532" class="lb" fill="#fb923c">MALADE SYSTÉMIQUE</text>
+  <text x="54" y="554" class="tx">Escalader sans automatiser, ou automatiser avec</text>
+  <text x="54" y="574" class="tx">date de caducité. Jamais en silence.</text>
+
+  <rect x="36" y="598" width="408" height="62" rx="10" fill="#151c2e" stroke="rgba(248,113,113,.35)"/>
+  <rect x="36" y="598" width="3" height="62" rx="1.5" fill="#f87171"/>
+  <text x="54" y="622" class="lb" fill="#f87171">NE DEVRAIT PAS EXISTER</text>
+  <text x="54" y="644" class="tx">Supprimer. La trouvaille la plus rentable.</text>
+
+  <line x1="240" y1="660" x2="240" y2="694" stroke="#8092ab" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="252" y="682" class="mu">si automatisation</text>
+
+  <!-- 5. Compteurs maintenus -->
+  <rect x="36" y="698" width="408" height="84" rx="10" fill="#151c2e" stroke="rgba(34,211,238,.45)"/>
+  <rect x="36" y="698" width="3" height="84" rx="1.5" fill="#22d3ee"/>
+  <text x="54" y="722" class="lb" fill="#22d3ee">COMPTEURS MAINTENUS ALLUMÉS</text>
+  <text x="54" y="744" class="tx">Après mise en service. La douleur devient une</text>
+  <text x="54" y="764" class="tx">donnée au lieu d'une souffrance individuelle.</text>
+
+  <!-- Rétroaction : le signal reste vivant -->
+  <path d="M 36 762 L 18 762 L 18 246 L 33 246" fill="none" stroke="#22d3ee" stroke-width="1.5"
+        stroke-dasharray="5 4" marker-end="url(#ac)"/>
+</svg>

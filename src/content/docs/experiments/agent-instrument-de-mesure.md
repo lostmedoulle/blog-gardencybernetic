@@ -24,9 +24,10 @@ Je suis le goulot d'étranglement de mon entreprise
 Business analyst et développeur, seul point de passage vers l'automatisation. Tout le monde veut automatiser quelque chose. Je ne peux pas absorber la demande. Le diagnostic était facile et l'idée qui a suivi paraissait évidente : si je ne peux pas concevoir pour tout le monde, que chacun conçoive pour soi. Un agent qui accompagne l'utilisateur dans l'explicitation de son propre travail, et qui produit en sortie une spécification testable avec pour délivrable un Skills.md et un Agent.md. Dans le but que mes collègues puissent d'ores et déjà automatiser par eux-mêmes et à termes accélérer l'automatisation de la boîte.
 
 ## Contexte
-Entreprise : domaine ultra-réglementé dans les services, + de 100 employés, service IT interne
-Outils : Copilot Studio
-Agent en oeuvre : Coach de skills.md
+
+- **Entreprise** : domaine ultra-réglementé dans les services, plus de 100 employés, service IT interne.
+- **Outils** : Copilot Studio.
+- **Agent en œuvre** : Coach de `skills.md`.
 
 L'idée fonctionne. Pas pour la raison que je croyais.
 
@@ -115,6 +116,10 @@ Les processus malades systémiques deviennent visibles avec des chiffres. C'est 
 Un skill.md dont le taux d'exception augmente signale que le processus dérive, avant que le résultat ne devienne faux.
 
 Pour les cas systémiques, la clause de caducité n'est pas une formalité : sans elle, le pansement devient l'organe.
+
+![Schéma du processus : une demande d'automatisation déclenche une élicitation assistée, qui alimente six compteurs ; ceux-ci produisent un verdict en quatre issues — sain, malade local, malade systémique, ne devrait pas exister — et, en cas d'automatisation, les compteurs restent allumés et rebouclent sur la mesure.](../../../assets/diagrams/verdict-process.svg)
+
+*Le trajet complet. La flèche en pointillé est la partie qui n'existe nulle part ailleurs : après la mise en service, le compteur continue de tourner et referme la boucle.*
 
 ## Ce que la littérature dit déjà
 
