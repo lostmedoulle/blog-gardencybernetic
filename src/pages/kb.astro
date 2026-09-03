@@ -44,11 +44,11 @@ const llmsUrl = Astro.site ? new URL(llmsPath, Astro.site).href : llmsPath;
           ou une conversation.
         </p>
         <div class="dl-actions">
-          <a class="btn-primary" href={corpusPath} download="med-cybernetic-garden.md">
+          <a class="btn-primary" href={corpusPath} download="med-cybernetic-garden.md" data-track="kb-corpus-telechargement">
             <PixelIcon name="save" size={15} />
             <span>Télécharger</span>
           </a>
-          <button class="btn-ghost" type="button" data-copy={corpusUrl}>
+          <button class="btn-ghost" type="button" data-copy={corpusUrl} data-track="kb-corpus-adresse-copiee">
             <span data-copy-label>Copier l'adresse</span>
           </button>
         </div>
@@ -67,7 +67,7 @@ const llmsUrl = Astro.site ? new URL(llmsPath, Astro.site).href : llmsPath;
           copie à maintenir.
         </li>
         <li>
-          <strong>Un index à explorer.</strong> <a href={llmsPath}>llms.txt</a>
+          <strong>Un index à explorer.</strong> <a href={llmsPath} data-track="kb-llms-txt">llms.txt</a>
           liste chaque article avec son résumé, son statut et le lien vers son
           markdown — un agent choisit ce qu'il lit au lieu de tout ingérer.
         </li>

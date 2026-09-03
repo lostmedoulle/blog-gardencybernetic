@@ -17,6 +17,7 @@ interface Props {
   shareUrl?: string;
   cover?: string;
   coverAlt?: string;
+  markdownUrl?: string;
 }
 
 /** Le fil d'Ariane ajoutait naïvement un « s » : 'lab' devenait 'labs'. */
@@ -41,6 +42,7 @@ const {
   shareUrl,
   cover,
   coverAlt = '',
+  markdownUrl,
 } = Astro.props;
 
 const crumb = CATEGORY_ROUTE[String(category).toLowerCase()] ?? {
@@ -104,6 +106,17 @@ const formattedDate =
         <PixelIcon name="share" size={15} />
         <span data-share-label>Partager</span>
       </button>
+      {markdownUrl && (
+        <a
+          class="action-btn"
+          href={markdownUrl}
+          data-track="article-markdown"
+          title="Le texte brut de cet article, pour un modèle de langage"
+        >
+          <PixelIcon name="book" size={15} />
+          <span>Markdown</span>
+        </a>
+      )}
       {editUrl && (
         <a class="action-btn" href={editUrl} target="_blank" rel="noopener noreferrer">
           <PixelIcon name="edit" size={15} />
