@@ -1,6 +1,7 @@
 ---
 import Sidebar from '../components/home/Sidebar.astro';
 import { withBase } from '../utils/paths';
+import Analytics from '../components/Analytics.astro';
 import '../styles/tokens.css';
 import '../styles/global.css';
 
@@ -47,6 +48,8 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
 
     <!-- Flux RSS -->
     <link rel="alternate" type="application/rss+xml" title="Med's Cybernetic Garden" href={withBase("/rss.xml")} />
+
+    <Analytics />
 
     <!-- Google Fonts for Inter and JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

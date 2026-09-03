@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { rehypeBaseLinks } from './src/plugins/rehype-base-links.mjs';
+import { ANALYTICS, analyticsTag } from './src/config/analytics.mjs';
 
 // Déploiement par défaut : GitHub Pages, dépôt de projet.
 // Le site est donc servi sous https://lostmedoulle.github.io/blog-gardencybernetic/
@@ -9,6 +10,10 @@ import { rehypeBaseLinks } from './src/plugins/rehype-base-links.mjs';
 //   SITE_URL=https://mon-domaine.ch SITE_BASE=/ npm run build
 const SITE = process.env.SITE_URL ?? 'https://lostmedoulle.github.io';
 const BASE = process.env.SITE_BASE ?? '/blog-gardencybernetic';
+
+// Les pages Starlight n'utilisent pas HomeLayout : le script de mesure passe
+// par le tableau `head`. Vaut null tant qu'aucun fournisseur n'est configuré.
+const ANALYTICS_TAG = analyticsTag(ANALYTICS, process.env.NODE_ENV === 'production');
 
 export default defineConfig({
   site: SITE,
@@ -40,6 +45,7 @@ export default defineConfig({
         './src/styles/starlight-custom.css',
       ],
       head: [
+        ...(ANALYTICS_TAG ? [ANALYTICS_TAG] : []),
         {
           tag: 'link',
           attrs: {
