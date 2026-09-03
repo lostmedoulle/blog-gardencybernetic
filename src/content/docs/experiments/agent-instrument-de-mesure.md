@@ -87,6 +87,10 @@ L'avantage de ce renversement, c'est qu'il ne demande aucune collecte supplémen
 
 **Origine des décisions.** Si l'exécutant décide sur la base d'informations dont un autre service est propriétaire, la frontière organisationnelle est mal placée. Aucun agent ne réparera ça.
 
+![Les six compteurs du diagnostic. Pour chacun : ce qu'il mesure, et ce qu'il signale lorsqu'il se déclenche. Ratio d'exceptions, contradictions entre exécutants, information manquante, contournements, handoffs et attentes, origine des décisions.](../../../assets/diagrams/six-compteurs.svg)
+
+*Les six compteurs. Les seuils ne sont pas fixés ici : les établir est précisément l'objet de l'hypothèse 2.*
+
 ## Le verdict
 
 Avant la question « agent, workflow ou automatisation », une question plus ancienne : faut-il faire quoi que ce soit ici.
@@ -132,6 +136,10 @@ Honnêteté d'abord : cette idée a des ancêtres, et l'un d'eux est très encom
 **Chris Argyris et Donald Schön.** Apprentissage en simple boucle : corriger l'action sans questionner les variables directrices. Double boucle : soumettre ces variables elles-mêmes à examen. Automatiser un processus, c'est de la simple boucle par excellence. Le verdict décrit plus haut n'est rien d'autre qu'un forceur de double boucle, inséré à l'endroit du flux où l'organisation est, pour une fois, obligée de regarder.
 
 **Erik Hollnagel.** Travail tel qu'imaginé contre travail tel qu'effectué. Le premier est la vue idéalisée des concepteurs et des règlements ; le second est ce qui se passe réellement. Toute élicitation sérieuse mesure cet écart, qu'elle le veuille ou non.
+
+![Deux blocs séparés par un écart : en haut le travail tel qu'imaginé — procédure écrite, règle et ses cas nominaux, organigramme, livrable supposé consommé ; en bas le travail tel qu'effectué — contournements stables jamais déclarés, plus d'exceptions que de cas nominaux, information mendiée, livrables que personne ne consomme. Entre les deux, l'écart, absorbé en silence par les gens qui font le travail.](../../../assets/diagrams/ecart-imagine-effectue.svg)
+
+*L'écart ne remonte que si l'on tente d'exécuter le processus mécaniquement. C'est exactement ce que fait l'agent.*
 
 **Steven Alter, 2014.** *Theory of Workarounds.* Le contournement n'est pas de l'indiscipline, c'est une réponse structurée à un obstacle du système, et il est théorisable. Cela donne un statut au signal le plus précieux de la liste.
 
