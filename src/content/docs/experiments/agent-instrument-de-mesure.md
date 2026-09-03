@@ -19,11 +19,14 @@ coverAlt: "Illustration cyberpunk : une personne penchée sur un ordinateur port
 
 ## Le point de départ
 
-Je suis le goulot d'étranglement de mon entreprise.
+Je suis le goulot d'étranglement de mon entreprise
 
-Business analyst et développeur, seul point de passage vers l'automatisation. Tout le monde veut automatiser quelque chose. Je ne peux pas absorber la demande. Le diagnostic était facile et l'idée qui a suivi paraissait évidente : si je ne peux pas concevoir pour tout le monde, que chacun conçoive pour soi. Un agent qui accompagne l'utilisateur dans l'explicitation de son propre travail, et qui produit en sortie une spécification testable.
+Business analyst et développeur, seul point de passage vers l'automatisation. Tout le monde veut automatiser quelque chose. Je ne peux pas absorber la demande. Le diagnostic était facile et l'idée qui a suivi paraissait évidente : si je ne peux pas concevoir pour tout le monde, que chacun conçoive pour soi. Un agent qui accompagne l'utilisateur dans l'explicitation de son propre travail, et qui produit en sortie une spécification testable avec pour délivrable un Skills.md et un Agent.md. Dans le but que mes collègues puissent d'ores et déjà automatiser par eux-mêmes et à termes accélérer l'automatisation de la boîte.
 
-Nous utilisons Copilot Studio pour cette mise en œuvre.
+## Contexte
+Entreprise : domaine ultra-réglementé dans les services, + de 100 employés, service IT interne
+Outils : Copilot Studio
+Agent en oeuvre : Coach de skills.md
 
 L'idée fonctionne. Pas pour la raison que je croyais.
 
@@ -31,7 +34,7 @@ L'idée fonctionne. Pas pour la raison que je croyais.
 
 En faisant tourner la méthode, j'attendais des spécifications. J'ai obtenu autre chose, et de plus grande valeur : un diagnostic.
 
-Un processus se laisse décrire n'importe comment tant qu'on n'essaie pas de l'exécuter mécaniquement. On peut en parler pendant des heures en réunion sans jamais rencontrer ses incohérences. Elles sont absorbées, en silence, par les gens qui font le travail. Dès qu'on tente de le formaliser en règles, conditions et résultats attendus, tout remonte à la surface :
+Un processus se laisse décrire n'importe comment tant qu'on n'essaie pas de l'exécuter mécaniquement. On peut en parler pendant des heures en réunion sans jamais rencontrer ses incohérences. Elles sont absorbées, en silence, par les gens qui font le travail. Dès qu'on tente de le formaliser en règles, conditions et résultats attendus, tout remonte à la surface par le biais de mon Agent :
 
 - des règles qui comptent plus d'exceptions que de cas nominaux ;
 - deux exécutants du même processus qui donnent deux réponses différentes ;
@@ -55,7 +58,7 @@ C'est un analgésique. Il traite le symptôme et supprime l'information qui aura
 
 En termes de systèmes : l'automatisation supprime la boucle de rétroaction qui régulait le processus. Elle transforme un système régulé en système ouvert. Et un système ouvert dérive sans que personne ne le sache.
 
-Il y a un second piège, plus discret. L'utilisateur qui a construit son agent est satisfait. Sa satisfaction mesure la qualité du skill, pas la validité du processus. On peut être parfaitement heureux d'avoir automatisé une tâche qui ne devrait pas exister. Optimum local, atteint avec enthousiasme.
+Il y a un second piège, plus discret. L'utilisateur qui a construit son agent est satisfait. Sa satisfaction mesure la qualité du skill, pas la validité du processus. On peut être parfaitement heureux d'avoir automatisé une tâche qui ne devrait pas exister. Optimum local, atteint avec enthousiasme ou une automatisation "Bullshit".
 
 ## Le renversement
 
@@ -73,7 +76,7 @@ L'avantage de ce renversement, c'est qu'il ne demande aucune collecte supplémen
 
 **Ratio d'exceptions.** Nombre d'exceptions sur nombre de règles. Au-delà d'un seuil, ce qu'on appelait une règle n'en est pas une. Soit le processus traite mal plusieurs populations distinctes, soit la vraie logique n'a jamais été formulée.
 
-**Contradictions inter-personnes.** Deux exécutants, deux réponses. Il n'y a pas de processus, il y a des pratiques.
+**Contradictions inter-personnes.** Deux exécutants, deux réponses. Il n'y a pas de processus, il y a des pratiques (le combat des experts).
 
 **Branches « information manquante ».** Si l'exécutant doit régulièrement chercher ce qui aurait dû lui être fourni, le défaut est en amont. Automatiser ici revient à industrialiser la mendicité d'information.
 
@@ -109,7 +112,7 @@ La douleur ne disparaît pas, elle change de nature. Elle devient une donnée au
 
 Les processus malades systémiques deviennent visibles avec des chiffres. C'est le seul argument qui fonctionne dans un arbitrage entre départements.
 
-Un skill dont le taux d'exception augmente signale que le processus dérive, avant que le résultat ne devienne faux.
+Un skill.md dont le taux d'exception augmente signale que le processus dérive, avant que le résultat ne devienne faux.
 
 Pour les cas systémiques, la clause de caducité n'est pas une formalité : sans elle, le pansement devient l'organe.
 
@@ -117,9 +120,9 @@ Pour les cas systémiques, la clause de caducité n'est pas une formalité : san
 
 Honnêteté d'abord : cette idée a des ancêtres, et l'un d'eux est très encombrant.
 
-**Michael Hammer, 1990.** *Reengineering Work: Don't Automate, Obliterate.* Sa thèse : la plupart du travail effectué n'apporte aucune valeur, et il faut le supprimer plutôt que l'accélérer par l'informatique. Sa formule est restée : arrêter de paver les sentiers de vaches. Trente-six ans avant ces notes, la même intuition, mieux écrite. Il faut ajouter que le reengineering a majoritairement échoué en pratique, pour des raisons qui concernent directement ce que je décris ici — j'y reviens.
+**Michael Hammer, 1990.** *Reengineering Work: Don't Automate, Obliterate.* Sa thèse : la plupart du travail effectué n'apporte aucune valeur, et il faut le supprimer plutôt que l'accélérer par l'informatique. Sa formule est restée : arrêter de paver les sentiers de vaches. Trente-six ans avant ces notes, la même intuition, mieux écrite. Il faut ajouter que le reengineering a majoritairement échoué en pratique, pour des raisons qui concernent directement ce que je décris ici.
 
-**Lisanne Bainbridge, 1983.** *Ironies of Automation.* L'ironie centrale : le concepteur qui veut éliminer l'opérateur lui laisse malgré tout les tâches qu'il n'a pas su automatiser, c'est-à-dire les exceptions et les situations anormales. Le résultat est un opérateur qui a besoin de plus de compétence qu'avant, tout en ayant moins d'occasions de l'entretenir. Quarante ans plus tard, la structure du problème n'a pas bougé ; seule la technologie a changé.
+**Lisanne Bainbridge, 1983.** *Ironies of Automation.* L'ironie centrale : le concepteur qui veut éliminer l'opérateur lui laisse malgré tout les tâches qu'il n'a pas su automatiser, c'est-à-dire les exceptions et les situations anormales. Le résultat est un opérateur qui a besoin de plus de compétence qu'avant, tout en ayant moins d'occasions de l'entretenir. Quarante ans plus tard, la structure du problème n'a pas bougé ; seule la technologie a changé - transfert des compétences vers un opérateur plus qualifié ou productif touchant le même salaire.
 
 **Chris Argyris et Donald Schön.** Apprentissage en simple boucle : corriger l'action sans questionner les variables directrices. Double boucle : soumettre ces variables elles-mêmes à examen. Automatiser un processus, c'est de la simple boucle par excellence. Le verdict décrit plus haut n'est rien d'autre qu'un forceur de double boucle, inséré à l'endroit du flux où l'organisation est, pour une fois, obligée de regarder.
 
@@ -137,7 +140,7 @@ Une chose, et elle est étroite.
 
 Hammer avait raison sur le diagnostic et a échoué sur la méthode. Le reengineering exigeait une analyse lourde, descendante, menée par des consultants, coûteuse, et vécue comme une menace par ceux qu'elle observait. Le coût du diagnostic était tel qu'il fallait le réserver à quelques processus majeurs, choisis avant d'avoir les données.
 
-Ce qui a changé n'est pas la thèse. C'est le prix de l'instrument.
+Ce qui a changé n'est pas la thèse. C'est le prix de l'instrument (un coût du token dérisoire).
 
 L'élicitation assistée déplace le diagnostic de processus vers le bas et vers le grand nombre. Il est produit par la personne qui fait le travail, dans le cours d'une démarche qu'elle a elle-même demandée, et son coût marginal tend vers presque rien. On peut instrumenter cinquante processus au lieu de trois, et choisir *après* avoir vu les chiffres.
 
@@ -151,7 +154,7 @@ Le corollaire est la partie que je n'ai trouvée nulle part : **maintenir le com
 
 Une théorie qui ne peut pas être fausse ne sert à rien. Voici ce qui la réfuterait.
 
-**Hypothèse 1.** Une majorité des processus élicités recevra un verdict autre que « sain ». Si presque tout ressort sain, il n'y a pas de diagnostic à faire, seulement de l'automatisation, et cette théorie est un ornement.
+**Hypothèse 1.** Une majorité des processus élicités recevra un verdict autre que « sain ». Si presque tout ressort sain, il n'y a pas de diagnostic à faire, seulement de l'automatisation.
 
 **Hypothèse 2.** Les six compteurs prédiront le verdict avec une cohérence raisonnable entre observateurs. S'ils ne font que refléter l'humeur de celui qui les lit, ce ne sont pas des mesures.
 
@@ -184,3 +187,4 @@ Sinon, la théorie est correcte et le système meurt quand même.
 - Alter, S. (2014). *Theory of Workarounds.* Communications of the AIS, 34, 1041-1066.
 - Beer, S. (1979). *The Heart of Enterprise.* (Viable System Model)
 - Ashby, W. R. (1956). *An Introduction to Cybernetics.* (loi de la variété requise)
+- Silicon Carne. *Travailler avec Elon Musk : les leçons de Karim Bousta (2026)
