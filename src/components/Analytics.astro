@@ -1,0 +1,12 @@
+---
+/**
+ * Injecte le script de mesure d'audience sur les pages qui n'utilisent pas
+ * la configuration `head` de Starlight (accueil, catégories, support…).
+ * Ne rend rien tant qu'aucun fournisseur n'est configuré.
+ */
+import { ANALYTICS, analyticsTag } from '../config/analytics.mjs';
+
+const tag = analyticsTag(ANALYTICS, import.meta.env.PROD);
+---
+
+{tag && <script {...tag.attrs} is:inline />}

@@ -178,6 +178,40 @@ SITE_URL=https://mon-domaine.ch SITE_BASE=/ npm run build
 `withBase()` devient alors transparent, sans autre modification. Ajouter aussi
 un fichier `public/CNAME` contenant le domaine.
 
+## Mesure d'audience
+
+Le site est statique et servi par GitHub Pages : il n'y a ni serveur ni journal
+d'accès. Compter les visites passe donc nécessairement par un service externe
+appelé depuis le navigateur.
+
+**Désactivée par défaut.** Aucun script n'est chargé tant que `provider` vaut
+`none` dans `src/config/analytics.mjs`.
+
+### Activer
+
+1. Créer un compte chez l'un des quatre fournisseurs pris en charge.
+2. Renseigner `provider` et l'identifiant correspondant dans
+   `src/config/analytics.mjs`.
+3. Commit : le déploiement s'occupe du reste.
+
+| Fournisseur | Coût | Remarque |
+| --- | --- | --- |
+| **GoatCounter** | gratuit (usage personnel) | Open source, script de ~3 Ko. Le choix par défaut pour un blog personnel. |
+| Cloudflare Web Analytics | gratuit | Demande un compte Cloudflare ; le domaine n'a pas besoin d'y être hébergé. |
+| Umami | gratuit (offre limitée) ou auto-hébergé | `umamiScriptUrl` est modifiable pour une instance à soi. |
+| Plausible | payant | Le plus abouti côté interface. |
+
+### Pourquoi pas Google Analytics
+
+Les quatre options ci-dessus sont sans cookie, sans identifiant persistant et
+sans profil individuel : elles comptent des pages vues, pas des personnes.
+La page `/support` affirme que le site n'a ni publicité ni cookie, et l'encart
+sous chaque article le répète. Un outil qui suivrait les lecteurs d'un site à
+l'autre rendrait ces phrases fausses.
+
+Si le fournisseur change, vérifier que ces deux textes restent exacts :
+`src/pages/support.astro` et `src/components/support/SupportCTA.astro`.
+
 ## ⚠️ Reste à configurer
 
 **Sponsoring.** Le bouton « Soutenir » pointe vers GitHub Sponsors. Pour

@@ -34,7 +34,7 @@ const { amount, currency, period, label } = SUPPORT.tier;
       </div>
 
       <p class="tier-pitch">
-        Ce blog n'a ni publicité, ni tracker, ni article réservé aux abonnés.
+        Ce blog n'a ni publicité, ni cookie, ni article réservé aux abonnés.
         Tout est lisible par tout le monde, tout de suite. Le sponsoring finance
         le temps et les outils qui produisent le contenu — il n'achète pas l'accès.
       </p>
@@ -84,7 +84,22 @@ const { amount, currency, period, label } = SUPPORT.tier;
           <li>Aucun sponsor ne relit un texte avant publication.</li>
           <li>Les statuts <code>refuted</code> et <code>limited</code> restent publiés.</li>
           <li>Pas de contenu sponsorisé déguisé en essai.</li>
+          <li>Pas de cookie, pas de profil de lecteur, pas de revente de données.</li>
         </ul>
+      </div>
+
+      <div class="info-block">
+        <h2>Ce qui est mesuré</h2>
+        <p class="info-text">
+          Le nombre de pages vues et la page d'où vient un lecteur, sous forme
+          agrégée. Sans cookie, sans identifiant, sans profil individuel : le
+          compteur sait qu'une page a été lue, pas qui l'a lue.
+        </p>
+        <p class="info-text">
+          Un blog qui affirme qu'il faut garder les compteurs allumés se
+          mesurerait mal en ne se mesurant pas. Il se mesurerait plus mal encore
+          en cachant ce qu'il mesure.
+        </p>
       </div>
 
       <div class="info-block">
@@ -367,6 +382,11 @@ const { amount, currency, period, label } = SUPPORT.tier;
     line-height: 1.6;
     color: var(--text-muted);
     margin: 0;
+  }
+
+  /* Deux paragraphes consécutifs se collaient, la marge étant à zéro. */
+  .info-text + .info-text {
+    margin-top: 0.75rem;
   }
 
   .text-link {
