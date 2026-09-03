@@ -1,5 +1,53 @@
 [
   {
+    "title": "Nous automatisons des processus que personne n'a diagnostiqués",
+    "description": "Le gain de temps se chiffre. La question de savoir si le processus méritait d'exister n'est mesurée par personne. C'est cet écart qui produira les dégâts.",
+    "slug": "automatiser-sans-diagnostiquer",
+    "category": "essay",
+    "status": "hypothesis",
+    "confidence": "medium",
+    "version": "0.1.0",
+    "tags": [
+      "automatisation",
+      "diagnostic",
+      "bainbridge",
+      "competence",
+      "processus"
+    ],
+    "dateCreated": "2026-09-03",
+    "dateUpdated": "2026-09-03",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/essays/automatiser-sans-diagnostiquer.md"
+  },
+  {
+    "title": "La comptabilité est la mémoire des pannes qu'on n'a pas réparées",
+    "description": "Chaque écart entre le réel et sa représentation comptable a dû être comblé par une écriture. Cette écriture est la trace d'un problème absorbé plutôt que traité.",
+    "slug": "comptabilite-memoire-des-pannes",
+    "category": "essay",
+    "status": "hypothesis",
+    "confidence": "medium",
+    "version": "0.1.0",
+    "tags": [
+      "comptabilite",
+      "contournements",
+      "migration",
+      "dette-organisationnelle",
+      "diagnostic"
+    ],
+    "dateCreated": "2026-09-03",
+    "dateUpdated": "2026-09-03",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/essays/comptabilite-memoire-des-pannes.md"
+  },
+  {
     "title": "Designing Systems That Heal",
     "description": "How to build feedback-rich systems that adapt, recover, and get better over time.",
     "slug": "designing-systems-that-heal",
@@ -67,6 +115,31 @@
     "language": "en",
     "draft": false,
     "sourcePath": "src/content/docs/experiments/automated-feedback-loops.md"
+  },
+  {
+    "title": "Une boucle d'agents pour migrer 25 000 dossiers en environnement régulé",
+    "description": "L'agent propose, un juge déterministe tranche. Ce qui rend l'automatisation acceptable dans un domaine audité n'est pas le modèle, c'est la porte.",
+    "slug": "boucle-agents-migration",
+    "category": "experiment",
+    "status": "validated",
+    "confidence": "high",
+    "version": "0.1.0",
+    "tags": [
+      "migration",
+      "agents",
+      "donnees",
+      "audit",
+      "determinisme",
+      "dagster"
+    ],
+    "dateCreated": "2026-09-03",
+    "dateUpdated": "2026-09-03",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/experiments/boucle-agents-migration.md"
   },
   {
     "title": "Work Once Principle Example",

@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { rehypeBaseLinks } from './src/plugins/rehype-base-links.mjs';
 
 // Déploiement par défaut : GitHub Pages, dépôt de projet.
 // Le site est donc servi sous https://lostmedoulle.github.io/blog-gardencybernetic/
@@ -12,6 +13,9 @@ const BASE = process.env.SITE_BASE ?? '/blog-gardencybernetic';
 export default defineConfig({
   site: SITE,
   base: BASE,
+  markdown: {
+    rehypePlugins: [rehypeBaseLinks(BASE)],
+  },
   integrations: [
     starlight({
       title: "Med's Cybernetic Garden",
