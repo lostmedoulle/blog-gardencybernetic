@@ -1,0 +1,344 @@
+---
+import { getCollection } from 'astro:content';
+import HomeLayout from '../layouts/HomeLayout.astro';
+import PixelIcon from '../components/ui/PixelIcon.astro';
+import { withBase } from '../utils/paths';
+
+const docs = await getCollection('docs', ({ data }) => !data.draft);
+const corpusPath = withBase('/kb/corpus.md');
+const llmsPath = withBase('/llms.txt');
+const corpusUrl = Astro.site ? new URL(corpusPath, Astro.site).href : corpusPath;
+const llmsUrl = Astro.site ? new URL(llmsPath, Astro.site).href : llmsPath;
+---
+
+<HomeLayout
+  title="Export markdown — Med's Cybernetic Garden"
+  description="Tous les articles du jardin en markdown, pour servir de base de connaissances à un modèle de langage."
+>
+  <div class="page-header">
+    <div class="header-icon">
+      <PixelIcon name="book" size={32} />
+    </div>
+    <div>
+      <h1>Export markdown</h1>
+      <p class="subtitle">Le jardin, en texte brut, pour une machine.</p>
+    </div>
+  </div>
+
+  <div class="kb-grid">
+    <section class="kb-main">
+      <p class="lede">
+        Les {docs.length} articles sont disponibles en markdown, avec leur statut,
+        leur niveau de confiance et leur date de révision. De quoi les donner à
+        lire à un modèle de langage sans lui faire avaler du HTML.
+      </p>
+
+      <div class="dl-card">
+        <div class="dl-head">
+          <span class="dl-name">corpus.md</span>
+          <span class="dl-meta">{docs.length} articles · un seul fichier</span>
+        </div>
+        <p class="dl-desc">
+          Tout le corpus concaténé, précédé d'une note expliquant les statuts.
+          C'est le fichier à déposer dans un projet, une base de connaissances
+          ou une conversation.
+        </p>
+        <div class="dl-actions">
+          <a class="btn-primary" href={corpusPath} download="med-cybernetic-garden.md">
+            <PixelIcon name="save" size={15} />
+            <span>Télécharger</span>
+          </a>
+          <button class="btn-ghost" type="button" data-copy={corpusUrl}>
+            <span data-copy-label>Copier l'adresse</span>
+          </button>
+        </div>
+      </div>
+
+      <h2>Trois façons de s'en servir</h2>
+
+      <ol class="usage">
+        <li>
+          <strong>Un fichier à joindre.</strong> Télécharger <code>corpus.md</code>
+          et le déposer dans une conversation ou un projet.
+        </li>
+        <li>
+          <strong>Une adresse à donner.</strong> Coller l'URL du corpus dans un
+          agent capable de lire le web : il récupère la version à jour, sans
+          copie à maintenir.
+        </li>
+        <li>
+          <strong>Un index à explorer.</strong> <a href={llmsPath}>llms.txt</a>
+          liste chaque article avec son résumé, son statut et le lien vers son
+          markdown — un agent choisit ce qu'il lit au lieu de tout ingérer.
+        </li>
+      </ol>
+
+      <h2>Ce que l'export contient en plus de la page</h2>
+      <ul class="plus">
+        <li>Les métadonnées en tête : statut, confiance, date de révision, mots-clés.</li>
+        <li>Le résumé « En bref », quand l'article en a un.</li>
+        <li>Les liens internes réécrits en adresses absolues, donc suivables hors du site.</li>
+        <li>
+          Les schémas remplacés par leur description textuelle : un modèle ne
+          voit pas un SVG, mais la description dit ce que le schéma montre.
+        </li>
+      </ul>
+    </section>
+
+    <aside class="kb-side">
+      <div class="side-block">
+        <h2>Article par article</h2>
+        <p class="side-text">
+          Chaque article a son markdown, à l'adresse de sa page préfixée
+          par <code>/kb/</code> et suivie de <code>.md</code>.
+        </p>
+        <pre class="side-pre">/kb/essays/mon-article.md</pre>
+      </div>
+
+      <div class="side-block">
+        <h2>Licence</h2>
+        <p class="side-text">
+          Aucune restriction technique n'est posée sur cet export. Si un texte
+          est repris ou résumé ailleurs, un lien vers l'article d'origine reste
+          la moindre des choses — c'est ce qui permet au lecteur de vérifier le
+          statut et la date, donc de savoir ce que vaut ce qu'il lit.
+        </p>
+      </div>
+    </aside>
+  </div>
+</HomeLayout>
+
+<script>
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const label = btn.querySelector('[data-copy-label]');
+      try {
+        await navigator.clipboard.writeText(btn.getAttribute('data-copy') || '');
+        if (label) {
+          const prev = label.textContent;
+          label.textContent = 'Copié';
+          setTimeout(() => { label.textContent = prev; }, 1800);
+        }
+      } catch {
+        /* presse-papiers refusé : rien à faire */
+      }
+    });
+  });
+</script>
+
+<style>
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .header-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .kb-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 3rem;
+  }
+
+  .lede {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin: 0 0 1.75rem 0;
+  }
+
+  .dl-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(120deg, rgba(6, 182, 212, 0.07), transparent 60%),
+      var(--surface);
+    margin-bottom: 2.5rem;
+  }
+
+  .dl-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .dl-name {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cyan-bright);
+  }
+
+  .dl-meta {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .dl-desc {
+    font-size: 0.925rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0 0 1.35rem 0;
+  }
+
+  .dl-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.15rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--violet);
+    color: #fff;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 14px var(--violet-glow);
+  }
+
+  .btn-primary:hover {
+    background-color: #7c3aed;
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover {
+    color: var(--text);
+    border-color: var(--violet);
+  }
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 650;
+    color: var(--text);
+    margin: 0 0 0.9rem 0;
+  }
+
+  .usage,
+  .plus {
+    margin: 0 0 2.25rem 0;
+    padding-left: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .usage li,
+  .plus li {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .usage strong {
+    color: var(--text);
+  }
+
+  .usage a,
+  .side-text a {
+    color: var(--violet-bright);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    background-color: var(--surface-muted);
+    color: var(--cyan-bright);
+  }
+
+  .kb-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .side-block {
+    padding: 1.35rem 1.4rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    background-color: var(--surface);
+  }
+
+  .side-block h2 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .side-text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .side-pre {
+    margin: 0.85rem 0 0 0;
+    padding: 0.7rem 0.85rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-muted);
+    border: 1px solid var(--border-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text);
+    overflow-x: auto;
+  }
+
+  @media (max-width: 900px) {
+    .kb-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
