@@ -168,3 +168,55 @@ header.header {
 .sl-markdown-content code {
   font-family: var(--font-mono) !important;
 }
+
+/* ---------------------------------------------------------------------------
+   Lecture en diagonale
+   Les articles ouvrent souvent un paragraphe par une amorce en gras
+   (« **Ratio d'exceptions.** … »). Sans traitement, cette amorce se fond dans
+   le bloc et le lecteur pressé ne dispose d'aucun point d'accroche entre deux
+   titres de section. On la transforme en marqueur repérable, sans modifier
+   une ligne de texte.
+   --------------------------------------------------------------------------- */
+
+.sl-markdown-content p:has(> strong:first-child) {
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  margin-left: -1rem;
+  transition: border-color 0.2s ease;
+}
+
+.sl-markdown-content p:has(> strong:first-child):hover {
+  border-left-color: var(--violet);
+}
+
+.sl-markdown-content p > strong:first-child {
+  color: var(--cyan-bright);
+  font-weight: 650;
+}
+
+/* Repères de section : le pavé de texte d'un article long a besoin de
+   respirations franches pour que l'œil retrouve la structure au défilement. */
+.sl-markdown-content h2 {
+  padding-top: 1rem !important;
+  border-top: 1px solid var(--border-subtle) !important;
+}
+
+.sl-markdown-content h2:first-of-type {
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+
+/* Séparateur de fin de partie : un simple filet plutôt qu'un trait plein. */
+.sl-markdown-content hr {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 3rem 0;
+}
+
+@media (max-width: 600px) {
+  /* La marge négative déborderait du conteneur sur petit écran. */
+  .sl-markdown-content p:has(> strong:first-child) {
+    margin-left: 0;
+    padding-left: 0.85rem;
+  }
+}

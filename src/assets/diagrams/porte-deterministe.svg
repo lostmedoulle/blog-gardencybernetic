@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 706" width="480" height="706" role="img" aria-label="Architecture en portes : l'agent produit dans une zone non déterministe, un code externe et isolé juge de façon binaire ; ce qui est rejeté repart vers l'agent, ce qui est accepté bascule, puis une dernière porte compare les résultats de l'ancien et du nouveau système.">
+  <defs>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#8092ab"/></marker>
+    <marker id="gr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#f87171"/></marker>
+    <style>
+      .lb { font: 700 15px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; }
+      .sm { font: 700 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; }
+      .tx { font: 13.5px ui-sans-serif, system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .mu { font: 12.5px ui-sans-serif, system-ui, sans-serif; fill: #8092ab; }
+      .ft { font: italic 12.5px ui-sans-serif, system-ui, sans-serif; fill: #8092ab; }
+    </style>
+  </defs>
+  <rect width="480" height="706" fill="#0f1524"/>
+
+  <rect x="20" y="16" width="440" height="98" rx="10" fill="#151c2e" stroke="rgba(167,139,250,.35)"/>
+  <rect x="20" y="16" width="3" height="98" rx="1.5" fill="#a78bfa"/>
+  <text x="38" y="40" class="lb" fill="#a78bfa">L'AGENT PROPOSE</text>
+  <text x="38" y="60" class="mu">zone où le non-déterminisme est toléré</text>
+  <text x="38" y="84" class="tx">Analyse les sources, propose des mappings,</text>
+  <text x="38" y="104" class="tx">écrit des transformations, corrige du code.</text>
+
+  <line x1="240" y1="114" x2="240" y2="134" stroke="#8092ab" stroke-width="1.5" marker-end="url(#g)"/>
+
+  <rect x="20" y="138" width="440" height="146" rx="10" fill="#111a2b" stroke="rgba(34,211,238,.55)" stroke-width="1.5"/>
+  <rect x="20" y="138" width="3" height="146" rx="1.5" fill="#22d3ee"/>
+  <text x="38" y="162" class="lb" fill="#22d3ee">LA PORTE DÉTERMINISTE</text>
+  <text x="38" y="182" class="mu">code externe · verdict binaire · pas de zone grise</text>
+  <text x="38" y="206" class="tx">Colonnes attendues, types, règles de</text>
+  <text x="38" y="226" class="tx">transformation, unicité, comptages.</text>
+  <text x="38" y="252" class="ft">Isolée : l'agent ne peut ni la lire pour s'y adapter,</text>
+  <text x="38" y="268" class="ft">ni la réécrire pour la satisfaire. Il la subit.</text>
+
+  <line x1="130" y1="284" x2="130" y2="304" stroke="#f87171" stroke-width="1.5" marker-end="url(#gr)"/>
+  <line x1="350" y1="284" x2="350" y2="304" stroke="#8092ab" stroke-width="1.5" marker-end="url(#g)"/>
+
+  <rect x="20" y="308" width="215" height="72" rx="10" fill="#151c2e" stroke="rgba(248,113,113,.4)"/>
+  <rect x="20" y="308" width="3" height="72" rx="1.5" fill="#f87171"/>
+  <text x="36" y="332" class="sm" fill="#f87171">REJETÉ</text>
+  <text x="36" y="354" class="tx">Repart vers l'agent,</text>
+  <text x="36" y="372" class="tx">sans négociation.</text>
+
+  <rect x="245" y="308" width="215" height="72" rx="10" fill="#151c2e" stroke="rgba(52,211,153,.4)"/>
+  <rect x="245" y="308" width="3" height="72" rx="1.5" fill="#34d399"/>
+  <text x="261" y="332" class="sm" fill="#34d399">ACCEPTÉ</text>
+  <text x="261" y="354" class="tx">Passe à la bascule.</text>
+
+  <path d="M 20 344 L 8 344 L 8 65 L 17 65" fill="none" stroke="#f87171" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#gr)"/>
+  <line x1="352" y1="380" x2="352" y2="410" stroke="#8092ab" stroke-width="1.5" marker-end="url(#g)"/>
+
+  <rect x="20" y="414" width="440" height="126" rx="10" fill="#111a2b" stroke="rgba(34,211,238,.55)" stroke-width="1.5"/>
+  <rect x="20" y="414" width="3" height="126" rx="1.5" fill="#22d3ee"/>
+  <text x="38" y="438" class="lb" fill="#22d3ee">LA DERNIÈRE PORTE</text>
+  <text x="38" y="458" class="mu">réconciliation · porte sur le résultat, pas sur le format</text>
+  <text x="38" y="482" class="tx">Les fiches de l'ancien système comparées à</text>
+  <text x="38" y="502" class="tx">celles du nouveau. Exhaustivement, calculs</text>
+  <text x="38" y="522" class="tx">compris. Résultat : zéro écart.</text>
+
+  <rect x="20" y="558" width="440" height="98" rx="10" fill="#151c2e" stroke="rgba(251,191,36,.3)"/>
+  <rect x="20" y="558" width="3" height="98" rx="1.5" fill="#fbbf24"/>
+  <text x="38" y="582" class="sm" fill="#fbbf24">CE QUE ZÉRO ÉCART NE DIT PAS</text>
+  <text x="38" y="604" class="tx">Une rente rattachée au mauvais bénéficiaire</text>
+  <text x="38" y="624" class="tx">respecte parfaitement le modèle de données.</text>
+  <text x="38" y="644" class="ft">La fidélité n'est pas la justesse.</text>
+
+  <text x="240" y="684" class="ft" text-anchor="middle">Ce qui rend l'ensemble défendable n'est pas le modèle, c'est la porte.</text>
+</svg>

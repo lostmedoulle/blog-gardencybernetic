@@ -33,6 +33,9 @@ export const collections = {
         supersedes: z.string().optional(),
         supersededBy: z.string().optional(),
         language: z.enum(['fr', 'en']).default('fr'),
+        /** Trois à quatre phrases qui portent l'argument, affichées en tête
+            d'article. Destinées au lecteur qui décide s'il va lire. */
+        summary: z.array(z.string()).default([]),
         readingTime: z.number().optional(),
         /** Chemin d'une image de couverture, ex. /images/mon-article.png
             (fichier placé dans public/images/). Absent = pas d'image. */

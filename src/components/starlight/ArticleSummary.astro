@@ -1,0 +1,86 @@
+---
+/**
+ * « En bref » : l'argument de l'article en trois ou quatre phrases, en tête
+ * de page. Un article de dix minutes demande une décision au lecteur avant
+ * qu'il ait de quoi la prendre ; ce bloc lui donne de quoi trancher.
+ *
+ * Ne rend rien si l'article ne déclare pas de `summary`.
+ */
+interface Props {
+  points?: string[];
+}
+
+const { points = [] } = Astro.props;
+---
+
+{points.length > 0 && (
+  <aside class="article-summary" aria-label="Résumé de l'article">
+    <p class="summary-label">EN BREF</p>
+    <ul class="summary-list">
+      {points.map(point => (
+        <li>{point}</li>
+      ))}
+    </ul>
+  </aside>
+)}
+
+<style>
+  .article-summary {
+    margin: 0 0 2.75rem 0;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid rgba(34, 211, 238, 0.25);
+    border-left: 3px solid var(--cyan);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(100deg, rgba(6, 182, 212, 0.06), transparent 60%),
+      var(--surface);
+  }
+
+  .summary-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--cyan-bright);
+    margin: 0 0 0.9rem 0;
+  }
+
+  .summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .summary-list li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .summary-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+    background-color: var(--cyan-bright);
+  }
+
+  @media (max-width: 600px) {
+    .article-summary {
+      padding: 1.15rem 1.15rem;
+      margin-bottom: 2rem;
+    }
+
+    .summary-list li {
+      font-size: 0.95rem;
+    }
+  }
+</style>

@@ -12,6 +12,11 @@ featured: false
 draft: false
 authors: ["Med"]
 language: fr
+summary:
+  - "Toute organisation qui automatise mesure le temps gagné. Personne ne mesure si le processus méritait d'exister."
+  - "Les frictions d'un processus défaillant ne sont pas qu'un coût, elles sont la mesure. Automatiser sans corriger supprime le capteur, pas le défaut — et le silence est alors lu comme de la santé."
+  - "Une personne occupant un poste vide finit par en douter à voix haute. L'agent ne doute pas : il produit une sortie régulière qui ressemble à une mesure."
+  - "La compétence n'est pas perdue, elle cesse d'être produite. L'automatisation absorbe en premier les dossiers ennuyeux — exactement ceux sur lesquels on se forme."
 readingTime: 14
 ---
 
@@ -76,6 +81,10 @@ Année huit. Il n'y a plus de junior du tout. Les seniors sont ceux qui ont appr
 Année douze. Les seniors partent à la retraite. Le système tourne. Il tourne même très bien. Simplement, plus personne dans l'entreprise ne sait ce qu'il fait, ni comment vérifier qu'il le fait correctement.
 
 Année quinze. Une anomalie apparaît. Elle est ancienne, elle a été répliquée des centaines de milliers de fois, et personne n'a la compétence pour remonter à sa cause. On ne peut ni réparer le système, ni le remplacer, parce que le remplacer supposerait de savoir ce qu'il faisait.
+
+![Chronologie sur quinze ans : année zéro l'automatisation apporte un gain réel, année deux les cas simples ne remontent plus, année quatre le premier poste junior n'est pas remplacé, année huit il n'y a plus de junior, année douze les seniors partent et le système tourne toujours, année quinze une anomalie ancienne apparaît que plus personne ne sait diagnostiquer.](../../../assets/diagrams/quinze-ans.svg)
+
+*À aucun moment la productivité ne baisse. C'est précisément ce qui rend la dérive invisible.*
 
 ## L'ironie de Bainbridge, étendue
 
