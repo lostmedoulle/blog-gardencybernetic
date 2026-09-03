@@ -5,7 +5,7 @@ import ArticleMetaSidebar from './ArticleMetaSidebar.astro';
 import SupportCTA from '../support/SupportCTA.astro';
 import ArticleSummary from './ArticleSummary.astro';
 import { formatDate, articleDate } from '../../utils/dates';
-import { stripBase } from '../../utils/paths';
+import { stripBase, withBase } from '../../utils/paths';
 import '../../styles/tokens.css';
 import '../../styles/global.css';
 
@@ -25,6 +25,7 @@ const REPO_EDIT_BASE =
   'https://github.com/lostmedoulle/blog-gardencybernetic/edit/main/src/content/docs';
 const editUrl = entry?.id ? `${REPO_EDIT_BASE}/${entry.id}.md` : undefined;
 const shareUrl = Astro.site ? new URL(currentPath, Astro.site).href : currentPath;
+const markdownUrl = entry?.id ? withBase(`/kb/${entry.id}.md`) : undefined;
 ---
 
 <div class="layout-container">
@@ -50,6 +51,7 @@ const shareUrl = Astro.site ? new URL(currentPath, Astro.site).href : currentPat
             shareUrl={shareUrl}
             cover={frontmatter.cover}
             coverAlt={frontmatter.coverAlt}
+            markdownUrl={markdownUrl}
           />
         )}
 

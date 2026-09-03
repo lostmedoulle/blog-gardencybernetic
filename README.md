@@ -201,6 +201,31 @@ appelé depuis le navigateur.
 | Umami | gratuit (offre limitée) ou auto-hébergé | `umamiScriptUrl` est modifiable pour une instance à soi. |
 | Plausible | payant | Le plus abouti côté interface. |
 
+### Événements suivis
+
+Quatre points sont marqués par un attribut `data-track`. Ils ne remontent rien
+tant qu'aucun fournisseur n'est configuré.
+
+| Événement | Déclencheur |
+| --- | --- |
+| `kb-corpus-telechargement` | Bouton de téléchargement du corpus, sur `/kb` |
+| `kb-corpus-adresse-copiee` | Bouton de copie de l'adresse du corpus |
+| `kb-llms-txt` | Lien vers `llms.txt` |
+| `article-markdown` | Lien « Markdown » dans l'en-tête d'un article |
+
+Pour en ajouter un, il suffit de poser `data-track="mon-evenement"` sur
+n'importe quel élément cliquable : un écouteur délégué s'en charge, il n'y a
+pas de gestionnaire à écrire.
+
+**Ce que ces compteurs mesurent réellement.** Des clics, pas des
+téléchargements. Un fichier statique servi par GitHub Pages ne peut pas être
+compté côté serveur : une adresse collée directement dans un agent, ou un
+`curl`, n'apparaîtra jamais. Le chiffre est un plancher, pas un total.
+
+Les événements se consultent dans le tableau de bord du fournisseur. Les
+afficher sur le site demanderait de relire une API avec un jeton, ce qui
+n'est pas faisable depuis un site statique sans exposer ce jeton.
+
 ### Pourquoi pas Google Analytics
 
 Les quatre options ci-dessus sont sans cookie, sans identifiant persistant et
