@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 700" width="480" height="700" role="img" aria-label="Les six compteurs du diagnostic : ratio d'exceptions, contradictions entre exécutants, information manquante, contournements, handoffs et attentes, origine des décisions. Pour chacun, ce qu'il mesure et ce qu'il signale quand il se déclenche.">
+  <defs>
+    <style>
+      .lb { font: 700 15px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; }
+      .ky { font: 700 12px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #64748b; letter-spacing: .06em; }
+      .tx { font: 13.5px ui-sans-serif, system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .hd { font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #8092ab; letter-spacing: .1em; }
+      .ft { font: italic 12.5px ui-sans-serif, system-ui, sans-serif; fill: #8092ab; }
+    </style>
+  </defs>
+  <rect width="480" height="700" fill="#0f1524"/>
+  <text x="240" y="28" class="hd" text-anchor="middle">TOUS DÉJÀ PRODUITS PAR L'ÉLICITATION</text>
+
+  <g>
+    <rect x="20" y="44" width="440" height="86" rx="10" fill="#151c2e" stroke="rgba(255,255,255,.08)"/>
+    <rect x="20" y="44" width="3" height="86" rx="1.5" fill="#22d3ee"/>
+    <text x="38" y="68" class="lb" fill="#22d3ee">1 · RATIO D'EXCEPTIONS</text>
+    <text x="38" y="92" class="tx"><tspan class="ky">MESURE </tspan>nombre d'exceptions ÷ nombre de règles</text>
+    <text x="38" y="115" class="tx"><tspan class="ky">ALERTE </tspan>ce qu'on appelait une règle n'en est pas une</text>
+  </g>
+
+  <g>
+    <rect x="20" y="140" width="440" height="86" rx="10" fill="#151c2e" stroke="rgba(255,255,255,.08)"/>
+    <rect x="20" y="140" width="3" height="86" rx="1.5" fill="#a78bfa"/>
+    <text x="38" y="164" class="lb" fill="#a78bfa">2 · CONTRADICTIONS INTER-PERSONNES</text>
+    <text x="38" y="188" class="tx"><tspan class="ky">MESURE </tspan>deux exécutants, deux réponses</text>
+    <text x="38" y="211" class="tx"><tspan class="ky">ALERTE </tspan>pas un processus, des pratiques</text>
+  </g>
+
+  <g>
+    <rect x="20" y="236" width="440" height="86" rx="10" fill="#151c2e" stroke="rgba(255,255,255,.08)"/>
+    <rect x="20" y="236" width="3" height="86" rx="1.5" fill="#34d399"/>
+    <text x="38" y="260" class="lb" fill="#34d399">3 · INFORMATION MANQUANTE</text>
+    <text x="38" y="284" class="tx"><tspan class="ky">MESURE </tspan>branches où l'exécutant doit aller chercher</text>
+    <text x="38" y="307" class="tx"><tspan class="ky">ALERTE </tspan>le défaut est en amont, pas ici</text>
+  </g>
+
+  <g>
+    <rect x="20" y="332" width="440" height="108" rx="10" fill="#151c2e" stroke="rgba(251,191,36,.35)"/>
+    <rect x="20" y="332" width="3" height="108" rx="1.5" fill="#fbbf24"/>
+    <text x="38" y="356" class="lb" fill="#fbbf24">4 · CONTOURNEMENTS</text>
+    <text x="38" y="380" class="tx"><tspan class="ky">MESURE </tspan>écarts stables, installés depuis des années</text>
+    <text x="38" y="403" class="tx"><tspan class="ky">ALERTE </tspan>le processus officiel est inapplicable</text>
+    <text x="38" y="427" class="ft">Le signal le plus fiable — et le seul qui exige la confiance.</text>
+  </g>
+
+  <g>
+    <rect x="20" y="450" width="440" height="86" rx="10" fill="#151c2e" stroke="rgba(255,255,255,.08)"/>
+    <rect x="20" y="450" width="3" height="86" rx="1.5" fill="#22d3ee"/>
+    <text x="38" y="474" class="lb" fill="#22d3ee">5 · HANDOFFS ET ATTENTES</text>
+    <text x="38" y="498" class="tx"><tspan class="ky">MESURE </tspan>temps écoulé ÷ temps réellement travaillé</text>
+    <text x="38" y="521" class="tx"><tspan class="ky">ALERTE </tspan>le problème est la file, pas la tâche</text>
+  </g>
+
+  <g>
+    <rect x="20" y="546" width="440" height="86" rx="10" fill="#151c2e" stroke="rgba(255,255,255,.08)"/>
+    <rect x="20" y="546" width="3" height="86" rx="1.5" fill="#f87171"/>
+    <text x="38" y="570" class="lb" fill="#f87171">6 · ORIGINE DES DÉCISIONS</text>
+    <text x="38" y="594" class="tx"><tspan class="ky">MESURE </tspan>qui possède l'information utilisée</text>
+    <text x="38" y="617" class="tx"><tspan class="ky">ALERTE </tspan>la frontière organisationnelle est mal placée</text>
+  </g>
+
+  <text x="240" y="662" class="ft" text-anchor="middle">Aucune collecte supplémentaire : il suffit de compter ce qui sort déjà.</text>
+  <text x="240" y="682" class="ft" text-anchor="middle">Les seuils restent à établir — c'est l'objet de l'hypothèse 2.</text>
+</svg>

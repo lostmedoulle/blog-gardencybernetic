@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 560" width="480" height="560" role="img" aria-label="L'écart entre le travail tel qu'imaginé — procédures, règles écrites, organigramme — et le travail tel qu'effectué — contournements stables, exceptions absorbées, information mendiée, décisions prises hors périmètre. L'élicitation mesure cet écart, et les six compteurs le chiffrent.">
+  <defs>
+    <marker id="e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 1 L9 5 L0 9 z" fill="#22d3ee"/>
+    </marker>
+    <style>
+      .lb { font: 700 15px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; }
+      .sb { font: 12px ui-sans-serif, system-ui, sans-serif; fill: #64748b; }
+      .tx { font: 13.5px ui-sans-serif, system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .gp { font: 700 14px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #22d3ee; letter-spacing: .1em; }
+      .ft { font: italic 12.5px ui-sans-serif, system-ui, sans-serif; fill: #8092ab; }
+    </style>
+  </defs>
+  <rect width="480" height="560" fill="#0f1524"/>
+
+  <!-- Travail tel qu'imaginé -->
+  <rect x="20" y="18" width="440" height="158" rx="10" fill="#151c2e" stroke="rgba(167,139,250,.35)"/>
+  <rect x="20" y="18" width="3" height="158" rx="1.5" fill="#a78bfa"/>
+  <text x="38" y="44" class="lb" fill="#a78bfa">TRAVAIL TEL QU'IMAGINÉ</text>
+  <text x="38" y="63" class="sb">la vue des concepteurs et des règlements</text>
+  <text x="38" y="92" class="tx">— la procédure écrite</text>
+  <text x="38" y="114" class="tx">— la règle, avec ses cas nominaux</text>
+  <text x="38" y="136" class="tx">— l'organigramme et ses frontières</text>
+  <text x="38" y="158" class="tx">— le livrable, supposé consommé en aval</text>
+
+  <!-- L'écart -->
+  <line x1="240" y1="176" x2="240" y2="208" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#e)"/>
+  <line x1="240" y1="352" x2="240" y2="320" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#e)"/>
+  <rect x="20" y="212" width="440" height="104" rx="10" fill="#111a2b" stroke="rgba(34,211,238,.45)"/>
+  <text x="240" y="240" class="gp" text-anchor="middle">L'ÉCART</text>
+  <text x="240" y="266" class="tx" text-anchor="middle">Absorbé en silence par les gens qui font le travail.</text>
+  <text x="240" y="288" class="tx" text-anchor="middle">Invisible en réunion. Il ne remonte que si l'on tente</text>
+  <text x="240" y="308" class="tx" text-anchor="middle">d'exécuter le processus mécaniquement.</text>
+
+  <!-- Travail tel qu'effectué -->
+  <rect x="20" y="356" width="440" height="158" rx="10" fill="#151c2e" stroke="rgba(251,146,60,.35)"/>
+  <rect x="20" y="356" width="3" height="158" rx="1.5" fill="#fb923c"/>
+  <text x="38" y="382" class="lb" fill="#fb923c">TRAVAIL TEL QU'EFFECTUÉ</text>
+  <text x="38" y="401" class="sb">ce qui se passe réellement</text>
+  <text x="38" y="430" class="tx">— des contournements stables, jamais déclarés</text>
+  <text x="38" y="452" class="tx">— plus d'exceptions que de cas nominaux</text>
+  <text x="38" y="474" class="tx">— de l'information mendiée à un autre service</text>
+  <text x="38" y="496" class="tx">— des livrables que personne ne consomme</text>
+
+  <text x="240" y="540" class="ft" text-anchor="middle">L'élicitation mesure cet écart. Les six compteurs le chiffrent.</text>
+</svg>
