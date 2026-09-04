@@ -70,6 +70,33 @@
     "sourcePath": "src/content/docs/essays/designing-systems-that-heal.md"
   },
   {
+    "title": "Faire survivre l'expertise sans fossiliser l'expert",
+    "description": "Une organisation ne perd pas seulement du savoir quand un expert part. Elle perd les expériences qui lui avaient appris quand la règle générale cesse de suffire.",
+    "slug": "memoire-institutionnelle-evolutive",
+    "category": "essay",
+    "status": "hypothesis",
+    "confidence": "medium",
+    "version": "0.1.0",
+    "tags": [
+      "knowledge-management",
+      "rag",
+      "expertise",
+      "llm",
+      "organisation",
+      "apprentissage",
+      "tacit-knowledge",
+      "institutional-memory"
+    ],
+    "dateCreated": "2026-09-04",
+    "dateUpdated": "2026-09-04",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/essays/memoire-institutionnelle-evolutive.md"
+  },
+  {
     "title": "L'agent n'est pas un outil de production, c'est un instrument de mesure",
     "description": "Automatisation, processus, et le signal qu'on éteint sans le vouloir.",
     "slug": "agent-instrument-de-mesure",
