@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 578" width="480" height="578" role="img" aria-label="Deux intelligences se font face : l'intelligence générale, qui connaît la théorie et les normes et protège contre la fossilisation, et la mémoire institutionnelle, qui connaît les contraintes historiques et les incidents et protège contre l'oubli. Leur contradiction produit une hypothèse actualisée, soumise à validation réelle, dont le résultat retourne enrichir le corpus.">
+  <defs>
+    <marker id="t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#8092ab"/></marker>
+    <marker id="tc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#34d399"/></marker>
+    <style>
+      .lb { font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; }
+      .bg { font: 700 15px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; }
+      .tx { font: 12.5px ui-sans-serif, system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .wd { font: 13.5px ui-sans-serif, system-ui, -apple-system, sans-serif; fill: #cbd5e1; }
+      .ft { font: italic 12px ui-sans-serif, system-ui, sans-serif; fill: #8092ab; }
+    </style>
+  </defs>
+  <rect width="480" height="578" fill="#0f1524"/>
+
+  <!-- Intelligence générale -->
+  <rect x="16" y="16" width="210" height="152" rx="10" fill="#151c2e" stroke="rgba(167,139,250,.4)"/>
+  <rect x="16" y="16" width="3" height="152" rx="1.5" fill="#a78bfa"/>
+  <text x="32" y="38" class="lb" fill="#a78bfa">INTELLIGENCE</text>
+  <text x="32" y="55" class="lb" fill="#a78bfa">GÉNÉRALE</text>
+  <text x="32" y="80" class="tx">théorie, normes,</text>
+  <text x="32" y="98" class="tx">réglementation publique,</text>
+  <text x="32" y="116" class="tx">méthodes apparues depuis</text>
+  <text x="32" y="146" class="ft">protège contre</text>
+  <text x="32" y="160" class="ft">la fossilisation</text>
+
+  <!-- Mémoire institutionnelle -->
+  <rect x="244" y="16" width="210" height="152" rx="10" fill="#151c2e" stroke="rgba(52,211,153,.4)"/>
+  <rect x="244" y="16" width="3" height="152" rx="1.5" fill="#34d399"/>
+  <text x="260" y="38" class="lb" fill="#34d399">MÉMOIRE</text>
+  <text x="260" y="55" class="lb" fill="#34d399">INSTITUTIONNELLE</text>
+  <text x="260" y="80" class="tx">contraintes historiques,</text>
+  <text x="260" y="98" class="tx">exceptions, incidents,</text>
+  <text x="260" y="116" class="tx">arbitrages de l'expert</text>
+  <text x="260" y="146" class="ft">protège contre</text>
+  <text x="260" y="160" class="ft">l'oubli</text>
+
+  <!-- Convergence -->
+  <path d="M 121 168 L 121 186 L 240 186 L 240 200" fill="none" stroke="#8092ab" stroke-width="1.5" marker-end="url(#t)"/>
+  <path d="M 349 168 L 349 186 L 240 186" fill="none" stroke="#8092ab" stroke-width="1.5"/>
+
+  <!-- La contradiction -->
+  <rect x="16" y="204" width="438" height="122" rx="10" fill="#111a2b" stroke="rgba(34,211,238,.55)" stroke-width="1.5"/>
+  <rect x="16" y="204" width="3" height="122" rx="1.5" fill="#22d3ee"/>
+  <text x="34" y="228" class="bg" fill="#22d3ee">LA CONTRADICTION</text>
+  <text x="34" y="252" class="wd">« La norme n'exige pas cette pratique. »</text>
+  <text x="34" y="274" class="wd">« Exact. Elle a été créée après trois erreurs</text>
+  <text x="34" y="292" class="wd">que la norme ne détectait pas. »</text>
+  <text x="34" y="314" class="wd">« Est-elle encore nécessaire aujourd'hui ? »</text>
+
+  <line x1="240" y1="326" x2="240" y2="348" stroke="#8092ab" stroke-width="1.5" marker-end="url(#t)"/>
+
+  <!-- Hypothèse actualisée -->
+  <rect x="16" y="352" width="438" height="70" rx="10" fill="#151c2e" stroke="rgba(255,255,255,.09)"/>
+  <rect x="16" y="352" width="3" height="70" rx="1.5" fill="#fbbf24"/>
+  <text x="34" y="376" class="bg" fill="#fbbf24">HYPOTHÈSE ACTUALISÉE</text>
+  <text x="34" y="402" class="wd">Ni la règle ancienne, ni la norme seule.</text>
+
+  <line x1="240" y1="422" x2="240" y2="444" stroke="#8092ab" stroke-width="1.5" marker-end="url(#t)"/>
+
+  <!-- Validation réelle -->
+  <rect x="16" y="448" width="438" height="70" rx="10" fill="#151c2e" stroke="rgba(52,211,153,.4)"/>
+  <rect x="16" y="448" width="3" height="70" rx="1.5" fill="#34d399"/>
+  <text x="34" y="472" class="bg" fill="#34d399">VALIDATION RÉELLE</text>
+  <text x="34" y="498" class="wd">Le terrain tranche. Le résultat retourne au corpus.</text>
+
+  <!-- Le corpus s'enrichit : la mémoire n'est pas figée -->
+  <path d="M 454 483 L 468 483 L 468 92 L 457 92" fill="none" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#tc)"/>
+
+  <text x="240" y="546" class="ft" text-anchor="middle">Aucune des deux ne suffit seule. C'est leur désaccord qui produit</text>
+  <text x="240" y="562" class="ft" text-anchor="middle">l'information — le consensus l'aurait détruite.</text>
+</svg>
