@@ -357,25 +357,9 @@ RAG → réponse
 
 mais plutôt :
 
-```text
-        connaissances externes
-                 │
-                 ▼
-       intelligence générale
-                 │
-             contradiction
-                 │
-                 ▼
-      mémoire institutionnelle
-                 │
-           contexte historique
-                 │
-                 ▼
-        hypothèse actualisée
-                 │
-                 ▼
-          validation réelle
-```
+![Deux intelligences se font face : l'intelligence générale, qui connaît la théorie et les normes et protège contre la fossilisation, et la mémoire institutionnelle, qui connaît les contraintes historiques et les incidents et protège contre l'oubli. Leur contradiction produit une hypothèse actualisée, soumise à validation réelle, dont le résultat retourne enrichir le corpus.](../../../assets/diagrams/tension-generale-situee.svg)
+
+*La flèche en pointillé est ce qui distingue ce dispositif d'un RAG : le résultat de la validation retourne dans la mémoire, qui cesse donc d'être une archive.*
 
 Le désaccord devient ici une fonction du système.
 
