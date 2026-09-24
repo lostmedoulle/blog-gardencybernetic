@@ -103,12 +103,14 @@
     "category": "essay",
     "status": "hypothesis",
     "confidence": "medium",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "tags": [
       "ia",
       "organisation",
       "productivite",
-      "cybernetique"
+      "cybernetique",
+      "initiative",
+      "incitations"
     ],
     "dateCreated": "2026-09-20",
     "dateUpdated": "2026-09-24",
