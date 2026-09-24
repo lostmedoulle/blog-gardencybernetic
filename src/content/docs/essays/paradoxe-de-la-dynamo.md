@@ -3,11 +3,11 @@ title: "Le paradoxe de la dynamo : l'IA ne rapporte rien sans structure"
 description: "Pourquoi la même IA transforme une entreprise digitalisée et échoue dans une autre. Une leçon vieille de cent ans."
 dateCreated: 2026-09-20
 dateUpdated: 2026-09-24
-version: 0.3.0
+version: 0.2.0
 status: hypothesis
 confidence: medium
 category: essay
-tags: ["ia", "organisation", "productivite", "cybernetique", "initiative", "incitations"]
+tags: ["ia", "organisation", "productivite", "cybernetique"]
 featured: false
 draft: false
 authors: ["Med"]
@@ -17,7 +17,6 @@ summary:
   - "L'IA suit la même loi : sans système structuré en dessous, l'automatisation reste impossible."
   - "Chez Paul David, le gain arrive surtout avec les usines neuves : on ne rase pas une usine qui fonctionne. L'entreprise qui naît est donc le terrain le plus favorable."
   - "Dans l'entreprise peu digitalisée, le travail utile n'est pas l'IA mais la structuration. C'est du conseil, pas un produit."
-  - "La structure qui compte est celle des données et des règles, pas la rigidité de l'organisation. Les gains vont aux entreprises qui combinent des systèmes solides, de l'autonomie et des incitations."
   - "Les outils deviennent gratuits, mais la structure reste chère."
 # Révision prévue : 2027-03-20
 ---
@@ -46,23 +45,6 @@ Et il existe un troisième cas, souvent oublié : **l'entreprise qui naît**. C'
 
 Si la leçon de l'électricité s'applique, les gains de l'IA se verront d'abord là, et non dans les organisations établies. Non parce que les nouvelles entreprises seraient plus douées, mais parce qu'elles n'ont rien à démolir.
 
-## Structurer les données, pas les personnes
-
-Il faut lever une ambiguïté : structurer ne veut pas dire rigidifier l'organisation. C'est même l'inverse.
-
-Revenons à l'usine. Le moteur par machine n'a pas seulement réduit les pertes d'énergie. Il a libéré l'atelier de l'arbre de transmission : chaque poste pouvait tourner, s'arrêter ou être déplacé sans dépendre des autres. La structure technique est devenue plus rigoureuse, et l'organisation du travail plus souple.
-
-Les recherches sur l'informatique des années 1990 et 2000 montrent la même chose. Bresnahan, Brynjolfsson et Hitt ont observé que les gains de productivité liés à l'informatique allaient surtout aux entreprises qui la combinaient avec une organisation décentralisée : davantage d'autonomie, du travail en équipe, des personnes plus qualifiées. Bloom, Sadun et Van Reenen ont montré que les filiales américaines tiraient plus de leurs investissements informatiques que leurs concurrentes européennes, et que l'écart s'expliquait par leurs pratiques de gestion des personnes : promotion au mérite, primes liées aux résultats.
-
-Mon hypothèse se précise donc. Le cadre gagnant associe deux éléments :
-
-- **Des données et des règles rigoureuses.** Un système central propre, des processus écrits, des contrôles vérifiables. C'est ce qui rend l'automatisation possible.
-- **Une organisation qui récompense l'initiative.** Des personnes libres de construire des solutions sur ce socle, et intéressées au résultat. C'est ce qui fait que l'automatisation a réellement lieu.
-
-Le premier élément sans le second donne une bureaucratie bien documentée, où personne ne prend le risque de changer quoi que ce soit. Le second sans le premier donne des initiatives individuelles brillantes qui ne se connectent à rien, et disparaissent avec leur auteur.
-
-Deux mises en garde. D'abord, une prime mal conçue produit exactement ce qu'elle mesure, et pas davantage (Steven Kerr l'a décrit dès 1975) : récompenser le nombre d'automatisations livrées produira des automatisations, pas nécessairement des gains. Ensuite, l'autonomie suppose des limites claires : on laisse les gens construire librement parce que le socle de données et de contrôles rend les erreurs visibles. Sans ce socle, la liberté devient un risque que l'organisation finit par refermer.
-
 ## Ce que cela implique
 
 Si cette hypothèse est juste, alors le travail de structuration — capturer les règles métier, les exceptions, les cas limites, et les rendre vérifiables — ne disparaîtra pas avec de meilleurs modèles. C'est l'investissement complémentaire sans lequel l'IA ne rapporte rien. Il se fait entreprise par entreprise, et il demande autant de connaissance du métier que de compétence technique.
@@ -87,9 +69,6 @@ Si une seule condition manque, l'agent est un outil qui accélère la structurat
 
 - Paul A. David, « The Dynamo and the Computer: An Historical Perspective on the Modern Productivity Paradox », *American Economic Review*, 1990.
 - Robert Solow, compte rendu paru dans le *New York Times Book Review*, 1987.
-- Timothy F. Bresnahan, Erik Brynjolfsson et Lorin M. Hitt, « Information Technology, Workplace Organization, and the Demand for Skilled Labor: Firm-Level Evidence », *Quarterly Journal of Economics*, 2002.
-- Nicholas Bloom, Raffaella Sadun et John Van Reenen, « Americans Do IT Better: US Multinationals and the Productivity Miracle », *American Economic Review*, 2012.
-- Steven Kerr, « On the Folly of Rewarding A, While Hoping for B », *Academy of Management Journal*, 1975.
 
 ---
 
