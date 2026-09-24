@@ -103,7 +103,7 @@
     "category": "essay",
     "status": "hypothesis",
     "confidence": "medium",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "tags": [
       "ia",
       "organisation",
@@ -111,7 +111,7 @@
       "cybernetique"
     ],
     "dateCreated": "2026-09-20",
-    "dateUpdated": "2026-09-20",
+    "dateUpdated": "2026-09-24",
     "related": [],
     "supersedes": null,
     "supersededBy": null,
