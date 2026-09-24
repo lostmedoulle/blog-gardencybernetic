@@ -97,6 +97,29 @@
     "sourcePath": "src/content/docs/essays/memoire-institutionnelle-evolutive.md"
   },
   {
+    "title": "Le paradoxe de la dynamo : l'IA ne rapporte rien sans structure",
+    "description": "Pourquoi la même IA transforme une entreprise digitalisée et échoue dans une autre. Une leçon vieille de cent ans.",
+    "slug": "paradoxe-de-la-dynamo",
+    "category": "essay",
+    "status": "hypothesis",
+    "confidence": "medium",
+    "version": "0.2.0",
+    "tags": [
+      "ia",
+      "organisation",
+      "productivite",
+      "cybernetique"
+    ],
+    "dateCreated": "2026-09-20",
+    "dateUpdated": "2026-09-24",
+    "related": [],
+    "supersedes": null,
+    "supersededBy": null,
+    "language": "fr",
+    "draft": false,
+    "sourcePath": "src/content/docs/essays/paradoxe-de-la-dynamo.md"
+  },
+  {
     "title": "L'agent n'est pas un outil de production, c'est un instrument de mesure",
     "description": "Automatisation, processus, et le signal qu'on éteint sans le vouloir.",
     "slug": "agent-instrument-de-mesure",
