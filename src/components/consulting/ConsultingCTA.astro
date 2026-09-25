@@ -1,0 +1,112 @@
+---
+import PixelIcon from '../ui/PixelIcon.astro';
+import { CONSULTING } from '../../config/consulting';
+
+const testUrl = `${CONSULTING.siteUrl}${CONSULTING.testPath}`;
+const offerUrl = `${CONSULTING.siteUrl}${CONSULTING.offerPath}`;
+---
+
+<aside class="consulting-cta">
+  <div class="cta-icon">
+    <PixelIcon name="target-plant" size={26} />
+  </div>
+
+  <div class="cta-body">
+    <p class="cta-title">Vous voulez appliquer ces idées à votre entreprise ?</p>
+    <p class="cta-text">
+      Le test d'une minute, puis un quart d'heure au téléphone : les deux sont gratuits.
+      S'il n'y a rien à structurer chez vous, je vous le dis.
+      <a href={offerUrl} target="_blank" rel="noopener">Voir la démarche</a>.
+    </p>
+  </div>
+
+  <a href={testUrl} class="cta-button" target="_blank" rel="noopener">
+    <span>Faire le test gratuit</span>
+    <PixelIcon name="arrow" size={15} />
+  </a>
+</aside>
+
+<style>
+  .consulting-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    padding: 1.25rem 1.4rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    background-color: var(--surface);
+    margin: 2.5rem 0 1rem 0;
+  }
+
+  .cta-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-muted);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .cta-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cta-title {
+    font-size: 0.975rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.3rem 0;
+    line-height: 1.35;
+  }
+
+  .cta-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .cta-text a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .cta-button {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.15rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background-color: var(--text);
+    color: var(--surface);
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 760px) {
+    .consulting-cta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.9rem;
+    }
+
+    .cta-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
